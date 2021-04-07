@@ -1,0 +1,17 @@
+C:\Users\annic\Desktop\spring20213342\TP\DogeBook\UsersWebApi\bin\Debug\netcoreapp2.2\appsettings.Development.json
+C:\Users\annic\Desktop\spring20213342\TP\DogeBook\UsersWebApi\bin\Debug\netcoreapp2.2\appsettings.json
+C:\Users\annic\Desktop\spring20213342\TP\DogeBook\UsersWebApi\bin\Debug\netcoreapp2.2\UsersWebApi.deps.json
+C:\Users\annic\Desktop\spring20213342\TP\DogeBook\UsersWebApi\bin\Debug\netcoreapp2.2\UsersWebApi.runtimeconfig.json
+C:\Users\annic\Desktop\spring20213342\TP\DogeBook\UsersWebApi\bin\Debug\netcoreapp2.2\UsersWebApi.runtimeconfig.dev.json
+C:\Users\annic\Desktop\spring20213342\TP\DogeBook\UsersWebApi\bin\Debug\netcoreapp2.2\UsersWebApi.dll
+C:\Users\annic\Desktop\spring20213342\TP\DogeBook\UsersWebApi\bin\Debug\netcoreapp2.2\UsersWebApi.pdb
+C:\Users\annic\Desktop\spring20213342\TP\DogeBook\UsersWebApi\obj\Debug\netcoreapp2.2\UsersWebApi.csprojAssemblyReference.cache
+C:\Users\annic\Desktop\spring20213342\TP\DogeBook\UsersWebApi\obj\Debug\netcoreapp2.2\UsersWebApi.AssemblyInfoInputs.cache
+C:\Users\annic\Desktop\spring20213342\TP\DogeBook\UsersWebApi\obj\Debug\netcoreapp2.2\UsersWebApi.AssemblyInfo.cs
+C:\Users\annic\Desktop\spring20213342\TP\DogeBook\UsersWebApi\obj\Debug\netcoreapp2.2\UsersWebApi.csproj.CoreCompileInputs.cache
+C:\Users\annic\Desktop\spring20213342\TP\DogeBook\UsersWebApi\obj\Debug\netcoreapp2.2\UsersWebApi.RazorAssemblyInfo.cache
+C:\Users\annic\Desktop\spring20213342\TP\DogeBook\UsersWebApi\obj\Debug\netcoreapp2.2\UsersWebApi.RazorAssemblyInfo.cs
+C:\Users\annic\Desktop\spring20213342\TP\DogeBook\UsersWebApi\obj\Debug\netcoreapp2.2\UsersWebApi.RazorTargetAssemblyInfo.cache
+C:\Users\annic\Desktop\spring20213342\TP\DogeBook\UsersWebApi\obj\Debug\netcoreapp2.2\UsersWebApi.dll
+C:\Users\annic\Desktop\spring20213342\TP\DogeBook\UsersWebApi\obj\Debug\netcoreapp2.2\UsersWebApi.pdb
+C:\Users\annic\Desktop\spring20213342\TP\DogeBook\UsersWebApi\obj\Debug\netcoreapp2.2\UsersWebApi.genruntimeconfig.cache
