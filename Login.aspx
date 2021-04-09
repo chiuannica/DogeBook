@@ -29,7 +29,7 @@
                         <div class="invalid-feedback">I know you're not Snowden, but cmon.</div>
                         <div class="checkbox mb-3">
                             <label>
-                                <asp:CheckBox ID="RemeberChkBox" runat="server" type="checkbox" value="remember_me" />
+                                <asp:CheckBox ID="RemeberChkBox" runat="server" type="checkbox" value="remember_me" OnCheckedChanged="RemeberChkBox_CheckedChanged" />
                                 Remember me
                             </label>
                         </div>
