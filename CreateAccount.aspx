@@ -1,5 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CreateAccount.aspx.cs" Inherits="DogeBook.CreateAccount" %>
 
+<%@ Register Src="~/Navbar.ascx" TagPrefix="uc1" TagName="Navbar" %>
+
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -14,6 +17,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <uc1:Navbar runat="server" id="Navbar" />
         <div class="container col-6">
             <div class="form-group">
                 <label >Email address</label>
@@ -34,6 +38,39 @@
             <div class="form-group">
                 <label>Confirm Password</label>
                 <asp:TextBox ID="TBConfirmPassword" type="password" class="form-control" placeholder="Password" runat="server"></asp:TextBox>
+            </div>
+            <div class="form-group">
+                <label>Security Question 1</label>
+                <div>
+                    <asp:DropDownList ID="DDLSecurityQuestion1" class="dropdown btn dropdown-toggle" runat="server">
+                        <asp:ListItem class="dropdown-item">What is your mother's maiden name?</asp:ListItem>
+                        <asp:ListItem class="dropdown-item">Where did you go to elementary school?</asp:ListItem>
+                        <asp:ListItem class="dropdown-item">Who was your favorite teacher?</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+                <asp:TextBox ID="TBSecurityQuestion1" type="text" class="form-control" placeholder="Answer" runat="server"></asp:TextBox>
+            </div>
+            <div class="form-group">
+                <label>Security Question 2</label>
+                <div>
+                    <asp:DropDownList ID="DDLSecurityQuestion2" class="dropdown btn dropdown-toggle" runat="server">
+                        <asp:ListItem class="dropdown-item">What street did you grow up on?</asp:ListItem>
+                        <asp:ListItem class="dropdown-item">What was the name of your first pet?</asp:ListItem>
+                        <asp:ListItem class="dropdown-item">Who was your first best friend?</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+                <asp:TextBox ID="TBSecurityQuestion2" type="text" class="form-control" placeholder="Answer" runat="server"></asp:TextBox>
+            </div>
+            <div class="form-group">
+                <label>Security Question 3</label>
+                <div>
+                    <asp:DropDownList ID="DDLSecurityQuestion3" class="dropdown btn dropdown-toggle" runat="server">
+                        <asp:ListItem class="dropdown-item">What was your grandmother's name?</asp:ListItem>
+                        <asp:ListItem class="dropdown-item">Where did you go to elementary school?</asp:ListItem>
+                        <asp:ListItem class="dropdown-item">Who was your favorite teacher?</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+                <asp:TextBox ID="TBSecurityQuestion3" type="text" class="form-control" placeholder="Answer" runat="server"></asp:TextBox>
             </div>
             <div>
                 <asp:Button ID="BtnSubmit" class="btn btn-primary" runat="server" Text="Submit" OnClick="BtnSubmit_Click" />
