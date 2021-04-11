@@ -127,59 +127,58 @@ namespace DogeBook
 
         protected void Encrypt()
         {
-            String user = TxtEmail_SignIn.Text;
-            String plainTextPassword = TxtPassword_SignIn.Text;
-            String encryptedPassword;
-            UTF8Encoding encoder = new UTF8Encoding();      // used to convert bytes to characters, and back
-            Byte[] textBytes;                               // stores the plain text data as bytes
+          //  String user = TxtEmail_SignIn.Text;
+          //  String plainTextPassword = TxtPassword_SignIn.Text;
+          //  String encryptedPassword;
+          //  UTF8Encoding encoder = new UTF8Encoding();      // used to convert bytes to characters, and back
+          //  Byte[] textBytes;                               // stores the plain text data as bytes
 
-            // Perform Encryption
-            //-------------------
-            // Convert a string to a byte array, which will be used in the encryption process.
+          //  Perform Encryption
+          //  -------------------
+          //   Convert a string to a byte array, which will be used in the encryption process.
 
-            textBytes = encoder.GetBytes(plainTextPassword);
+          //  textBytes = encoder.GetBytes(plainTextPassword);
 
-            // Create an instances of the encryption algorithm (Rinjdael AES) for the encryption to perform,
-            // a memory stream used to store the encrypted data temporarily, and
-            // a crypto stream that performs the encryption algorithm.
+          //  Create an instances of the encryption algorithm(Rinjdael AES) for the encryption to perform,
+          // a memory stream used to store the encrypted data temporarily, and
 
-            RijndaelManaged rmEncryption = new RijndaelManaged();
-            MemoryStream myMemoryStream = new MemoryStream();
-            CryptoStream myEncryptionStream = new CryptoStream(myMemoryStream, rmEncryption.CreateEncryptor(key, vector), CryptoStreamMode.Write);
-
-            // Use the crypto stream to perform the encryption on the plain text byte array.
-            myEncryptionStream.Write(textBytes, 0, textBytes.Length);
-            myEncryptionStream.FlushFinalBlock();
+          // a crypto stream that performs the encryption algorithm.
 
 
+          //RijndaelManaged rmEncryption = new RijndaelManaged();
+          //  MemoryStream myMemoryStream = new MemoryStream();
+          //  CryptoStream myEncryptionStream = new CryptoStream(myMemoryStream, rmEncryption.CreateEncryptor(key, vector), CryptoStreamMode.Write);
 
-            // Retrieve the encrypted data from the memory stream, and write it to a separate byte array.
-            myMemoryStream.Position = 0;
-
-            Byte[] encryptedBytes = new Byte[myMemoryStream.Length];
-
-            myMemoryStream.Read(encryptedBytes, 0, encryptedBytes.Length);
-            
-            // Close all the streams.
-            myEncryptionStream.Close();
-            myMemoryStream.Close();
-
-            // Convert the bytes to a string and display it.
-            encryptedPassword = Convert.ToBase64String(encryptedBytes);
-            //lblDisplay.Text = encryptedPassword;
-            //divMethod.InnerText = "Encrypted Data:";
+          //  Use the crypto stream to perform the encryption on the plain text byte array.
+          //  myEncryptionStream.Write(textBytes, 0, textBytes.Length);
+          //  myEncryptionStream.FlushFinalBlock();
 
 
 
-            // Write encrypted password to a cookie
-            HttpCookie myCookie = new HttpCookie("LoginCookie");
-            myCookie.Values["Username"] = user;
-            myCookie.Values["Password"] = encryptedPassword;
-            myCookie.Expires = new DateTime(DateTime.Now.Year, DateTime.Now.Month + 1, DateTime.Now.Day);
-            Response.Cookies.Add(myCookie);
+          //  Retrieve the encrypted data from the memory stream, and write it to a separate byte array.
+          //  myMemoryStream.Position = 0;
+
+          //  Byte[] encryptedBytes = new Byte[myMemoryStream.Length];
+
+          //  myMemoryStream.Read(encryptedBytes, 0, encryptedBytes.Length);
+
+          //  Close all the streams.
+          //  myEncryptionStream.Close();
+          //  myMemoryStream.Close();
+
+          //  Convert the bytes to a string and display it.
+          //  encryptedPassword = Convert.ToBase64String(encryptedBytes);
+          //  lblDisplay.Text = encryptedPassword;
+          //  divMethod.InnerText = "Encrypted Data:";
 
 
 
+          //  Write encrypted password to a cookie
+          //  HttpCookie myCookie = new HttpCookie("LoginCookie");
+          //  myCookie.Values["Username"] = user;
+          //  myCookie.Values["Password"] = encryptedPassword;
+          //  myCookie.Expires = new DateTime(DateTime.Now.Year, DateTime.Now.Month + 1, DateTime.Now.Day);
+          //  Response.Cookies.Add(myCookie);
         }
         protected void Btn_CreateAccount_Click(object sender, EventArgs e)
         {

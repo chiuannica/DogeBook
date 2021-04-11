@@ -102,54 +102,53 @@ namespace DogeBookLibrary
         protected void btnDecrypt_Click(object sender, EventArgs e)
 
         {
-            // Read encrypted password from cookie
-            //if (Request.Cookies["LoginCookie"] != null)
-            // {
+           // Read encrypted password from cookie
+           // if (Request.Cookies["LoginCookie"] != null)
+           // {
 
-            //HttpCookie myCookie = Request.Cookies["LoginCookie"];
+           //     HttpCookie myCookie = Request.Cookies["LoginCookie"];
 
-            //String encryptedPassword = myCookie.Values["Password"];
-            Byte[] encryptedPasswordBytes = Convert.FromBase64String(encryptedPassword);
-            Byte[] textBytes;
-            String plainTextPassword;
-            UTF8Encoding encoder = new UTF8Encoding();
-            // Perform Decryption
-            //-------------------
-            // Create an instances of the decryption algorithm (Rinjdael AES) for the encryption to perform,
-            // a memory stream used to store the decrypted data temporarily, and
-            // a crypto stream that performs the decryption algorithm.
-            RijndaelManaged rmEncryption = new RijndaelManaged();
-            MemoryStream myMemoryStream = new MemoryStream();
-            CryptoStream myDecryptionStream = new CryptoStream(myMemoryStream, rmEncryption.CreateDecryptor(key, vector), CryptoStreamMode.Write);
-            
-            // Use the crypto stream to perform the decryption on the encrypted data in the byte array.
-            myDecryptionStream.Write(encryptedPasswordBytes, 0, encryptedPasswordBytes.Length);
-            myDecryptionStream.FlushFinalBlock();
-            
-            // Retrieve the decrypted data from the memory stream, and write it to a separate byte array.
-            myMemoryStream.Position = 0;
-            textBytes = new Byte[myMemoryStream.Length];
-            myMemoryStream.Read(textBytes, 0, textBytes.Length);
-            
-            // Close all the streams.
-            myDecryptionStream.Close();
-            myMemoryStream.Close();
+           //     String encryptedPassword = myCookie.Values["Password"];
+           //     Byte[] encryptedPasswordBytes = Convert.FromBase64String(encryptedPassword);
+           //     Byte[] textBytes;
+           //     String plainTextPassword;
+           //     UTF8Encoding encoder = new UTF8Encoding();
+           //     Perform Decryption
+           // -------------------
+           //  Create an instances of the decryption algorithm(Rinjdael AES) for the encryption to perform,
+           // a memory stream used to store the decrypted data temporarily, and
+
+           // a crypto stream that performs the decryption algorithm.
+
+           //RijndaelManaged rmEncryption = new RijndaelManaged();
+           //     MemoryStream myMemoryStream = new MemoryStream();
+           //     CryptoStream myDecryptionStream = new CryptoStream(myMemoryStream, rmEncryption.CreateDecryptor(key, vector), CryptoStreamMode.Write);
+
+           //     Use the crypto stream to perform the decryption on the encrypted data in the byte array.
+           // myDecryptionStream.Write(encryptedPasswordBytes, 0, encryptedPasswordBytes.Length);
+           //     myDecryptionStream.FlushFinalBlock();
+
+           //     Retrieve the decrypted data from the memory stream, and write it to a separate byte array.
+           // myMemoryStream.Position = 0;
+           //     textBytes = new Byte[myMemoryStream.Length];
+           //     myMemoryStream.Read(textBytes, 0, textBytes.Length);
+
+           //     Close all the streams.
+           // myDecryptionStream.Close();
+           //     myMemoryStream.Close();
 
 
 
-            // Convert the bytes to a string and display it.
-            plainTextPassword = encoder.GetString(textBytes);
+           //     Convert the bytes to a string and display it.
+           // plainTextPassword = encoder.GetString(textBytes);
 
-            //lblDisplay.Text = plainTextPassword;
-            //txtPassword.Text = plainTextPassword;
-            //divMethod.InnerText = "Decrypted Data:";
+           //     lblDisplay.Text = plainTextPassword;
+           //     txtPassword.Text = plainTextPassword;
+           //     divMethod.InnerText = "Decrypted Data:";
+            }
 
 
 
         }
-
-
-
-    }
 }
-}
+
