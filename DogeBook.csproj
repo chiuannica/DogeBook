@@ -68,9 +68,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CreateAccount.aspx" />
+<<<<<<< HEAD
     <Content Include="FriendCard.ascx" />
     <Content Include="Navbar.ascx" />
     <Content Include="Profile.aspx" />
+=======
+    <Content Include="Images\DogeBook-Logo.png" />
+    <Content Include="Login.aspx" />
+>>>>>>> master
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +108,13 @@
     <Compile Include="CreateAccount.aspx.designer.cs">
       <DependentUpon>CreateAccount.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -113,6 +125,12 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DogeBookLibrary\DogeBookLibrary.csproj">
+      <Project>{ba008a95-5d30-4313-85b4-d2de2f4ec202}</Project>
+      <Name>DogeBookLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
