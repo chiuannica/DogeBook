@@ -43,9 +43,14 @@ namespace DogeBook
         protected void BtnSubmit_Click(object sender, EventArgs e)
         {
             string warning = InputValidation();
+
+            // check if email is used already
+
             if (warning != "")
                 LblWarning.Visible = true;
                 LblWarning.Text = warning;
+
+            // insert new user record
         }
     }
 }

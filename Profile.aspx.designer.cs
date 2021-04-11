@@ -11,7 +11,7 @@ namespace DogeBook
 {
 
 
-    public partial class CreateAccount
+    public partial class Profile
     {
 
         /// <summary>
@@ -33,120 +33,84 @@ namespace DogeBook
         protected global::DogeBook.Navbar Navbar;
 
         /// <summary>
-        /// TBEmail control.
+        /// LFirstName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBEmail;
+        protected global::System.Web.UI.WebControls.Label LFirstName;
 
         /// <summary>
-        /// TBFirstName control.
+        /// LLastName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBFirstName;
+        protected global::System.Web.UI.WebControls.Label LLastName;
 
         /// <summary>
-        /// TBLastName control.
+        /// LBio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBLastName;
+        protected global::System.Web.UI.WebControls.Label LBio;
 
         /// <summary>
-        /// TBPassword control.
+        /// LInterests control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBPassword;
+        protected global::System.Web.UI.WebControls.Label LInterests;
 
         /// <summary>
-        /// TBConfirmPassword control.
+        /// LCity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBConfirmPassword;
+        protected global::System.Web.UI.WebControls.Label LCity;
 
         /// <summary>
-        /// DDLSecurityQuestion1 control.
+        /// LState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DDLSecurityQuestion1;
+        protected global::System.Web.UI.WebControls.Label LState;
 
         /// <summary>
-        /// TBSecurityQuestion1 control.
+        /// FriendCard1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBSecurityQuestion1;
+        protected global::DogeBook.FriendCard FriendCard1;
 
         /// <summary>
-        /// DDLSecurityQuestion2 control.
+        /// FriendCard2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DDLSecurityQuestion2;
+        protected global::DogeBook.FriendCard FriendCard2;
 
         /// <summary>
-        /// TBSecurityQuestion2 control.
+        /// FriendCard3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBSecurityQuestion2;
-
-        /// <summary>
-        /// DDLSecurityQuestion3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DDLSecurityQuestion3;
-
-        /// <summary>
-        /// TBSecurityQuestion3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBSecurityQuestion3;
-
-        /// <summary>
-        /// BtnSubmit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnSubmit;
-
-        /// <summary>
-        /// LblWarning control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblWarning;
+        protected global::DogeBook.FriendCard FriendCard3;
     }
 }

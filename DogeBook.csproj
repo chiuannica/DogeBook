@@ -68,11 +68,39 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CreateAccount.aspx" />
+<<<<<<< HEAD
+    <Content Include="FriendCard.ascx" />
+    <Content Include="Navbar.ascx" />
+    <Content Include="Profile.aspx" />
+=======
     <Content Include="Images\DogeBook-Logo.png" />
     <Content Include="Login.aspx" />
+>>>>>>> master
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FriendCard.ascx.cs">
+      <DependentUpon>FriendCard.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FriendCard.ascx.designer.cs">
+      <DependentUpon>FriendCard.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Navbar.ascx.cs">
+      <DependentUpon>Navbar.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Navbar.ascx.designer.cs">
+      <DependentUpon>Navbar.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs" />
     <Compile Include="CreateAccount.aspx.cs">
       <DependentUpon>CreateAccount.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
