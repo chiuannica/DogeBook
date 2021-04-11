@@ -35,7 +35,7 @@
                         </div>
                         <asp:Button ID="Btn_SignIn" runat="server" Text="Sign In" Class="btn btn-md btn-primary btn-block" OnClick="Btn_SignIn_Click" />
                         <asp:Button ID="Btn_CreateAccount" runat="server" Text="Create Account" Class="btn btn-link" OnClick="Btn_CreateAccount_Click" />
-                        <p class="mt-5 mb-3 text-muted">Annica Chiu & Stylianos Dimitriadis <br /> Copyright&copy; 2021</p>
+                        <p class="mt-5 mb-3 text-muted">Stylianos Dimitriadis & Annica Chiu <br /> Copyright&copy; 2021</p>
                     </div>
                 </div>
             </div>
