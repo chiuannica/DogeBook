@@ -20,49 +20,56 @@
 <body>
     <form id="form1" runat="server">
         <uc1:Navbar runat="server" ID="Navbar" />
-        <div class="container border my-3">
-
-                <div class="row my-3">
-                    <asp:Image ID="Image1" runat="server" class="img-thumbnail rounded col-4" src="https://www.telegraph.co.uk/content/dam/technology/2021/01/28/Screenshot-2021-01-28-at-13-20-35_trans_NvBQzQNjv4BqEGKV9LrAqQtLUTT1Z0gJNRFI0o2dlzyIcL3Nvd0Rwgc.png" />
+        <div class="container my-3">
+            <div class="row">
+                <div class="mr-3">
+                    <asp:Label ID="LFirstName" runat="server" Text="First" CssClass="display-2"></asp:Label>
                 </div>
-                <div class="row">
-                    <div class="mr-3">
-                        <asp:Label ID="LFirstName" runat="server" Text="First" CssClass="display-2"></asp:Label>
-                    </div>
-                    <div>
-                        <asp:Label ID="LLastName" runat="server" Text="Last" CssClass="display-2"></asp:Label>
-                    </div>
+                <div>
+                    <asp:Label ID="LLastName" runat="server" Text="Last" CssClass="display-2"></asp:Label>
                 </div>
+            </div>
+        </div>
+        <div class="container  border my-3 px-3 py-3">
 
-                <div class="row col-8 my-3">
+                <div class="row col-md-4 col-sm-12">
+                    <asp:Image ID="ImgProfilePic" runat="server" class="img-thumbnail rounded" src="https://www.telegraph.co.uk/content/dam/technology/2021/01/28/Screenshot-2021-01-28-at-13-20-35_trans_NvBQzQNjv4BqEGKV9LrAqQtLUTT1Z0gJNRFI0o2dlzyIcL3Nvd0Rwgc.png" />
+                </div>
+                
+
+                <div class="row col-md-8 col-sm-12 my-3">
                     <asp:Label ID="LBio" runat="server" Text="Biography Biography Biography Biography Biography 
                                                                 Biography Biography Biography Biography Biography
                         Biography Biography Biography Biography Biography Biography Biography Biography Biography 
                         Biography Biography Biography Biography Biography Biography Biography Biography Biography">
                     </asp:Label>
                 </div>
-                <div class="row col-8 my-3">
+                <div class="row col-md-8 col-sm-12 my-3">
                     <asp:Label ID="LInterests" runat="server" Text="Interests Interests Interests Interests Interests 
                         Interests Interests Interests Interests Interests Interests ">
                     </asp:Label>
                 </div>
-                <div class="row col-8 my-3">
+                <div class="row col-md-8 col-sm-12 my-3">
                     <asp:Label ID="LCity" runat="server" Text="DogeVile"></asp:Label>
                     <span class="mr-3">,</span>
                     <asp:Label ID="LState" runat="server" Text="Pennsylvania"></asp:Label>
                 </div>
 
         </div>
-        <div class="container border my-2">
+
+        <div class="container my-3">
             <div class="row">
                 <p class="display-2">Friends</p>
             </div>
+        </div>
+
+        <div class="container border my-2 px-3 py-3">
             <div class="row">
-                <div class="col-4"><uc1:FriendCard runat="server" id="FriendCard1" /></div>
-                <div class="col-4"><uc1:FriendCard runat="server" id="FriendCard2" /></div>
-                <div class="col-4"><uc1:FriendCard runat="server" id="FriendCard3" /></div>
+                <div class="col-md-4 col-sm-6"><uc1:FriendCard runat="server" id="FriendCard1" /></div>
+                <div class="col-md-4 col-sm-6"><uc1:FriendCard runat="server" id="FriendCard2" /></div>
+                <div class="col-md-4 col-sm-6"><uc1:FriendCard runat="server" id="FriendCard3" /></div>
             </div>
-            
+
         </div>
     </form>
 </body>

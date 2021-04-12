@@ -259,3 +259,12 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+.vs/DogeBook/v16/.suo
+bin/DogeBook.dll
+bin/DogeBook.pdb
+*.cache
+obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+obj/Debug/DogeBook.csproj.CoreCompileInputs.cache
+obj/Debug/DogeBook.csprojAssemblyReference.cache
+obj/Debug/DogeBook.dll
+obj/Debug/DogeBook.pdb

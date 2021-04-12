@@ -20,7 +20,10 @@
 <body>
     <form id="form1" runat="server">
         <uc1:Navbar runat="server" id="Navbar" />
-        <div class="container col-6">
+        <div>
+            <h1 class="display-1">Create an Account</h1>
+        </div>
+        <div class="container col-md-6 col-sm-12">
             <div class="form-group">
                 <label >Email address</label>
                 <asp:TextBox ID="TBEmail" type="email" class="form-control" placeholder="Email" runat="server"></asp:TextBox>
@@ -77,7 +80,7 @@
             <div>
                 <asp:Button ID="BtnSubmit" class="btn btn-primary" runat="server" Text="Submit" OnClick="BtnSubmit_Click" />
             </div>
-            <div class="containerlfluid my-3">
+            <div class="container fluid my-3">
                 <asp:Label ID="LblWarning" Visible="false" style="display:block" class="container alert alert-danger" runat="server" Text="Warning"></asp:Label>
             </div>
         </div>
