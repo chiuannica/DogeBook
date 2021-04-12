@@ -68,14 +68,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CreateAccount.aspx" />
-<<<<<<< HEAD
     <Content Include="FriendCard.ascx" />
     <Content Include="Navbar.ascx" />
     <Content Include="Profile.aspx" />
-=======
     <Content Include="Images\DogeBook-Logo.png" />
     <Content Include="Login.aspx" />
->>>>>>> master
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -127,7 +124,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DogeBookLibrary\DogeBookLibrary.csproj">
+    <ProjectReference Include="DogeBookLibrary\DogeBookLibrary.csproj">
       <Project>{ba008a95-5d30-4313-85b4-d2de2f4ec202}</Project>
       <Name>DogeBookLibrary</Name>
     </ProjectReference>
