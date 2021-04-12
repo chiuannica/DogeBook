@@ -26,7 +26,6 @@
                         <div class="invalid-feedback">Who are you?</div>
                         <label for="Password">Password</label>
                         <asp:TextBox ID="TxtPassword_SignIn" runat="server" class="form-control" TextMode="Password" placeholder="xxxxxxxxxxx"></asp:TextBox>
-                        <div class="invalid-feedback">I know you're not Snowden, but cmon.</div>
                         <div class="checkbox mb-3">
                             <label>
                                 <asp:CheckBox ID="RemeberChkBox" runat="server" type="checkbox" value="remember_me" OnCheckedChanged="RemeberChkBox_CheckedChanged" />
