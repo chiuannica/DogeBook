@@ -1,15 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1433
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsersWebApi", "UsersWebApi\UsersWebApi.csproj", "{FDC3A582-16B7-42B6-BE45-D20CE15107A7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogeBook", "DogeBook.csproj", "{28D64274-A625-497B-B55E-7B948A618ECA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{81798AC1-EDC7-4D0B-B808-13ADFFD43B80} = {81798AC1-EDC7-4D0B-B808-13ADFFD43B80}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogeBookLibrary", "DogeBookLibrary\DogeBookLibrary.csproj", "{BA008A95-5D30-4313-85B4-D2DE2F4EC202}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimelineWebApi", "TimelineWebApi\TimelineWebApi.csproj", "{0BA533D1-C1D4-4E1F-8798-DF9B27171FF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimelineWebApi", "TimelineWebApi\TimelineWebApi.csproj", "{0BA533D1-C1D4-4E1F-8798-DF9B27171FF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountManagementSOAPApi", "AccountManagementSOAPApi\AccountManagementSOAPApi.csproj", "{81798AC1-EDC7-4D0B-B808-13ADFFD43B80}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +38,10 @@ Global
 		{0BA533D1-C1D4-4E1F-8798-DF9B27171FF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BA533D1-C1D4-4E1F-8798-DF9B27171FF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BA533D1-C1D4-4E1F-8798-DF9B27171FF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81798AC1-EDC7-4D0B-B808-13ADFFD43B80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81798AC1-EDC7-4D0B-B808-13ADFFD43B80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81798AC1-EDC7-4D0B-B808-13ADFFD43B80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81798AC1-EDC7-4D0B-B808-13ADFFD43B80}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

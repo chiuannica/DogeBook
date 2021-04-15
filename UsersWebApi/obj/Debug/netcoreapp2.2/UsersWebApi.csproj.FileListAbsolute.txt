@@ -29,3 +29,6 @@ C:\Users\Steve\Documents\GitHub\DogeBook\UsersWebApi\obj\Debug\netcoreapp2.2\Use
 C:\Users\Steve\Documents\GitHub\DogeBook\UsersWebApi\obj\Debug\netcoreapp2.2\UsersWebApi.RazorTargetAssemblyInfo.cache
 C:\Users\Steve\Documents\GitHub\DogeBook\UsersWebApi\obj\Debug\netcoreapp2.2\UsersWebApi.dll
 C:\Users\Steve\Documents\GitHub\DogeBook\UsersWebApi\obj\Debug\netcoreapp2.2\UsersWebApi.pdb
+C:\Users\annic\Desktop\spring20213342\TP\DogeBook\UsersWebApi\bin\Debug\netcoreapp2.2\DogeBookLibrary.dll
+C:\Users\annic\Desktop\spring20213342\TP\DogeBook\UsersWebApi\bin\Debug\netcoreapp2.2\DogeBookLibrary.pdb
+C:\Users\annic\Desktop\spring20213342\TP\DogeBook\UsersWebApi\obj\Debug\netcoreapp2.2\UsersWebApi.csproj.CopyComplete
