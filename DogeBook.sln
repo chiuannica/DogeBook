@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsersWebApi", "UsersWebApi\UsersWebApi.csproj", "{FDC3A582-16B7-42B6-BE45-D20CE15107A7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogeBook", "DogeBook.csproj", "{28D64274-A625-497B-B55E-7B948A618ECA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{81798AC1-EDC7-4D0B-B808-13ADFFD43B80} = {81798AC1-EDC7-4D0B-B808-13ADFFD43B80}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogeBookLibrary", "DogeBookLibrary\DogeBookLibrary.csproj", "{BA008A95-5D30-4313-85B4-D2DE2F4EC202}"
 EndProject

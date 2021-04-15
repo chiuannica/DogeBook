@@ -28,6 +28,14 @@ namespace AccountManagementSOAPApi
             return "Hello World";
         }
 
+        [WebMethod]
+        public double Add(double a, double b)
+        {
+            return a + b;
+        }
+
+        [WebMethod]
+
         public string hashPassword(string password)
         {
             // hash stuff
