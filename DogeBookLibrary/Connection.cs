@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Data;
-using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
+using System.Data;
+using System.Data.SqlClient;
 
-namespace Utilities
+
+namespace DogeBookLibrary
 {
     public class DBConnect
     {
@@ -14,7 +14,7 @@ namespace Utilities
         //String SqlConnectString = "server=cis-mssql1.temple.edu;Database=sp21_3342_tui30639;User id=tui30639;Password=ceejoo3Pha";
 
         // Home Connection String - used for working from home using SSH Tunneling.
-        String SqlConnectString = "server=127.0.0.1,5555;Database=sp21_3342_tuh17130;User id=tui30639;Password=ceejoo3Pha";
+        String SqlConnectString = "server=127.0.0.1,5555;Database=sp21_3342_tui30639;User id=tui30639;Password=ceejoo3Pha";
 
         SqlConnection myConnectionSql;
         SqlCommand objCmd;
@@ -31,7 +31,7 @@ namespace Utilities
         // Returns: a DataSet containing the records found by the query. 
         // Note: The DataSet is also stored as a class variable for use in the GetField method
         public DataSet GetDataSet(String SqlSelect)
-        {         
+        {
             SqlDataAdapter myDataAdapter = new SqlDataAdapter(SqlSelect, myConnectionSql);
             DataSet myDataSet = new DataSet();
             myDataAdapter.Fill(myDataSet);
@@ -130,7 +130,7 @@ namespace Utilities
             myDataAdapter.Fill(myDataSet);
             ds = myDataSet;
 
-            return myDataSet;          
+            return myDataSet;
         }
 
         // This method is used to retrieve a row from a DataSet.
@@ -225,4 +225,4 @@ namespace Utilities
         }
 
     }   // end class
-}   // end namespace
+}
