@@ -72,7 +72,9 @@
     <Content Include="CreateAccount.aspx" />
     <Content Include="ForgotPassword.aspx" />
     <Content Include="FriendCard.ascx" />
+    <Content Include="Images\DogeBook-Like.jfif" />
     <Content Include="Navbar.ascx" />
+    <Content Include="Post.ascx" />
     <Content Include="Profile.aspx" />
     <Content Include="Images\DogeBook-Logo.png" />
     <Content Include="Login.aspx" />
@@ -105,7 +107,13 @@
     <Compile Include="Navbar.ascx.designer.cs">
       <DependentUpon>Navbar.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Post.cs" />
+    <Compile Include="Post.ascx.cs">
+      <DependentUpon>Post.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Post.ascx.designer.cs">
+      <DependentUpon>Post.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
