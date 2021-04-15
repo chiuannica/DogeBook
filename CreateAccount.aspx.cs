@@ -11,11 +11,11 @@ namespace DogeBook
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Write("test");
+            //Response.Write("test");
 
-            AccountManagementService.AccountManagement proxy = new AccountManagementService.AccountManagement();
-            double sum = proxy.Add(31212, 12);
-            Response.Write(sum);
+            //AccountManagementService.AccountManagement proxy = new AccountManagementService.AccountManagement();
+            //double sum = proxy.Add(31212, 12);
+            //Response.Write(sum);
 
             Response.Write("12");
 
@@ -26,7 +26,7 @@ namespace DogeBook
             string warning = "";
             if (TBEmail.Text == "")
             {
-                warning += "Enter email. <br>";
+                warning += "Enter hubababa. <br>";
             } 
             if (TBFirstName.Text == "")
             {

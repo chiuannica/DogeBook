@@ -28,7 +28,7 @@
                         <asp:TextBox ID="TxtPassword_SignIn" runat="server" class="form-control" TextMode="Password" placeholder="xxxxxxxxxxx"></asp:TextBox>
                         <div class="checkbox mb-3">
                             <label>
-                                <asp:CheckBox ID="RemeberChkBox" runat="server" type="checkbox" value="remember_me" OnCheckedChanged="RemeberChkBox_CheckedChanged" />
+                                <asp:CheckBox ID="RemeberChkBox" runat="server" type="checkbox" value="remember_me" />
                                 Remember me
                             </label>
                         </div>

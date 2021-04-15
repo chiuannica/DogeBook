@@ -10,7 +10,6 @@ using System.IO;                        // needed for the MemoryStream
 using System.Text;                      // needed for the UTF8 encoding
 using System.Net;                       // needed for the cookie
 using System.Data.SqlClient;
-using Utilities;
 using System.Data;
 using DogeBookLibrary;
 
