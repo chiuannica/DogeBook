@@ -52,7 +52,6 @@ C:\Users\Steve\Documents\GitHub\DogeBook\bin\roslyn\VBCSCompiler.exe
 C:\Users\Steve\Documents\GitHub\DogeBook\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\Steve\Documents\GitHub\DogeBook\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\Steve\Documents\GitHub\DogeBook\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Steve\Documents\GitHub\DogeBook\obj\Debug\DogeBook.csprojAssemblyReference.cache
 C:\Users\Steve\Documents\GitHub\DogeBook\obj\Debug\DogeBook.csproj.CoreCompileInputs.cache
 C:\Users\Steve\Documents\GitHub\DogeBook\obj\Debug\DogeBook.csproj.CopyComplete
 C:\Users\Steve\Documents\GitHub\DogeBook\obj\Debug\DogeBook.dll
@@ -120,3 +119,4 @@ C:\Users\annic\Desktop\spring20213342\TP\DogeBook\bin\Microsoft.CodeDom.Provider
 C:\Users\annic\Desktop\spring20213342\TP\DogeBook\obj\Debug\DogeBook.csproj.CopyComplete
 C:\Users\annic\Desktop\spring20213342\TP\DogeBook\obj\Debug\DogeBook.dll
 C:\Users\annic\Desktop\spring20213342\TP\DogeBook\obj\Debug\DogeBook.pdb
+C:\Users\Steve\Documents\GitHub\DogeBook\obj\Debug\DogeBook.csprojAssemblyReference.cache

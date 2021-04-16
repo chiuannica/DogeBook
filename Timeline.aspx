@@ -1,9 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Timeline.aspx.cs" Inherits="DogeBook.Timeline" %>
 
-<%@ Register Src="~/Navbar.ascx" TagPrefix="uc1" TagName="Navbar" %>
-<%@ Register Src="~/Post.ascx" TagPrefix="uc1" TagName="Post" %>
-
-
+<%@ Register Src="~/PostControl.ascx" TagPrefix="uc1" TagName="PostControl" %>
 
 <!DOCTYPE html>
 
@@ -18,11 +15,8 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            <uc1:Navbar runat="server" ID="Navbar" />
-        </div>
         <div class="row justify-content-center">
-            <uc1:Post runat="server" ID="Post" />
+            <uc1:PostControl runat="server" id="PostControl" />
         </div>
         
     </form>

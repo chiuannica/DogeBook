@@ -5,11 +5,18 @@ using System.Web;
 
 namespace DogeBook
 {
-    public class Post
+    public partial class Post
     {
         public Post()
         {
 
+        }
+
+        public Post(string text, string imageUrl, string timestamp)
+        {
+            Text = text;
+            ImageUrl = imageUrl;
+            Timestamp = timestamp;
         }
 
         private String Text { get; set; }
