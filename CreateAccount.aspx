@@ -80,6 +80,9 @@
             <div class="containerlfluid my-3">
                 <asp:Label ID="LblWarning" Visible="false" style="display:block" class="container alert alert-danger" runat="server" Text="Warning"></asp:Label>
             </div>
+            <div class="containerlfluid my-3">
+                <asp:Label ID="LblSuccess" Visible="false" style="display:block" class="container alert alert-success" runat="server" Text="Success"></asp:Label>
+            </div>
         </div>
         
     </form>

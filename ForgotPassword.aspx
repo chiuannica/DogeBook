@@ -33,19 +33,27 @@
             <div class="my-3">
                 <asp:Button ID="BtnGetSecurityQuestions" class="btn btn-primary" runat="server" Text="Answer Security Questions" OnClick="BtnGetSecurityQuestions_Click"  />
             </div>
-            <div class="form-group">
-                <asp:Label ID="LSecurityQuestion1Ans" Visible="false" runat="server" Text="Question 1?"></asp:Label>
-                <asp:TextBox ID="TBSecurityQuestion1Ans" Visible="false" type="text" class="form-control" placeholder="Answer" runat="server"></asp:TextBox>
-            </div>
-            <div class="form-group">
-                <asp:Label ID="LSecurityQuestion2Ans" Visible="false" runat="server" Text="Question 2?"></asp:Label>
-                <asp:TextBox ID="TBSecurityQuestion2Ans" Visible="false" type="text" class="form-control" placeholder="Answer" runat="server"></asp:TextBox>
-            </div>
-            <div class="form-group">
-                <asp:Label ID="LSecurityQuestion3Ans" Visible="false" runat="server" Text="Question 3?"></asp:Label>
-                <asp:TextBox ID="TBSecurityQuestion3Ans" Visible="false" type="text" class="form-control" placeholder="Answer" runat="server"></asp:TextBox>
-            </div>
 
+            <table class="table">
+            <asp:Repeater  ID="RSecurityQuestions" runat="server">
+                    <ItemTemplate>
+                        <tr class="form-group">
+                            <td>
+                                <asp:Label ID="LQuestion" runat="server"
+                                        Text='<%# DataBinder.Eval(Container.DataItem, "SecurityQuestion") %>'></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="LAnswer" runat="server" Visible="false"
+                                        Text='<%# DataBinder.Eval(Container.DataItem, "Answer") %>'></asp:Label>
+                            </td>
+                            <td>
+                                <asp:TextBox ID="TBAnswer" runat="server"></asp:TextBox>
+                            </td>
+
+                        <tr>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </table>
 
             <div class="my-3">
                 <asp:Button ID="BtnSubmitAns" Visible="false" class="btn btn-primary" runat="server" Text="Submit Answers" OnClick="BtnSubmitAns_Click" />

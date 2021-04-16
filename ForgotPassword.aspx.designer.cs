@@ -51,58 +51,13 @@ namespace DogeBook
         protected global::System.Web.UI.WebControls.Button BtnGetSecurityQuestions;
 
         /// <summary>
-        /// LSecurityQuestion1Ans control.
+        /// RSecurityQuestions control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LSecurityQuestion1Ans;
-
-        /// <summary>
-        /// TBSecurityQuestion1Ans control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBSecurityQuestion1Ans;
-
-        /// <summary>
-        /// LSecurityQuestion2Ans control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LSecurityQuestion2Ans;
-
-        /// <summary>
-        /// TBSecurityQuestion2Ans control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBSecurityQuestion2Ans;
-
-        /// <summary>
-        /// LSecurityQuestion3Ans control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LSecurityQuestion3Ans;
-
-        /// <summary>
-        /// TBSecurityQuestion3Ans control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBSecurityQuestion3Ans;
+        protected global::System.Web.UI.WebControls.Repeater RSecurityQuestions;
 
         /// <summary>
         /// BtnSubmitAns control.

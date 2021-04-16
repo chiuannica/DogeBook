@@ -39,9 +39,13 @@ namespace DogeBook.AccountManagementService {
         
         private System.Threading.SendOrPostCallback EmailUsedOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetUserIdFromEmailOperationCompleted;
+        
         private System.Threading.SendOrPostCallback CreateAccountOperationCompleted;
         
         private System.Threading.SendOrPostCallback AddSecurityQuestionOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback AddSecurityQuestion2OperationCompleted;
         
         private System.Threading.SendOrPostCallback VerifyAccountOperationCompleted;
         
@@ -105,10 +109,16 @@ namespace DogeBook.AccountManagementService {
         public event EmailUsedCompletedEventHandler EmailUsedCompleted;
         
         /// <remarks/>
+        public event GetUserIdFromEmailCompletedEventHandler GetUserIdFromEmailCompleted;
+        
+        /// <remarks/>
         public event CreateAccountCompletedEventHandler CreateAccountCompleted;
         
         /// <remarks/>
         public event AddSecurityQuestionCompletedEventHandler AddSecurityQuestionCompleted;
+        
+        /// <remarks/>
+        public event AddSecurityQuestion2CompletedEventHandler AddSecurityQuestion2Completed;
         
         /// <remarks/>
         public event VerifyAccountCompletedEventHandler VerifyAccountCompleted;
@@ -270,6 +280,35 @@ namespace DogeBook.AccountManagementService {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetUserIdFromEmail", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int GetUserIdFromEmail(string email) {
+            object[] results = this.Invoke("GetUserIdFromEmail", new object[] {
+                        email});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetUserIdFromEmailAsync(string email) {
+            this.GetUserIdFromEmailAsync(email, null);
+        }
+        
+        /// <remarks/>
+        public void GetUserIdFromEmailAsync(string email, object userState) {
+            if ((this.GetUserIdFromEmailOperationCompleted == null)) {
+                this.GetUserIdFromEmailOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetUserIdFromEmailOperationCompleted);
+            }
+            this.InvokeAsync("GetUserIdFromEmail", new object[] {
+                        email}, this.GetUserIdFromEmailOperationCompleted, userState);
+        }
+        
+        private void OnGetUserIdFromEmailOperationCompleted(object arg) {
+            if ((this.GetUserIdFromEmailCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetUserIdFromEmailCompleted(this, new GetUserIdFromEmailCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CreateAccount", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public bool CreateAccount(string firstName, string lastName, string email, string password) {
             object[] results = this.Invoke("CreateAccount", new object[] {
@@ -334,6 +373,39 @@ namespace DogeBook.AccountManagementService {
             if ((this.AddSecurityQuestionCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.AddSecurityQuestionCompleted(this, new AddSecurityQuestionCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddSecurityQuestion2", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool AddSecurityQuestion2(int userId, string question, string answer) {
+            object[] results = this.Invoke("AddSecurityQuestion2", new object[] {
+                        userId,
+                        question,
+                        answer});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AddSecurityQuestion2Async(int userId, string question, string answer) {
+            this.AddSecurityQuestion2Async(userId, question, answer, null);
+        }
+        
+        /// <remarks/>
+        public void AddSecurityQuestion2Async(int userId, string question, string answer, object userState) {
+            if ((this.AddSecurityQuestion2OperationCompleted == null)) {
+                this.AddSecurityQuestion2OperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddSecurityQuestion2OperationCompleted);
+            }
+            this.InvokeAsync("AddSecurityQuestion2", new object[] {
+                        userId,
+                        question,
+                        answer}, this.AddSecurityQuestion2OperationCompleted, userState);
+        }
+        
+        private void OnAddSecurityQuestion2OperationCompleted(object arg) {
+            if ((this.AddSecurityQuestion2Completed != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AddSecurityQuestion2Completed(this, new AddSecurityQuestion2CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -794,6 +866,32 @@ namespace DogeBook.AccountManagementService {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void GetUserIdFromEmailCompletedEventHandler(object sender, GetUserIdFromEmailCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetUserIdFromEmailCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetUserIdFromEmailCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void CreateAccountCompletedEventHandler(object sender, CreateAccountCompletedEventArgs e);
     
     /// <remarks/>
@@ -831,6 +929,32 @@ namespace DogeBook.AccountManagementService {
         private object[] results;
         
         internal AddSecurityQuestionCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void AddSecurityQuestion2CompletedEventHandler(object sender, AddSecurityQuestion2CompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AddSecurityQuestion2CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AddSecurityQuestion2CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

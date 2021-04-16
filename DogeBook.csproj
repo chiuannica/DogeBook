@@ -80,6 +80,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Content Include="testPage.aspx" />
     <None Include="Web References\AccountManagementService\AccountManagement.disco" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -133,6 +134,13 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="testPage.aspx.cs">
+      <DependentUpon>testPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="testPage.aspx.designer.cs">
+      <DependentUpon>testPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Web References\AccountManagementService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -145,10 +153,10 @@
     <Content Include="Web References\AccountManagementService\Question.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
-    <Content Include="Web References\AccountManagementService\Reference.map">
+    <None Include="Web References\AccountManagementService\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <Content Include="Web References\AccountManagementService\User.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
