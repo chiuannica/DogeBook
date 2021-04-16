@@ -11,43 +11,34 @@ namespace DogeBook
 {
 
 
-    public partial class Post1
+    public partial class Timeline
     {
 
         /// <summary>
-        /// imgAuthor control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgAuthor;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// imgPostImage control.
+        /// Navbar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage imgPostImage;
+        protected global::DogeBook.Navbar Navbar;
 
         /// <summary>
-        /// txtPostText control.
+        /// Post control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtPostText;
-
-        /// <summary>
-        /// txtTimestamp control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtTimestamp;
+        protected global::DogeBook.Post1 Post;
     }
 }
