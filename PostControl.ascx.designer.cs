@@ -11,7 +11,7 @@ namespace DogeBook
 {
 
 
-    public partial class Post1
+    public partial class PostControl
     {
 
         /// <summary>
@@ -22,6 +22,15 @@ namespace DogeBook
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgAuthor;
+
+        /// <summary>
+        /// postBody control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl postBody;
 
         /// <summary>
         /// imgPostImage control.
@@ -40,6 +49,24 @@ namespace DogeBook
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtPostText;
+
+        /// <summary>
+        /// btnLike control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnLike;
+
+        /// <summary>
+        /// btnComment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnComment;
 
         /// <summary>
         /// txtTimestamp control.

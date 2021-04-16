@@ -24,21 +24,12 @@ namespace DogeBook
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Navbar control.
+        /// PostControl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DogeBook.Navbar Navbar;
-
-        /// <summary>
-        /// Post control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DogeBook.Post1 Post;
+        protected global::DogeBook.PostControl PostControl;
     }
 }
