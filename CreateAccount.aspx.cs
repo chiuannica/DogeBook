@@ -87,20 +87,15 @@ namespace DogeBook
         {
             string email = TBEmail.Text;
             // get security question and answer
-            string question1 = DDLSecurityQuestion1.SelectedValue;
+            string question1 = DDLSecurityQuestion1.SelectedValue.ToString();
             string answer1 = TBSecurityQuestion1.Text;
 
-            string question2 = DDLSecurityQuestion1.SelectedValue;
+            string question2 = DDLSecurityQuestion2.SelectedValue;
             string answer2 = TBSecurityQuestion2.Text;
 
-            string question3 = DDLSecurityQuestion1.SelectedValue;
+            string question3 = DDLSecurityQuestion3.SelectedValue;
             string answer3 = TBSecurityQuestion3.Text;
 
-
-            // DELETE
-            Response.Write(question1);
-            Response.Write(answer1);
-            Response.Write(email);
 
 
             // get user id 
@@ -115,9 +110,9 @@ namespace DogeBook
             // insert security questions 
 
             // THIS DON'T WORK !!!!!!!
-            bool insert1 = proxy.AddSecurityQuestion(userId, question1, answer1);
-            bool insert2 = proxy.AddSecurityQuestion(userId, question2, answer2);
-            bool insert3 = proxy.AddSecurityQuestion(userId, question3, answer3);
+            bool insert1 = AddSecurityQuestion(userId, question1, answer1);
+            bool insert2 = AddSecurityQuestion(userId, question2, answer2);
+            bool insert3 = AddSecurityQuestion(userId, question3, answer3);
 
             // if all inserted
             if (insert1 && insert2 && insert3)
@@ -128,6 +123,11 @@ namespace DogeBook
                 return false;
             }
         }
+        protected bool AddSecurityQuestion(int userId, string question, string answer)
+        {
+            return proxy.AddSecurityQuestion(userId, question, answer);
+        }
+
 
         protected void BtnSubmit_Click(object sender, EventArgs e)
         {
@@ -142,9 +142,7 @@ namespace DogeBook
             }
 
             // no warning, create an account
-            //!!!! FIX
-            //bool createdAccount = CreateAccountFromUserInput();
-            bool createdAccount = true;
+            bool createdAccount = CreateAccountFromUserInput();
 
             // send an email to validate
             bool sentVerification = SendVerificationEmail();
@@ -167,6 +165,7 @@ namespace DogeBook
             LblWarning.Visible = false;
             LblSuccess.Visible = true;
             LblSuccess.Text = "Account created successfully. <br/> Check your email to verify your account";
+            BtnRedirectToLogin.Visible = true;
         }
         protected void CreatedAccountFailed()
         {

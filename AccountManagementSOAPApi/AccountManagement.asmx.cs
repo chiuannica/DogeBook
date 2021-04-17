@@ -128,20 +128,21 @@ namespace AccountManagementSOAPApi
             return false;
         }
 
-
         [WebMethod]
-        public bool AddSecurityQuestion(int userId, string question, string answer)
+        public bool AddSecurityQuestion(int userId, string securityQuestion, string answer)
         {
             DBConnect objDB = new DBConnect();
-
             string strSQL = "INSERT INTO TP_SecurityQuestions(UserId, SecurityQuestion, Answer) " +
-                            "VALUES(" + userId + ", '" + question + "', '" + answer + "')";
+                            "VALUES(" + userId + ", '" + securityQuestion + "', '" + answer + "') ";
             int result = objDB.DoUpdate(strSQL);
 
             if (result > 0)
+            {
                 return true;
+            }
             return false;
         }
+
 
         [WebMethod]
         public bool VerifyAccount(int userId)
