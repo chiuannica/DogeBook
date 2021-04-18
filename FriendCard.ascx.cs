@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -13,7 +15,10 @@ namespace DogeBook
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int UserId { get; set; }
-            
+
+        string path = "https://localhost:44386/api/User/";
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             // default pic
@@ -29,8 +34,37 @@ namespace DogeBook
 
         protected void BtnGoToProfile_Click(object sender, EventArgs e)
         {
-            Response.Write(UserId.ToString());
+            Session["OtherPersonId"] = UserId.ToString();
+            //Response.Redirect();
         }
-    
+
+        protected void BtnDeleteFriend_Click(object sender, EventArgs e)
+        {
+            // this is the user that is logged in
+            int userId = (int)Session["UserId"];
+            // the userId of the friend card, which is the friend's user id
+            int friendId = UserId;
+
+            try
+            {
+
+                WebRequest request = WebRequest.Create(path + "DeleteFriend/" + userId + "/" + friendId);
+
+                request.Method = "DELETE";
+
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+                string responseCode = response.StatusCode.ToString();
+                if (responseCode == "OK")
+                    LblDisplay.Text = FirstName + " " + LastName + " was removed from your friend list";
+                else
+                    LblDisplay.Text = "A problem occurred while adding the customer to the database. The data wasn't recorded.";
+            }
+            catch (Exception ex)
+
+            {
+                LblDisplay.Text = "Error: " + ex.Message;
+            }
+        }
     }
 }

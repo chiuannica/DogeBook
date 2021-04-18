@@ -11,7 +11,7 @@ namespace DogeBook
 {
 
 
-    public partial class FriendCard
+    public partial class NonFriendCard
     {
 
         /// <summary>
@@ -51,13 +51,13 @@ namespace DogeBook
         protected global::System.Web.UI.WebControls.Button BtnGoToProfile;
 
         /// <summary>
-        /// BtnDeleteFriend control.
+        /// BtnAddFriend control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnDeleteFriend;
+        protected global::System.Web.UI.WebControls.Button BtnAddFriend;
 
         /// <summary>
         /// LblDisplay control.

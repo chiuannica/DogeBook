@@ -73,6 +73,7 @@
     <Content Include="ForgotPassword.aspx" />
     <Content Include="FriendCard.ascx" />
     <Content Include="Navbar.ascx" />
+    <Content Include="NonFriendCard.ascx" />
     <Content Include="Profile.aspx" />
     <Content Include="Images\DogeBook-Logo.png" />
     <Content Include="Login.aspx" />
@@ -80,6 +81,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Content Include="SearchFriends.aspx" />
     <Content Include="testPage.aspx" />
     <None Include="Web References\AccountManagementService\AccountManagement.disco" />
     <Content Include="Web.config" />
@@ -105,6 +107,13 @@
     </Compile>
     <Compile Include="Navbar.ascx.designer.cs">
       <DependentUpon>Navbar.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="NonFriendCard.ascx.cs">
+      <DependentUpon>NonFriendCard.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NonFriendCard.ascx.designer.cs">
+      <DependentUpon>NonFriendCard.ascx</DependentUpon>
     </Compile>
     <Compile Include="Post.cs" />
     <Compile Include="Profile.aspx.cs">
@@ -133,6 +142,13 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="SearchFriends.aspx.cs">
+      <DependentUpon>SearchFriends.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SearchFriends.aspx.designer.cs">
+      <DependentUpon>SearchFriends.aspx</DependentUpon>
     </Compile>
     <Compile Include="testPage.aspx.cs">
       <DependentUpon>testPage.aspx</DependentUpon>

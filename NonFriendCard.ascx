@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="FriendCard.ascx.cs" Inherits="DogeBook.FriendCard" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="NonFriendCard.ascx.cs" Inherits="DogeBook.NonFriendCard" %>
 
 <div class="card col-md-4 col-sm-6 mx-3" >
 
@@ -12,7 +12,7 @@
             <asp:Button ID="BtnGoToProfile" class="btn btn-primary" runat="server" Text="Go to profile" OnClick="BtnGoToProfile_Click" />
         </div>
         <div class="my-2">
-            <asp:Button ID="BtnDeleteFriend" class="btn btn-danger" runat="server" Text="Delete Friend" OnClick="BtnDeleteFriend_Click" />
+            <asp:Button ID="BtnAddFriend" class="btn btn-danger" runat="server" Text="Add Friend" OnClick="BtnAddFriend_Click" />
         </div>
         <asp:Label ID="LblDisplay" runat="server" Visible="false"></asp:Label>
 

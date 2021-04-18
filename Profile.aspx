@@ -71,9 +71,7 @@
 
         <div class="container text-center">
             <h1 class="mb-4 mb-3 font-weight-normal">Friends</h1>
-            <div class="col-md-8 col-sm-12">
-                <asp:Panel ID="FriendPanel" CssClass="row" runat="server"></asp:Panel>
-            </div>
+                <asp:Panel ID="FriendPanel" CssClass="row " runat="server"></asp:Panel>
         </div>
             
         <!--

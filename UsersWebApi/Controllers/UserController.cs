@@ -163,6 +163,82 @@ namespace UsersWebAPI.Controllers
             return friends;
         }
 
+        [HttpGet("GetAllUsers")]
+        public List<User> GetAllUser()
+        {
+            DBConnect objDB = new DBConnect();
+
+            string sqlString = "" +
+                "SELECT * " +
+                "FROM TP_Users ";
+            DataSet ds = objDB.GetDataSet(sqlString);
+            List<User> users = new List<User>();
+
+            if (ds.Tables[0].Rows.Count != 0)
+            {
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    User user = new User();
+                    DataRow record = ds.Tables[0].Rows[i];
+                    user.UserId = int.Parse(record["UserId"].ToString());
+                    user.FirstName = record["FirstName"].ToString();
+                    user.LastName = record["LastName"].ToString();
+                    user.Email = record["Email"].ToString();
+                    user.ProfilePicture = record["ProfilePicture"].ToString();
+                    user.Bio = record["Bio"].ToString();
+                    user.City = record["City"].ToString();
+                    user.State = record["State"].ToString();
+                    user.Interests = record["Interests"].ToString();
+                    user.Verified = record["Verified"].ToString();
+                    users.Add(user);
+                }
+            }
+            return users;
+        }
+
+        [HttpGet("GetNonFriends/{userId}")]
+        [HttpGet("GetNonFriendsByUserId/{userId}")]
+        public List<User> GetNonFriends(int userId)
+        {
+            DBConnect objDB = new DBConnect();
+
+            string sqlString = "" +
+                "SELECT * " +
+                "FROM TP_Users ";
+            DataSet ds = objDB.GetDataSet(sqlString);
+            List<User> users = new List<User>();
+
+            if (ds.Tables[0].Rows.Count != 0)
+            {
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    DataRow record = ds.Tables[0].Rows[i];
+
+                    int otherPersonId = int.Parse(record["UserId"].ToString());
+
+                    // only add to list if they aren't friends
+                    if (!AreFriends(userId, otherPersonId))
+                    {
+                        User user = new User();
+                        user.UserId = otherPersonId;
+                        user.FirstName = record["FirstName"].ToString();
+                        user.LastName = record["LastName"].ToString();
+                        user.Email = record["Email"].ToString();
+                        user.ProfilePicture = record["ProfilePicture"].ToString();
+                        user.Bio = record["Bio"].ToString();
+                        user.City = record["City"].ToString();
+                        user.State = record["State"].ToString();
+                        user.Interests = record["Interests"].ToString();
+                        user.Verified = record["Verified"].ToString();
+                        users.Add(user);
+
+                    }
+                }
+            }
+            return users;
+        }
+
+
         [HttpGet("GetFriendRequests/{userId}")]
         [HttpGet("GetFriendRequestsByUserId/{userId}")]
         public List<User> GetFriendRequestsByUserId(int userId)

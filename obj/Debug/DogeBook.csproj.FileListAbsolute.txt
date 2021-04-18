@@ -119,4 +119,3 @@ C:\Users\annic\Desktop\spring20213342\TP\DogeBook\obj\Debug\DogeBook.csproj.Core
 C:\Users\annic\Desktop\spring20213342\TP\DogeBook\obj\Debug\DogeBook.csproj.CopyComplete
 C:\Users\annic\Desktop\spring20213342\TP\DogeBook\obj\Debug\DogeBook.dll
 C:\Users\annic\Desktop\spring20213342\TP\DogeBook\obj\Debug\DogeBook.pdb
-C:\Users\annic\Desktop\spring20213342\TP\DogeBook\obj\Debug\DogeBook.csprojAssemblyReference.cache

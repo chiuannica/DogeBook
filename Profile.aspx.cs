@@ -17,17 +17,20 @@ namespace DogeBook
     {
 
         int userId = 1;
+        string path = "https://localhost:44386/api/User/";
+
         //int userId = Session["UserId"];
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["UserId"] = userId;
+
             LoadUserInformation();
             LoadFriends();
         }
         protected void LoadUserInformation()
         {
-            string path = "https://localhost:44386/api/User/GetUserById/";
 
-            WebRequest request = WebRequest.Create(path + userId);
+            WebRequest request = WebRequest.Create(path + "GetUserById/"  + userId);
             WebResponse response = request.GetResponse();
 
             Stream theDataStream = response.GetResponseStream();
@@ -65,9 +68,9 @@ namespace DogeBook
         }
         protected void LoadFriends()
         {
-            string path = "https://localhost:44386/api/User/GetFriendsByUserId/";
+            
 
-            WebRequest request = WebRequest.Create(path + userId);
+            WebRequest request = WebRequest.Create(path + "GetFriendsByUserId/" + userId);
             WebResponse response = request.GetResponse();
 
 
