@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace TimelineWebApi.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
     public class TimelineController : ControllerBase
     {
         // GET: api/Timeline
