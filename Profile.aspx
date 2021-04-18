@@ -20,76 +20,57 @@
 <body>
     <form id="form1" runat="server">
         <uc1:Navbar runat="server" ID="Navbar" />
-
-        <div class="container text-center">
-            <h1 class="mb-4 mb-3 font-weight-normal">Profile</h1>
+        <div class="container my-3">
+            <div class="row">
+                <div class="mr-3">
+                    <asp:Label ID="LFirstName" runat="server" Text="First" CssClass="display-2"></asp:Label>
+                </div>
+                <div>
+                    <asp:Label ID="LLastName" runat="server" Text="Last" CssClass="display-2"></asp:Label>
+                </div>
+            </div>
         </div>
-        
-
-        <div class="container col-md-8 col-sm-12 border my-3 px-3 py-3">
+        <div class="container  border my-3 px-3 py-3">
 
                 <div class="row col-md-4 col-sm-12">
-                    <asp:Image ID="ImgProfilePic" runat="server" class="img-thumbnail rounded" />
+                    <asp:Image ID="ImgProfilePic" runat="server" class="img-thumbnail rounded" src="https://www.telegraph.co.uk/content/dam/technology/2021/01/28/Screenshot-2021-01-28-at-13-20-35_trans_NvBQzQNjv4BqEGKV9LrAqQtLUTT1Z0gJNRFI0o2dlzyIcL3Nvd0Rwgc.png" />
                 </div>
-
-                <div class="col-md-4 col-sm-12">
-                    <div class="">
-                        <asp:Label ID="LFirstName" runat="server" Text="First" class="h2 mr-1"></asp:Label>
-                        <asp:Label ID="LLastName" runat="server" Text="Last" class="h2"></asp:Label>
-                    </div>
-                </div>
-
-                <div class="col-md-8 col-sm-12 my-3">
-                    <h4>Biography</h4>
-                    <p>
-
-                        <asp:Label ID="LBio" runat="server" Text="Biography Biography Biography Biography Biography 
-                                                                    Biography Biography Biography Biography Biography
-                            Biography Biography Biography Biography Biography Biography Biography Biography Biography 
-                            Biography Biography Biography Biography Biography Biography Biography Biography Biography">
-                        </asp:Label>
-                    </p>
-
-                </div>
-                <div class="col-md-8 col-sm-12 my-3">
-                    <h4>Interests</h4>
-                    <p>
-                        <asp:Label ID="LInterests" runat="server" Text="Interests Interests Interests Interests Interests 
-                            Interests Interests Interests Interests Interests Interests ">
-                        </asp:Label>
-                    </p>
                 
+
+                <div class="row col-md-8 col-sm-12 my-3">
+                    <asp:Label ID="LBio" runat="server" Text="Biography Biography Biography Biography Biography 
+                                                                Biography Biography Biography Biography Biography
+                        Biography Biography Biography Biography Biography Biography Biography Biography Biography 
+                        Biography Biography Biography Biography Biography Biography Biography Biography Biography">
+                    </asp:Label>
                 </div>
-                <div class="col-md-8 col-sm-12 my-3">
+                <div class="row col-md-8 col-sm-12 my-3">
+                    <asp:Label ID="LInterests" runat="server" Text="Interests Interests Interests Interests Interests 
+                        Interests Interests Interests Interests Interests Interests ">
+                    </asp:Label>
+                </div>
+                <div class="row col-md-8 col-sm-12 my-3">
                     <asp:Label ID="LCity" runat="server" Text="DogeVile"></asp:Label>
-                    <span class="mr-1">,</span>
+                    <span class="mr-3">,</span>
                     <asp:Label ID="LState" runat="server" Text="Pennsylvania"></asp:Label>
                 </div>
 
         </div>
 
-
-        <div class="container text-center">
-            <h1 class="mb-4 mb-3 font-weight-normal">Friends</h1>
-            <div class="col-md-8 col-sm-12">
-                <asp:Panel ID="FriendPanel" CssClass="row" runat="server"></asp:Panel>
+        <div class="container my-3">
+            <div class="row">
+                <p class="display-2">Friends</p>
             </div>
         </div>
-            
-        <!--
+
         <div class="container border my-2 px-3 py-3">
             <div class="row">
                 <div class="col-md-4 col-sm-6"><uc1:FriendCard runat="server" id="FriendCard1" /></div>
                 <div class="col-md-4 col-sm-6"><uc1:FriendCard runat="server" id="FriendCard2" /></div>
                 <div class="col-md-4 col-sm-6"><uc1:FriendCard runat="server" id="FriendCard3" /></div>
             </div>
+
         </div>
-
-
-            -->
-            
-
-
     </form>
 </body>
 </html>

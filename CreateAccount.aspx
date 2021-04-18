@@ -20,12 +20,7 @@
 <body>
     <form id="form1" runat="server">
         <uc1:Navbar runat="server" id="Navbar" />
-
-        <div class="container text-center">
-            <h1 class="mb-4 mb-3 font-weight-normal">Create an Account</h1>
-        </div>
-
-        <div class="container col-md-6 col-sm-12">
+        <div class="container col-6">
             <div class="form-group">
                 <label >Email address</label>
                 <asp:TextBox ID="TBEmail" type="email" class="form-control" placeholder="Email" runat="server"></asp:TextBox>
