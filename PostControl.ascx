@@ -9,7 +9,7 @@
         <asp:Image ImageUrl="Images/DogeBook-Logo.png" ID="imgPostImage" class="img-fluid" runat="server" />
         <br />
         <asp:Label ID="lblPostText" runat="server" class="card-text">Here lies the dogebook post text</asp:Label><br />
-        <asp:LinkButton ID="btnLike" runat="server" CssClass="btn btn-primary form-control" Width="50px" OnClick="btnLike_Click"><i class="far fa-thumbs-up" aria-hidden="true"></i></asp:LinkButton>
+        <button ID="btnLike" runat="server" class="btn btn-success" OnClick="btnLike_Click"><i class="far fa-thumbs-up"></i></button>
         <asp:Button class="btn btn-primary" ID="btnComment" runat="server" Text="Comment" OnClick="btnComment_Click" />
     </div>
     <div runat="server" class="card-footer text-muted">
