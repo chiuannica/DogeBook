@@ -20,8 +20,8 @@
 <body>
     <form id="form1" runat="server">
         <uc1:Navbar runat="server" ID="Navbar" />
-        <div class="text-center">
-            <h1 class="display-1">Forgot Password</h1>
+        <div class="container text-center">
+            <h1 class="mb-4 mb-3 font-weight-normal">Forgot Password</h1>
         </div>
         
         <div class="container col-md-6 col-sm-12">
