@@ -3,24 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace DogeBook
+namespace DogeBookLibrary
 {
     public partial class Post
     {
+        private String Text { get; set; }
+        private String ImageUrl { get; set; }
+        private String Timestamp { get; set; }
         public Post()
         {
-
         }
-
-        public Post(string text, string imageUrl, string timestamp)
-        {
-            Text = text;
-            ImageUrl = imageUrl;
-            Timestamp = timestamp;
-        }
-
-        private String Text { get; set; }
-        private String ImageUrl{ get; set; }
-        private String Timestamp{ get; set; }
+        
     }
 }

@@ -42,6 +42,8 @@ namespace DogeBook
         //Login -> Log in fail && Remember Me Unchecked -> Don't delete cookie
         //
 
+        //makse session["userid"] the user's id
+
         protected void Btn_SignIn_Click(object sender, EventArgs e)
         {
             if (Validator())
