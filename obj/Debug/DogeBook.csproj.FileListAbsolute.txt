@@ -115,6 +115,7 @@ C:\Users\annic\Desktop\spring20213342\TP\DogeBook\bin\DogeBookLibrary.dll
 C:\Users\annic\Desktop\spring20213342\TP\DogeBook\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\annic\Desktop\spring20213342\TP\DogeBook\bin\DogeBookLibrary.pdb
 C:\Users\annic\Desktop\spring20213342\TP\DogeBook\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\annic\Desktop\spring20213342\TP\DogeBook\obj\Debug\DogeBook.csprojAssemblyReference.cache
 C:\Users\annic\Desktop\spring20213342\TP\DogeBook\obj\Debug\DogeBook.csproj.CoreCompileInputs.cache
 C:\Users\annic\Desktop\spring20213342\TP\DogeBook\obj\Debug\DogeBook.csproj.CopyComplete
 C:\Users\annic\Desktop\spring20213342\TP\DogeBook\obj\Debug\DogeBook.dll

@@ -11,70 +11,97 @@ namespace DogeBook
 {
 
 
-    public partial class NonFriendCard
+    public partial class BrowseFriends
     {
 
         /// <summary>
-        /// ImgFriend control.
+        /// Navbar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image ImgFriend;
+        protected global::DogeBook.Navbar Navbar;
 
         /// <summary>
-        /// LFriendFName control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LFriendFName;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// LFriendLName control.
+        /// TBSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LFriendLName;
+        protected global::System.Web.UI.WebControls.TextBox TBSearch;
 
         /// <summary>
-        /// LBio control.
+        /// BtnSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LBio;
+        protected global::System.Web.UI.WebControls.Button BtnSearch;
 
         /// <summary>
-        /// BtnGoToProfile control.
+        /// BtnFriendOfFriendsHide control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnGoToProfile;
+        protected global::System.Web.UI.WebControls.Button BtnFriendOfFriendsHide;
 
         /// <summary>
-        /// BtnAddFriend control.
+        /// BtnFriendOfFriends control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnAddFriend;
+        protected global::System.Web.UI.WebControls.Button BtnFriendOfFriends;
 
         /// <summary>
-        /// LblDisplay control.
+        /// FriendsOfFriendsPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblDisplay;
+        protected global::System.Web.UI.WebControls.Panel FriendsOfFriendsPanel;
+
+        /// <summary>
+        /// BtnAllHide control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnAllHide;
+
+        /// <summary>
+        /// BtnAll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnAll;
+
+        /// <summary>
+        /// NonFriendPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel NonFriendPanel;
     }
 }

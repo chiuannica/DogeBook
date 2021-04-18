@@ -163,9 +163,35 @@ namespace UsersWebAPI.Controllers
             return friends;
         }
 
+
+        [HttpGet("GetFriendsOfFriends/{userId}")]
+        public List<User> GetFriendsOfFriends(int userId)
+        {
+            // get friends
+            List<User> friends = GetFriendsByUserId(userId);
+
+            List<User> friendsOfFriends = new List<User>();
+            
+            // go through each friend and add their friends
+            for (int i = 0; i < friends.Count; i++)
+            {
+                List<User> friendsOfFriend = GetFriendsByUserId(friends[i].UserId);
+
+                for (int j = 0; j < friendsOfFriend.Count; j++)
+                {
+                    // set this as bio (not changing in the db, just for display)
+                    friendsOfFriend[j].Bio = "Friend of " + friends[i].FirstName + " " + friends[i].LastName;
+                    friendsOfFriends.Add(friendsOfFriend[j]);
+                }
+            }
+
+            return friendsOfFriends;
+        }
+
         [HttpGet("GetAllUsers")]
         public List<User> GetAllUser()
         {
+            // !! change to only get if verified
             DBConnect objDB = new DBConnect();
 
             string sqlString = "" +
