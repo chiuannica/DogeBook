@@ -3,6 +3,7 @@ C:\Users\Steve\Documents\GitHub\DogeBook\UsersWebApi\bin\Debug\netcoreapp2.2\Use
 C:\Users\Steve\Documents\GitHub\DogeBook\UsersWebApi\bin\Debug\netcoreapp2.2\UsersWebApi.runtimeconfig.dev.json
 C:\Users\Steve\Documents\GitHub\DogeBook\UsersWebApi\bin\Debug\netcoreapp2.2\UsersWebApi.dll
 C:\Users\Steve\Documents\GitHub\DogeBook\UsersWebApi\bin\Debug\netcoreapp2.2\UsersWebApi.pdb
+C:\Users\Steve\Documents\GitHub\DogeBook\UsersWebApi\obj\Debug\netcoreapp2.2\UsersWebApi.csprojAssemblyReference.cache
 C:\Users\Steve\Documents\GitHub\DogeBook\UsersWebApi\obj\Debug\netcoreapp2.2\UsersWebApi.csproj.CoreCompileInputs.cache
 C:\Users\Steve\Documents\GitHub\DogeBook\UsersWebApi\obj\Debug\netcoreapp2.2\UsersWebApi.RazorAssemblyInfo.cache
 C:\Users\Steve\Documents\GitHub\DogeBook\UsersWebApi\obj\Debug\netcoreapp2.2\UsersWebApi.RazorAssemblyInfo.cs
@@ -37,4 +38,3 @@ C:\Users\Steve\Documents\GitHub\DogeBook\UsersWebApi\bin\Debug\netcoreapp2.2\Dog
 C:\Users\Steve\Documents\GitHub\DogeBook\UsersWebApi\bin\Debug\netcoreapp2.2\DogeBookLibrary.pdb
 C:\Users\Steve\Documents\GitHub\DogeBook\UsersWebApi\obj\Debug\netcoreapp2.2\UsersWebApi.csproj.CopyComplete
 C:\Users\Steve\Documents\GitHub\DogeBook\UsersWebApi\obj\Debug\netcoreapp2.2\UsersWebApi.genruntimeconfig.cache
-C:\Users\Steve\Documents\GitHub\DogeBook\UsersWebApi\obj\Debug\netcoreapp2.2\UsersWebApi.csprojAssemblyReference.cache

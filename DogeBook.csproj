@@ -114,6 +114,7 @@
     <Compile Include="PostControl.ascx.designer.cs">
       <DependentUpon>PostControl.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Post.cs" />
     <Compile Include="Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
