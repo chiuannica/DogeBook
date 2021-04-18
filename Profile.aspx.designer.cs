@@ -130,5 +130,14 @@ namespace DogeBook
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DogeBook.FriendCard FriendCard3;
+
+        /// <summary>
+        /// FriendCard control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DogeBook.FriendCard FriendCard;
     }
 }

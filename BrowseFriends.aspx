@@ -32,9 +32,17 @@
                 
                 <div class="input-group my-2">
                     <asp:TextBox ID="TBSearch" type="text" class="form-control" placeholder="Search" runat="server"></asp:TextBox>
-                    <asp:Button ID="BtnSearch" runat="server" Text="Button" CssClass="btn btn-primary" OnClick="BtnSearch_Click" />
+                    <asp:Button ID="BtnSearch" runat="server" Text="Search" CssClass="btn btn-primary" OnClick="BtnSearch_Click" />
                 </div>
             </div>
+
+            
+
+            
+            <div class="container my-2">
+                <asp:Panel ID="SearchPanel" Visible="false" CssClass="row col-12 my-3" runat="server"></asp:Panel>
+            </div>
+
 
 
 
@@ -46,11 +54,8 @@
                     
                     <asp:Button ID="BtnFriendOfFriendsHide" runat="server" CssClass="btn btn-outline-danger" Text="Hide Friends Of Friends" OnClick="BtnFriendOfFriendsHide_Click" />
                     <asp:Button ID="BtnFriendOfFriends" runat="server" CssClass="btn btn-outline-success" Text="View Friends Of Friends" OnClick="BtnFriendOfFriends_Click" />
-                    
 
                 </div>
-
-
                 <asp:Panel ID="FriendsOfFriendsPanel" CssClass="row col-12 my-3" runat="server"></asp:Panel>
             </div>
 

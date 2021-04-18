@@ -2,11 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Script.Serialization;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace DogeBook
@@ -79,8 +76,54 @@ namespace DogeBook
 
         protected void BtnSearch_Click(object sender, EventArgs e)
         {
+            SearchPanel.Controls.Clear();
+
+            string searchTerm = TBSearch.Text;
+            SearchPanel.Visible = true;
+
+
+
+
+            WebRequest request = WebRequest.Create(path + "SearchForUser/" + userId);
+            WebResponse response = request.GetResponse();
+
+
+            Stream theDataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(theDataStream);
+            String data = reader.ReadToEnd();
+
+            reader.Close();
+            response.Close();
+
+            JavaScriptSerializer js = new JavaScriptSerializer();
+
+            User[] friends = js.Deserialize<User[]>(data);
+
+            for (int i = 0; i < friends.Length; i++)
+            {
+                // check if friend and load friend card if theyre friends
+
+
+                NonFriendCard ctrl = (NonFriendCard)LoadControl("NonFriendCard.ascx");
+
+                ctrl.FirstName = friends[i].FirstName.ToString();
+                ctrl.LastName = friends[i].LastName.ToString();
+                ctrl.ImageUrl = friends[i].ProfilePicture.ToString();
+                ctrl.Bio = friends[i].Bio.ToString();
+                ctrl.UserId = int.Parse(friends[i].UserId.ToString());
+
+                // bind data to ctrl
+                ctrl.DataBind();
+
+                // add to panel
+                SearchPanel.Controls.Add(ctrl);
+            }
+
+
+
 
         }
+
 
         protected void BtnFriendOfFriends_Click(object sender, EventArgs e)
         {

@@ -79,7 +79,7 @@
             <div class="row">
                 <div class="col-md-4 col-sm-6"><uc1:FriendCard runat="server" id="FriendCard1" /></div>
                 <div class="col-md-4 col-sm-6"><uc1:FriendCard runat="server" id="FriendCard2" /></div>
-                <div class="col-md-4 col-sm-6"><uc1:FriendCard runat="server" id="FriendCard3" /></div>
+                <div class="col-md-4 col-sm-6"><uc1:FriendCard runat="server" id="FriendCard3" /></div><uc1:FriendCard runat="server" id="FriendCard" />
             </div>
         </div>
 

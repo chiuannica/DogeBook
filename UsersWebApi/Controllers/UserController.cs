@@ -46,6 +46,39 @@ namespace UsersWebAPI.Controllers
             return user;
         }
 
+
+        [HttpGet("SearchForUser/{searchTerm}")]
+        public User SearchForUser(string searchTerm)
+        {
+            DBConnect objDB = new DBConnect();
+
+            string strSQL = "SELECT * FROM TP_Users " +
+                            "WHERE FirstName LIKE '" + searchTerm + "' " +
+                                "OR LastName LIKE '" + searchTerm + "' " +
+                                "OR City LIKE '" + searchTerm + "' " +
+                                "OR State LIKE '" + searchTerm + "' ";
+
+            DataSet ds = objDB.GetDataSet(strSQL);
+
+            User user = new User();
+            if (ds.Tables[0].Rows.Count != 0)
+            {
+                DataRow record = ds.Tables[0].Rows[0];
+                user.UserId = int.Parse(record["UserId"].ToString());
+                user.FirstName = record["FirstName"].ToString();
+                user.LastName = record["LastName"].ToString();
+                user.Email = record["Email"].ToString();
+                user.ProfilePicture = record["ProfilePicture"].ToString();
+                user.Bio = record["Bio"].ToString();
+                user.City = record["City"].ToString();
+                user.State = record["State"].ToString();
+                user.Interests = record["Interests"].ToString();
+                user.Verified = record["Verified"].ToString();
+            }
+            return user;
+        }
+
+
         [HttpGet("AreFriends/{userId}/{otherId}")]
         public bool AreFriends(int userId, int otherId)
         {
