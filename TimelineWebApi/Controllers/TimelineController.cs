@@ -1,17 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DogeBookLibrary;
-
-using System.Data;
-using System.Data.SqlClient;
 
 namespace TimelineWebApi.Controllers
 {
     [Route("api/[controller]")]
+    [ApiController]
     public class TimelineController : ControllerBase
     {
         // GET: api/Timeline

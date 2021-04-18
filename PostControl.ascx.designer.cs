@@ -24,15 +24,6 @@ namespace DogeBook
         protected global::System.Web.UI.WebControls.Image imgAuthor;
 
         /// <summary>
-        /// lblAuthor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAuthor;
-
-        /// <summary>
         /// postBody control.
         /// </summary>
         /// <remarks>
@@ -48,16 +39,16 @@ namespace DogeBook
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgPostImage;
+        protected global::System.Web.UI.HtmlControls.HtmlImage imgPostImage;
 
         /// <summary>
-        /// lblPostText control.
+        /// txtPostText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPostText;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtPostText;
 
         /// <summary>
         /// btnLike control.
@@ -78,12 +69,12 @@ namespace DogeBook
         protected global::System.Web.UI.WebControls.Button btnComment;
 
         /// <summary>
-        /// lblTimestamp control.
+        /// txtTimestamp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTimestamp;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtTimestamp;
     }
 }
