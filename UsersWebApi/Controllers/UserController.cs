@@ -196,7 +196,7 @@ namespace UsersWebAPI.Controllers
             return friends;
         }
 
-
+        // gets the friends of friends (excludes self)
         [HttpGet("GetFriendsOfFriends/{userId}")]
         public List<User> GetFriendsOfFriends(int userId)
         {
@@ -212,15 +212,72 @@ namespace UsersWebAPI.Controllers
 
                 for (int j = 0; j < friendsOfFriend.Count; j++)
                 {
-                    // set this as bio (not changing in the db, just for display)
-                    friendsOfFriend[j].Bio = "Friend of " + friends[i].FirstName + " " + friends[i].LastName;
-                    friendsOfFriends.Add(friendsOfFriend[j]);
+                    // don't add friend if it is the current user
+                    if (friendsOfFriend[j].UserId != userId)
+                    {
+                        // set this as bio (not changing in the db, just for display)
+                        friendsOfFriend[j].Bio = "Friend of " + friends[i].FirstName + " " + friends[i].LastName;
+                        friendsOfFriends.Add(friendsOfFriend[j]);
+                    }
+
                 }
             }
 
             return friendsOfFriends;
         }
 
+
+        // gets users who are not themselves or friends or friends of friends
+        [HttpGet("GetUnrelatedUsers/{userId}")]
+        public List<User> GetUnrelatedUsers(int userId)
+        {
+            List<User> everyone = GetAllUser();
+            List<User> friends = GetFriendsByUserId(userId);
+            List<User> friendsOfFriends = GetFriendsOfFriends(userId);
+
+            List<User> unrelatedUsers = new List<User>();
+            for (int i = 0; i < everyone.Count; i++)
+            {
+                bool isSelf = false;
+                // don't add if adding the current user
+                if  (everyone[i].UserId == userId)
+                {
+                    isSelf = true;
+                }
+                if (!isSelf)
+                {
+                    // don't add if they are a friend of a friend
+                    bool isFriend = false;
+
+                    for (int j = 0; j < friends.Count; j++)
+                    {
+                        if (everyone[i].UserId == friends[j].UserId)
+                        {
+                            isFriend = true;
+                        }
+                    }
+
+                    if (!isFriend)
+                    {
+                        bool isFriendOfFriend = false;
+                        for (int k = 0; k < friendsOfFriends.Count; k++)
+                        {
+                            if (everyone[i].UserId == friendsOfFriends[k].UserId)
+                            {
+                                isFriendOfFriend = true;
+                            }
+                        }
+                        if (!isFriendOfFriend) // only add to unrelated users if not self, not a friend and not a friend's firend
+                            unrelatedUsers.Add(everyone[i]);
+                    }
+
+                }
+            }
+
+            return unrelatedUsers;
+        }
+
+        // get all friends
         [HttpGet("GetAllUsers")]
         public List<User> GetAllUser()
         {
@@ -237,8 +294,9 @@ namespace UsersWebAPI.Controllers
             {
                 for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                 {
-                    User user = new User();
                     DataRow record = ds.Tables[0].Rows[i];
+
+                    User user = new User();
                     user.UserId = int.Parse(record["UserId"].ToString());
                     user.FirstName = record["FirstName"].ToString();
                     user.LastName = record["LastName"].ToString();
@@ -255,6 +313,7 @@ namespace UsersWebAPI.Controllers
             return users;
         }
 
+        // gets everyone who isn't a friend
         [HttpGet("GetNonFriends/{userId}")]
         [HttpGet("GetNonFriendsByUserId/{userId}")]
         public List<User> GetNonFriends(int userId)
@@ -371,14 +430,14 @@ namespace UsersWebAPI.Controllers
             return "temp posts " + tempString;
         }
 
-        [HttpPost("AddFriend/{senderId}/{receiverId}")]
-        public bool AddFriend(int senderId, int receiverId)
+        [HttpPost("AddFriend")]
+        public bool AddFriend([FromBody] FriendRequest friendRequest)
         {
             // add new request record
             // accept = 0 because pending
             DBConnect objDB = new DBConnect();
             string strSQL = "INSERT INTO TP_FriendRequests(Friend1Id, Friend2Id, Accept) " +
-                            "VALUES(" + senderId + ", " + receiverId + ", 0)";
+                            "VALUES(" + friendRequest.SenderId + ", " + friendRequest.ReceiverId + ", 0)";
             int result = objDB.DoUpdate(strSQL);
 
             if (result > 0)

@@ -17,8 +17,10 @@
                 <asp:Button ID="BtnGoToProfile" class="btn btn-primary" runat="server" Text="Go to profile" OnClick="BtnGoToProfile_Click"  />
                 <asp:Button ID="BtnAddFriend" class="btn btn-success" runat="server" Text="Add Friend" OnClick="BtnAddFriend_Click" />
             </div>
+            <div>
 
-            <asp:Label ID="LblDisplay" runat="server" Visible="false"></asp:Label>
+                <asp:Label ID="LblDisplay" runat="server" Visible="false"></asp:Label>
+            </div>
 
         </div>
     </div>

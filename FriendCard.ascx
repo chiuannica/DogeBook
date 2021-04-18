@@ -15,7 +15,11 @@
                 <asp:Button ID="BtnDeleteFriend" class="btn btn-danger" runat="server" Text="Delete Friend" OnClick="BtnDeleteFriend_Click" />
             </div>
 
-            <asp:Label ID="LblDisplay" runat="server" Visible="false"></asp:Label>
+
+            <div>
+                <asp:Label ID="LblDisplay" runat="server" Visible="false"></asp:Label>
+            </div>
+            
         </div>
     </div>
 </div>

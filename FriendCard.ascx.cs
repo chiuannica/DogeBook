@@ -55,16 +55,19 @@ namespace DogeBook
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
                 string responseCode = response.StatusCode.ToString();
+
                 if (responseCode == "OK")
                     LblDisplay.Text = FirstName + " " + LastName + " was removed from your friend list";
                 else
-                    LblDisplay.Text = "A problem occurred while adding the customer to the database. The data wasn't recorded.";
+                    LblDisplay.Text = "A problem occurred. ";
             }
             catch (Exception ex)
 
             {
                 LblDisplay.Text = "Error: " + ex.Message;
             }
+            LblDisplay.Visible = true;
+
         }
     }
 }

@@ -15,11 +15,12 @@ namespace DogeBook
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            // !!!
+            // !!! CHANGE
             // userId = Session["UserId"];
+            Session["UserID"] = 1;
             userId = 1;
 
-            List<NonFriendCard> nonFriends = LoadUsers("GetNonFriends/", NonFriendPanel);
+            List<NonFriendCard> nonFriends = LoadUsers("GetUnrelatedUsers/", NonFriendPanel);
             List<NonFriendCard> friendsOfFriends = LoadUsers("GetFriendsOfFriends/", FriendsOfFriendsPanel);
 
             // hide view buttons
