@@ -27,10 +27,18 @@ namespace DogeBook
                 //userId = 1;
 
                 LoadFriendRequests();
+                LNumFriendRequests.Visible = true;
+
                 if (RFriendRequests.Items.Count == 0)
                 {
-                    LMessage.Visible = true;
-                    LMessage.Text = "You have no friend requests.";
+                    LNumFriendRequests.Text = "You have no friend requests.";
+                } else if (RFriendRequests.Items.Count == 1)
+                {
+                    LNumFriendRequests.Text = "You have 1 friend request.";
+                }
+                else 
+                {
+                    LNumFriendRequests.Text = "You have "+ RFriendRequests.Items.Count.ToString() + "  friend requests.";
                 }
             
             }
@@ -74,7 +82,7 @@ namespace DogeBook
             String otherPersonName = LFirstName.Text + " " + LLastName.Text;
 
 
-            ;
+            
             // if accept
             string extension = "";
             string responseCode = "";
@@ -115,15 +123,11 @@ namespace DogeBook
             if (responseCode == "OK")
                 LMessage.Text = "The friend request from " + otherPersonName + " was " + userAction;
             else
-                LMessage.Text = "A problem occurred. ";
+                LMessage.Text = "A problem occurred. The friend request was not " + userAction;
 
             LMessage.Visible = true;
 
-
-            // reload the panel
-            Response.Redirect("FriendRequests.aspx");
-            // change to !!!
-            // LoadFriendRequests();
+            LoadFriendRequests();
         }
     }
 }

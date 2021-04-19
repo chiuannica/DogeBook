@@ -33,13 +33,13 @@ namespace DogeBook
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// RFriendRequests control.
+        /// LNumFriendRequests control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater RFriendRequests;
+        protected global::System.Web.UI.WebControls.Label LNumFriendRequests;
 
         /// <summary>
         /// LMessage control.
@@ -49,5 +49,14 @@ namespace DogeBook
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LMessage;
+
+        /// <summary>
+        /// RFriendRequests control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater RFriendRequests;
     }
 }

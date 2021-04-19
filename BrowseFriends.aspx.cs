@@ -147,10 +147,10 @@ namespace DogeBook
             string searchTerm = TBSearch.Text;
             SearchPanel.Visible = true;
 
+            searchTerm = searchTerm.ToLower();
 
 
-
-            WebRequest request = WebRequest.Create(path + "SearchForUser/" + userId);
+            WebRequest request = WebRequest.Create(path + "SearchForUser/" + searchTerm);
             WebResponse response = request.GetResponse();
 
 

@@ -48,7 +48,7 @@ namespace UsersWebAPI.Controllers
 
 
         [HttpGet("SearchForUser/{searchTerm}")]
-        public User SearchForUser(string searchTerm)
+        public List<User> SearchForUser(string searchTerm)
         {
             DBConnect objDB = new DBConnect();
 
@@ -59,6 +59,8 @@ namespace UsersWebAPI.Controllers
                                 "OR State LIKE '" + searchTerm + "' ";
 
             DataSet ds = objDB.GetDataSet(strSQL);
+
+            List<User> users = new List<User>();
 
             User user = new User();
             if (ds.Tables[0].Rows.Count != 0)
@@ -74,8 +76,9 @@ namespace UsersWebAPI.Controllers
                 user.State = record["State"].ToString();
                 user.Interests = record["Interests"].ToString();
                 user.Verified = record["Verified"].ToString();
+                users.Add(user);
             }
-            return user;
+            return users;
         }
 
 

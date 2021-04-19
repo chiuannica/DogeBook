@@ -27,7 +27,12 @@
         
 
         <div class="container">
+            
+            <div class="container alert alert-primary text-center">
+                <asp:Label ID="LNumFriendRequests" CssClass="" Visible="false" runat="server" Text="Label"></asp:Label>
 
+                <asp:Label ID="LMessage" CssClass="" Visible="false" runat="server" Text="Label"></asp:Label>
+            </div>
             
             <table class="table">
             <asp:Repeater  ID="RFriendRequests" runat="server"  OnItemCommand="RFriendRequests_ItemCommand">
@@ -49,17 +54,15 @@
                             <td>
                                 <asp:Button ID="BtnAccept" runat="server" CommandName="Accept" CssClass="btn btn-success" Text="Accept" />
 
+                            </td>
+                            <td>
                                 <asp:Button ID="BtnDeny" runat="server" CommandName="Deny" CssClass="btn btn-danger" Text="Deny" />
-
                             </td>
 
                         <tr>
                     </ItemTemplate>
                 </asp:Repeater>
-            </table>
-            <div class="container">
-                <asp:Label ID="LMessage" Visible="false" runat="server" Text="Label"></asp:Label>
-            </div>
+            </table> 
         </div>
     </form>
 </body>
