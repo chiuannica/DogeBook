@@ -20,14 +20,36 @@ namespace DogeBook
             Session["UserID"] = 1;
             userId = 1;
 
+            // load the cards for each section
             List<NonFriendCard> nonFriends = LoadUsers("GetUnrelatedUsers/", NonFriendPanel);
             List<NonFriendCard> friendsOfFriends = LoadUsers("GetFriendsOfFriends/", FriendsOfFriendsPanel);
+            List<FriendCard> friends = LoadFriends();
 
-            // hide view buttons
 
-            BtnFriendOfFriends.Visible = false;
-            BtnAll.Visible = false;
+            // show message if nothing loads for each section, hide buttons
+            if (nonFriends.Count == 0)
+            {
+                LNonFriendsEmpty.Visible = true;
+                LNonFriendsEmpty.Text = "Ypu have no friends yet.";
+                BtnFriends.Visible = false;
+                BtnFriendsHide.Visible = false;
+            }
 
+            if (friendsOfFriends.Count == 0)
+            {
+                LFriendOfFriendsEmpty.Visible = true;
+                LFriendOfFriendsEmpty.Text = "You have added all of the friends of your friends.";
+                BtnFriendOfFriends.Visible = false;
+                BtnFriendOfFriendsHide.Visible = false;
+            }
+
+            if (nonFriends.Count == 0)
+            {
+                LNonFriendsEmpty.Visible = true;
+                LNonFriendsEmpty.Text = "You have added everyone.";
+                BtnAll.Visible = false;
+                BtnAllHide.Visible = false;
+            }
 
         }
 
@@ -72,8 +94,51 @@ namespace DogeBook
                 panel.Controls.Add(ctrl);
             }
             return ctrls;
-
         }
+
+        protected List<FriendCard> LoadFriends()
+        {
+            string extension = "GetFriends/";
+            WebRequest request = WebRequest.Create(path + extension + userId);
+            WebResponse response = request.GetResponse();
+
+
+            Stream theDataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(theDataStream);
+            String data = reader.ReadToEnd();
+
+            reader.Close();
+            response.Close();
+
+            JavaScriptSerializer js = new JavaScriptSerializer();
+
+            User[] friends = js.Deserialize<User[]>(data);
+
+            List<FriendCard> ctrls = new List<FriendCard>();
+            for (int i = 0; i < friends.Length; i++)
+            {
+                // create card and add data
+                FriendCard ctrl = (FriendCard)LoadControl("FriendCard.ascx");
+
+                ctrl.FirstName = friends[i].FirstName.ToString();
+                ctrl.LastName = friends[i].LastName.ToString();
+                ctrl.ImageUrl = friends[i].ProfilePicture.ToString();
+                //ctrl.Bio = friends[i].Bio.ToString();
+                ctrl.UserId = int.Parse(friends[i].UserId.ToString());
+
+                // bind data to ctrl
+                ctrl.DataBind();
+
+                // add ctrl to list of all ctrls
+                ctrls.Add(ctrl);
+
+                // add to panel
+                FriendsPanel.Controls.Add(ctrl);
+            }
+            return ctrls;
+        }
+
+
 
         protected void BtnSearch_Click(object sender, EventArgs e)
         {
@@ -126,6 +191,16 @@ namespace DogeBook
         }
 
 
+
+        protected void BtnFriends_Click(object sender, EventArgs e)
+        {
+
+            BtnFriends.Visible = false;
+            BtnFriendsHide.Visible = true;
+
+            FriendsPanel.Visible = true;
+        }
+
         protected void BtnFriendOfFriends_Click(object sender, EventArgs e)
         {
             BtnFriendOfFriends.Visible = false;
@@ -141,6 +216,15 @@ namespace DogeBook
 
             NonFriendPanel.Visible = true;
 
+        }
+
+        protected void BtnFriendsHide_Click(object sender, EventArgs e)
+        {
+
+            BtnFriends.Visible = true;
+            BtnFriendsHide.Visible = false;
+
+            FriendsPanel.Visible = false;
         }
 
         protected void BtnFriendOfFriendsHide_Click(object sender, EventArgs e)
@@ -159,5 +243,8 @@ namespace DogeBook
 
             NonFriendPanel.Visible = false;
         }
+
+        
+
     }
 }

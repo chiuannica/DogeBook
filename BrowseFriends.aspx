@@ -36,40 +36,56 @@
                 </div>
             </div>
 
-            
-
-            
-            <div class="container my-2">
+            <div class="container mb-5">
                 <asp:Panel ID="SearchPanel" Visible="false" CssClass="row col-12 my-3" runat="server"></asp:Panel>
             </div>
 
 
+            <div class="container mb-5">
+                <h2 class="mb-4 mb-3 font-weight-normal txt-center">Friends</h2>
+                <div class="btn-group">
+                    
+                    <asp:Button ID="BtnFriendsHide" runat="server" CssClass="btn btn-outline-danger" Text="Hide Friends" OnClick="BtnFriendsHide_Click" />
+                    <asp:Button ID="BtnFriends" runat="server" CssClass="btn btn-outline-success" Visible="false" Text="View Friends" OnClick="BtnFriends_Click"/>
+
+                </div>
+                <asp:Panel ID="FriendsPanel" CssClass="row col-12 my-3" runat="server"></asp:Panel>
+                <div class="container" >
+                    <asp:Label ID="LFriendsPanelEmpty" Visible="false" runat="server" Text="Label"></asp:Label>
+                </div>
+            </div>
 
 
 
             
-            <div class="container my-2">
+            <div class="container mb-5">
                 <h2 class="mb-4 mb-3 font-weight-normal txt-center">Friends of Friends</h2>
                 <div class="btn-group">
                     
                     <asp:Button ID="BtnFriendOfFriendsHide" runat="server" CssClass="btn btn-outline-danger" Text="Hide Friends Of Friends" OnClick="BtnFriendOfFriendsHide_Click" />
-                    <asp:Button ID="BtnFriendOfFriends" runat="server" CssClass="btn btn-outline-success" Text="View Friends Of Friends" OnClick="BtnFriendOfFriends_Click" />
+                    <asp:Button ID="BtnFriendOfFriends" runat="server" Visible="false" CssClass="btn btn-outline-success" Text="View Friends Of Friends" OnClick="BtnFriendOfFriends_Click" />
 
                 </div>
                 <asp:Panel ID="FriendsOfFriendsPanel" CssClass="row col-12 my-3" runat="server"></asp:Panel>
+                <div class="container" >
+                    <asp:Label ID="LFriendOfFriendsEmpty" Visible="false" runat="server" Text="Label"></asp:Label>
+                </div>
             </div>
 
 
-            <div class="container my-2">
+            <div class="container my-2 mb-5">
                 <h2 class="mb-4 mb-3 font-weight-normal txt-center">Others</h2>
                 <div class="btn-group">
                     
                     
                     <asp:Button ID="BtnAllHide" runat="server" CssClass="btn btn-outline-danger" Text="Hide Others" OnClick="BtnAllHide_Click" />
-                    <asp:Button ID="BtnAll" runat="server" CssClass="btn btn-outline-success" Text="View Others" OnClick="BtnAll_Click" />
+                    <asp:Button ID="BtnAll" runat="server" Visible="false" CssClass="btn btn-outline-success" Text="View Others" OnClick="BtnAll_Click" />
 
                 </div>
                 <asp:Panel ID="NonFriendPanel" CssClass="row col-12 my-3" runat="server"></asp:Panel>
+                <div class="container" >
+                    <asp:Label ID="LNonFriendsEmpty" Visible="false"  runat="server" Text="Label"></asp:Label>
+                </div>
             </div>
         </div>
     </form>

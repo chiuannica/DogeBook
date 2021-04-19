@@ -73,6 +73,7 @@
     <Content Include="CreateAccount.aspx" />
     <Content Include="ForgotPassword.aspx" />
     <Content Include="FriendCard.ascx" />
+    <Content Include="FriendRequests.aspx" />
     <Content Include="Navbar.ascx" />
     <Content Include="NonFriendCard.ascx" />
     <Content Include="Profile.aspx" />
@@ -107,6 +108,13 @@
     </Compile>
     <Compile Include="FriendCard.ascx.designer.cs">
       <DependentUpon>FriendCard.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="FriendRequests.aspx.cs">
+      <DependentUpon>FriendRequests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FriendRequests.aspx.designer.cs">
+      <DependentUpon>FriendRequests.aspx</DependentUpon>
     </Compile>
     <Compile Include="Navbar.ascx.cs">
       <DependentUpon>Navbar.ascx</DependentUpon>
