@@ -21,36 +21,37 @@ namespace DogeBook
             userId = 1;
 
             // load the cards for each section
+            List<FriendCard> friends = LoadFriends();
             List<NonFriendCard> nonFriends = LoadUsers("GetUnrelatedUsers/", NonFriendPanel);
             List<NonFriendCard> friendsOfFriends = LoadUsers("GetFriendsOfFriends/", FriendsOfFriendsPanel);
-            List<FriendCard> friends = LoadFriends();
 
+            // show labels
+            LFriendsEmpty.Visible = true;
+            LFriendOfFriendsEmpty.Visible = true;
+            LNonFriendsEmpty.Visible = true;
 
-            // show message if nothing loads for each section, hide buttons
-            if (nonFriends.Count == 0)
+            // if 0, hide buttons
+            // show how many there are
+            LFriendsEmpty.Text = friends.Count.ToString();
+            if (friends.Count == 0)
             {
-                LNonFriendsEmpty.Visible = true;
-                LNonFriendsEmpty.Text = "Ypu have no friends yet.";
                 BtnFriends.Visible = false;
                 BtnFriendsHide.Visible = false;
-            }
+            } 
 
+            LFriendOfFriendsEmpty.Text = friendsOfFriends.Count.ToString();
             if (friendsOfFriends.Count == 0)
             {
-                LFriendOfFriendsEmpty.Visible = true;
-                LFriendOfFriendsEmpty.Text = "You have added all of the friends of your friends.";
                 BtnFriendOfFriends.Visible = false;
                 BtnFriendOfFriendsHide.Visible = false;
             }
 
+            LNonFriendsEmpty.Text = nonFriends.Count.ToString();
             if (nonFriends.Count == 0)
             {
-                LNonFriendsEmpty.Visible = true;
-                LNonFriendsEmpty.Text = "You have added everyone.";
                 BtnAll.Visible = false;
                 BtnAllHide.Visible = false;
-            }
-
+            } 
         }
 
 

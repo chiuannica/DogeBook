@@ -50,13 +50,15 @@ namespace UsersWebAPI.Controllers
         [HttpGet("SearchForUser/{searchTerm}")]
         public List<User> SearchForUser(string searchTerm)
         {
+            searchTerm = searchTerm.ToLower();
+
             DBConnect objDB = new DBConnect();
 
             string strSQL = "SELECT * FROM TP_Users " +
-                            "WHERE FirstName LIKE '" + searchTerm + "' " +
-                                "OR LastName LIKE '" + searchTerm + "' " +
-                                "OR City LIKE '" + searchTerm + "' " +
-                                "OR State LIKE '" + searchTerm + "' ";
+                            "WHERE LOWER(FirstName) LIKE '" + searchTerm + "' " +
+                                "OR LOWER(LastName) LIKE '" + searchTerm + "' " +
+                                "OR LOWER(City) LIKE '" + searchTerm + "' " +
+                                "OR LOWER(State) LIKE '" + searchTerm + "' ";
 
             DataSet ds = objDB.GetDataSet(strSQL);
 
