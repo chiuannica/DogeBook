@@ -46,6 +46,44 @@ namespace UsersWebAPI.Controllers
             return user;
         }
 
+
+        [HttpGet("SearchForUser/{searchTerm}")]
+        public List<User> SearchForUser(string searchTerm)
+        {
+            searchTerm = searchTerm.ToLower();
+
+            DBConnect objDB = new DBConnect();
+
+            string strSQL = "SELECT * FROM TP_Users " +
+                            "WHERE LOWER(FirstName) LIKE '" + searchTerm + "' " +
+                                "OR LOWER(LastName) LIKE '" + searchTerm + "' " +
+                                "OR LOWER(City) LIKE '" + searchTerm + "' " +
+                                "OR LOWER(State) LIKE '" + searchTerm + "' ";
+
+            DataSet ds = objDB.GetDataSet(strSQL);
+
+            List<User> users = new List<User>();
+
+            User user = new User();
+            if (ds.Tables[0].Rows.Count != 0)
+            {
+                DataRow record = ds.Tables[0].Rows[0];
+                user.UserId = int.Parse(record["UserId"].ToString());
+                user.FirstName = record["FirstName"].ToString();
+                user.LastName = record["LastName"].ToString();
+                user.Email = record["Email"].ToString();
+                user.ProfilePicture = record["ProfilePicture"].ToString();
+                user.Bio = record["Bio"].ToString();
+                user.City = record["City"].ToString();
+                user.State = record["State"].ToString();
+                user.Interests = record["Interests"].ToString();
+                user.Verified = record["Verified"].ToString();
+                users.Add(user);
+            }
+            return users;
+        }
+
+
         [HttpGet("AreFriends/{userId}/{otherId}")]
         public bool AreFriends(int userId, int otherId)
         {
@@ -163,6 +201,167 @@ namespace UsersWebAPI.Controllers
             return friends;
         }
 
+        // gets the friends of friends (excludes self)
+        [HttpGet("GetFriendsOfFriends/{userId}")]
+        public List<User> GetFriendsOfFriends(int userId)
+        {
+            // get friends
+            List<User> friends = GetFriendsByUserId(userId);
+
+            List<User> friendsOfFriends = new List<User>();
+            
+            // go through each friend and add their friends
+            for (int i = 0; i < friends.Count; i++)
+            {
+                List<User> friendsOfFriend = GetFriendsByUserId(friends[i].UserId);
+
+                for (int j = 0; j < friendsOfFriend.Count; j++)
+                {
+                    // don't add friend if it is the current user
+                    if (friendsOfFriend[j].UserId != userId)
+                    {
+                        // set this as bio (not changing in the db, just for display)
+                        friendsOfFriend[j].Bio = "Friend of " + friends[i].FirstName + " " + friends[i].LastName;
+                        friendsOfFriends.Add(friendsOfFriend[j]);
+                    }
+
+                }
+            }
+
+            return friendsOfFriends;
+        }
+
+
+        // gets users who are not themselves or friends or friends of friends
+        [HttpGet("GetUnrelatedUsers/{userId}")]
+        public List<User> GetUnrelatedUsers(int userId)
+        {
+            List<User> everyone = GetAllUser();
+            List<User> friends = GetFriendsByUserId(userId);
+            List<User> friendsOfFriends = GetFriendsOfFriends(userId);
+
+            List<User> unrelatedUsers = new List<User>();
+            for (int i = 0; i < everyone.Count; i++)
+            {
+                bool isSelf = false;
+                // don't add if adding the current user
+                if  (everyone[i].UserId == userId)
+                {
+                    isSelf = true;
+                }
+                if (!isSelf)
+                {
+                    // don't add if they are a friend of a friend
+                    bool isFriend = false;
+
+                    for (int j = 0; j < friends.Count; j++)
+                    {
+                        if (everyone[i].UserId == friends[j].UserId)
+                        {
+                            isFriend = true;
+                        }
+                    }
+
+                    if (!isFriend)
+                    {
+                        bool isFriendOfFriend = false;
+                        for (int k = 0; k < friendsOfFriends.Count; k++)
+                        {
+                            if (everyone[i].UserId == friendsOfFriends[k].UserId)
+                            {
+                                isFriendOfFriend = true;
+                            }
+                        }
+                        if (!isFriendOfFriend) // only add to unrelated users if not self, not a friend and not a friend's firend
+                            unrelatedUsers.Add(everyone[i]);
+                    }
+
+                }
+            }
+
+            return unrelatedUsers;
+        }
+
+        // get all friends
+        [HttpGet("GetAllUsers")]
+        public List<User> GetAllUser()
+        {
+            // !! change to only get if verified
+            DBConnect objDB = new DBConnect();
+
+            string sqlString = "" +
+                "SELECT * " +
+                "FROM TP_Users ";
+            DataSet ds = objDB.GetDataSet(sqlString);
+            List<User> users = new List<User>();
+
+            if (ds.Tables[0].Rows.Count != 0)
+            {
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    DataRow record = ds.Tables[0].Rows[i];
+
+                    User user = new User();
+                    user.UserId = int.Parse(record["UserId"].ToString());
+                    user.FirstName = record["FirstName"].ToString();
+                    user.LastName = record["LastName"].ToString();
+                    user.Email = record["Email"].ToString();
+                    user.ProfilePicture = record["ProfilePicture"].ToString();
+                    user.Bio = record["Bio"].ToString();
+                    user.City = record["City"].ToString();
+                    user.State = record["State"].ToString();
+                    user.Interests = record["Interests"].ToString();
+                    user.Verified = record["Verified"].ToString();
+                    users.Add(user);
+                }
+            }
+            return users;
+        }
+
+        // gets everyone who isn't a friend
+        [HttpGet("GetNonFriends/{userId}")]
+        [HttpGet("GetNonFriendsByUserId/{userId}")]
+        public List<User> GetNonFriends(int userId)
+        {
+            DBConnect objDB = new DBConnect();
+
+            string sqlString = "" +
+                "SELECT * " +
+                "FROM TP_Users ";
+            DataSet ds = objDB.GetDataSet(sqlString);
+            List<User> users = new List<User>();
+
+            if (ds.Tables[0].Rows.Count != 0)
+            {
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    DataRow record = ds.Tables[0].Rows[i];
+
+                    int otherPersonId = int.Parse(record["UserId"].ToString());
+
+                    // only add to list if they aren't friends
+                    if (!AreFriends(userId, otherPersonId))
+                    {
+                        User user = new User();
+                        user.UserId = otherPersonId;
+                        user.FirstName = record["FirstName"].ToString();
+                        user.LastName = record["LastName"].ToString();
+                        user.Email = record["Email"].ToString();
+                        user.ProfilePicture = record["ProfilePicture"].ToString();
+                        user.Bio = record["Bio"].ToString();
+                        user.City = record["City"].ToString();
+                        user.State = record["State"].ToString();
+                        user.Interests = record["Interests"].ToString();
+                        user.Verified = record["Verified"].ToString();
+                        users.Add(user);
+
+                    }
+                }
+            }
+            return users;
+        }
+
+
         [HttpGet("GetFriendRequests/{userId}")]
         [HttpGet("GetFriendRequestsByUserId/{userId}")]
         public List<User> GetFriendRequestsByUserId(int userId)
@@ -236,14 +435,14 @@ namespace UsersWebAPI.Controllers
             return "temp posts " + tempString;
         }
 
-        [HttpPost("AddFriend/{senderId}/{receiverId}")]
-        public bool AddFriend(int senderId, int receiverId)
+        [HttpPost("AddFriend")]
+        public bool AddFriend([FromBody] FriendRequest friendRequest)
         {
             // add new request record
             // accept = 0 because pending
             DBConnect objDB = new DBConnect();
             string strSQL = "INSERT INTO TP_FriendRequests(Friend1Id, Friend2Id, Accept) " +
-                            "VALUES(" + senderId + ", " + receiverId + ", 0)";
+                            "VALUES(" + friendRequest.SenderId + ", " + friendRequest.ReceiverId + ", 0)";
             int result = objDB.DoUpdate(strSQL);
 
             if (result > 0)

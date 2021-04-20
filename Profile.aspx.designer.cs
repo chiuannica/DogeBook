@@ -33,6 +33,15 @@ namespace DogeBook
         protected global::DogeBook.Navbar Navbar;
 
         /// <summary>
+        /// ImgProfilePic control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image ImgProfilePic;
+
+        /// <summary>
         /// LFirstName control.
         /// </summary>
         /// <remarks>
@@ -49,15 +58,6 @@ namespace DogeBook
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LLastName;
-
-        /// <summary>
-        /// ImgProfilePic control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image ImgProfilePic;
 
         /// <summary>
         /// LBio control.
@@ -96,6 +96,15 @@ namespace DogeBook
         protected global::System.Web.UI.WebControls.Label LState;
 
         /// <summary>
+        /// FriendPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel FriendPanel;
+
+        /// <summary>
         /// FriendCard1 control.
         /// </summary>
         /// <remarks>
@@ -121,5 +130,14 @@ namespace DogeBook
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DogeBook.FriendCard FriendCard3;
+
+        /// <summary>
+        /// FriendCard control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DogeBook.FriendCard FriendCard;
     }
 }
