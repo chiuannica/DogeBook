@@ -146,8 +146,68 @@ namespace DogeBookLibrary
            //     divMethod.InnerText = "Decrypted Data:";
             }
 
+        public DataSet PostControlDatabind(int postId)
+        {
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_PostControlDataBind";
+            myCommandObj.Parameters.Clear();
 
+            SqlParameter inputPostId = new SqlParameter("@PostId", postId);
+            inputPostId.Direction = ParameterDirection.Input;
+            myCommandObj.Parameters.Add(inputPostId);
 
+            DataSet postData = dBConnect.GetDataSetUsingCmdObj(myCommandObj);
+
+            return postData;
         }
+
+        public int InsertProfilePicture(int userId, byte[] bytes)
+        {
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_InsertProfilePicture";
+            myCommandObj.Parameters.Clear();
+
+            myCommandObj.Parameters.AddWithValue("@UserId", userId);
+            myCommandObj.Parameters.AddWithValue("@ProfilePicture", bytes);
+            return dBConnect.DoUpdateUsingCmdObj(myCommandObj);
+        }
+
+        public Byte[] GetProfilePicture(int userId)
+        {
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_GetProfilePicture";
+            myCommandObj.Parameters.Clear();
+
+            myCommandObj.Parameters.AddWithValue("@UserId", userId);
+            DataSet ds = dBConnect.GetDataSetUsingCmdObj(myCommandObj);
+            if(ds != null && ds.Tables[0].Rows.Count > 0)
+            {
+                if (ds.Tables[0].Rows[0]["ProfilePicture"] != DBNull.Value)
+                {
+                    return (byte[])ds.Tables[0].Rows[0]["ProfilePicture"];
+                }
+            }
+            return null;
+        }
+
+        public string ProfPicArrayToImage(int userid)
+        {
+
+            byte[] bytes = GetProfilePicture(userid);
+            string imageUrl;
+            if (bytes == null)
+            {
+                imageUrl = null;
+            }
+            else
+            {
+                imageUrl = "data:image/jpg;base64," + Convert.ToBase64String(bytes);
+
+            }
+            return imageUrl;
+        }
+
+
+    }
 }
 
