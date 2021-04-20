@@ -526,7 +526,7 @@ namespace DogeBook.AccountManagementService {
         
         private string emailField;
         
-        private string profilePictureField;
+        private byte[] profilePictureField;
         
         private string bioField;
         
@@ -579,7 +579,8 @@ namespace DogeBook.AccountManagementService {
         }
         
         /// <remarks/>
-        public string ProfilePicture {
+        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
+        public byte[] ProfilePicture {
             get {
                 return this.profilePictureField;
             }

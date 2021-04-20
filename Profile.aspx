@@ -21,7 +21,7 @@
     <form id="form1" runat="server">
         <uc1:Navbar runat="server" ID="Navbar" />
 
-        <div class="container text-center">
+        <div class="container">
             <h1 class="mb-4 mb-3 font-weight-normal">Profile</h1>
         </div>
         
@@ -69,22 +69,33 @@
         </div>
 
 
-        <div class="container text-center">
-            <h1 class="mb-4 mb-3 font-weight-normal">Friends</h1>
+
+
+
+        <div class="container">
+            <h2 class="mb-4 mb-3 font-weight-normal">Friends
+                <asp:Label ID="LFriendsNumber" runat="server"  class="badge badge-primary" Text=""></asp:Label>
+            </h2>
                 <asp:Panel ID="FriendPanel" CssClass="row " runat="server"></asp:Panel>
         </div>
             
-        <!--
-        <div class="container border my-2 px-3 py-3">
-            <div class="row">
-                <div class="col-md-4 col-sm-6"><uc1:FriendCard runat="server" id="FriendCard1" /></div>
-                <div class="col-md-4 col-sm-6"><uc1:FriendCard runat="server" id="FriendCard2" /></div>
-                <div class="col-md-4 col-sm-6"><uc1:FriendCard runat="server" id="FriendCard3" /></div><uc1:FriendCard runat="server" id="FriendCard" />
+
+
+        <div class="container">
+                
+            <div class="input-group my-2">
+                <asp:TextBox ID="TBSearch" type="text" class="form-control" placeholder="Search Friends" runat="server"></asp:TextBox>
+                <asp:Button ID="BtnSearch" runat="server" Text="Search" CssClass="btn btn-primary" OnClick="BtnSearch_Click"  />
             </div>
         </div>
 
-
-            -->
+        <div class="container mb-5">
+            <p class="mb-4 mb-3 font-weight-normal txt-center">
+                <asp:Label ID="LSearchTitle" runat="server"  Text=""></asp:Label>
+                <asp:Label ID="LSearchEmpty" runat="server"  class="badge badge-primary" Text=""></asp:Label>
+            </p>
+            <asp:Panel ID="SearchPanel" CssClass="row col-12 my-3" runat="server"></asp:Panel>
+        </div>
             
 
 

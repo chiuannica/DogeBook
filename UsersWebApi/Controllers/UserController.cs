@@ -64,25 +64,49 @@ namespace UsersWebAPI.Controllers
 
             List<User> users = new List<User>();
 
-            User user = new User();
             if (ds.Tables[0].Rows.Count != 0)
             {
-                DataRow record = ds.Tables[0].Rows[0];
-                user.UserId = int.Parse(record["UserId"].ToString());
-                user.FirstName = record["FirstName"].ToString();
-                user.LastName = record["LastName"].ToString();
-                user.Email = record["Email"].ToString();
-                //user.ProfilePicture = record["ProfilePicture"].ToString();
-                user.Bio = record["Bio"].ToString();
-                user.City = record["City"].ToString();
-                user.State = record["State"].ToString();
-                user.Interests = record["Interests"].ToString();
-                user.Verified = record["Verified"].ToString();
-                users.Add(user);
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    User user = new User();
+                    DataRow record = ds.Tables[0].Rows[i];
+                    user.UserId = int.Parse(record["UserId"].ToString());
+                    user.FirstName = record["FirstName"].ToString();
+                    user.LastName = record["LastName"].ToString();
+                    user.Email = record["Email"].ToString();
+                    //user.ProfilePicture = record["ProfilePicture"].ToString();
+                    user.Bio = record["Bio"].ToString();
+                    user.City = record["City"].ToString();
+                    user.State = record["State"].ToString();
+                    user.Interests = record["Interests"].ToString();
+                    user.Verified = record["Verified"].ToString();
+                    users.Add(user);
+                }
             }
             return users;
         }
 
+        [HttpGet("SearchForFriends/{userId}/{searchTerm}")]
+        public List<User> SearchForFriends(int userId, string searchTerm)
+        {
+
+            List<User> users = GetFriendsByUserId(userId);
+
+            searchTerm = searchTerm.ToLower();
+
+            List<User> friends = new List<User>();
+
+
+            for (int i = 0; i < users.Count; i++)
+            {
+                if (users[i].FirstName.ToLower().Contains(searchTerm) || users[i].LastName.ToLower().Contains(searchTerm)
+                    || users[i].City.ToLower().Contains(searchTerm) || users[i].State.ToLower().Contains(searchTerm))
+                {
+                    friends.Add(users[i]);
+                }
+            }
+            return friends;
+        }
 
         [HttpGet("AreFriends/{userId}/{otherId}")]
         public bool AreFriends(int userId, int otherId)

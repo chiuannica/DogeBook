@@ -74,6 +74,7 @@
     <Content Include="ForgotPassword.aspx" />
     <Content Include="FriendCard.ascx" />
     <Content Include="FriendRequests.aspx" />
+    <Content Include="NavbarNotLoggedIn.ascx" />
     <Content Include="Navbar.ascx" />
     <Content Include="NonFriendCard.ascx" />
     <Content Include="PostControl.ascx" />
@@ -86,8 +87,8 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Content Include="testPage.aspx" />
-    <None Include="Web References\AccountManagementService\AccountManagement.disco" />
     <Content Include="Timeline.aspx" />
+    <None Include="Web References\AccountManagementService\AccountManagement.disco" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +119,13 @@
     </Compile>
     <Compile Include="FriendRequests.aspx.designer.cs">
       <DependentUpon>FriendRequests.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NavbarNotLoggedIn.ascx.cs">
+      <DependentUpon>NavbarNotLoggedIn.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NavbarNotLoggedIn.ascx.designer.cs">
+      <DependentUpon>NavbarNotLoggedIn.ascx</DependentUpon>
     </Compile>
     <Compile Include="Navbar.ascx.cs">
       <DependentUpon>Navbar.ascx</DependentUpon>
