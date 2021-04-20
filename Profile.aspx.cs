@@ -44,27 +44,27 @@ namespace DogeBook
 
             User user = js.Deserialize<User>(data);
 
-            if (user != null)
-            {
-                LFirstName.Text = user.FirstName;
-                LLastName.Text = user.LastName;
+            //if (user != null)
+            //{
+            //    LFirstName.Text = user.FirstName;
+            //    LLastName.Text = user.LastName;
                 
-                if (user.ProfilePicture != "")
-                {
-                    ImgProfilePic.ImageUrl = user.ProfilePicture;
-                }
-                else
-                {
-                    ImgProfilePic.ImageUrl = "https://www.telegraph.co.uk/content/dam/technology/2021/01/28/Screenshot-2021-01-28-at-13-20-35_trans_NvBQzQNjv4BqEGKV9LrAqQtLUTT1Z0gJNRFI0o2dlzyIcL3Nvd0Rwgc.png";
-                }
+            //    if (user.ProfilePicture != "")
+            //    {
+            //        ImgProfilePic.ImageUrl = user.ProfilePicture;
+            //    }
+            //    else
+            //    {
+            //        ImgProfilePic.ImageUrl = "https://www.telegraph.co.uk/content/dam/technology/2021/01/28/Screenshot-2021-01-28-at-13-20-35_trans_NvBQzQNjv4BqEGKV9LrAqQtLUTT1Z0gJNRFI0o2dlzyIcL3Nvd0Rwgc.png";
+            //    }
             
 
 
-                LBio.Text = user.Bio;
-                LInterests.Text = user.Interests;
-                LCity.Text = user.City;
-                LState.Text = user.State;
-            }
+            //    LBio.Text = user.Bio;
+            //    LInterests.Text = user.Interests;
+            //    LCity.Text = user.City;
+            //    LState.Text = user.State;
+            //}
         }
         protected void LoadFriends()
         {
@@ -93,7 +93,7 @@ namespace DogeBook
 
                 ctrl.FirstName = friends[i].FirstName.ToString();
                 ctrl.LastName = friends[i].LastName.ToString();
-                ctrl.ImageUrl = friends[i].ProfilePicture.ToString();
+                //ctrl.ImageUrl = friends[i].ProfilePicture.ToString();
 
                 ctrl.UserId = int.Parse(friends[i].UserId.ToString());
 

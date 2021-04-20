@@ -133,7 +133,6 @@
     <Compile Include="NonFriendCard.ascx.designer.cs">
       <DependentUpon>NonFriendCard.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Post.cs" />
     <Compile Include="PostControl.ascx.cs">
       <DependentUpon>PostControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
