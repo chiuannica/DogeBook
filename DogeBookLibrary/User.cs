@@ -12,7 +12,7 @@ namespace DogeBookLibrary
         public String FirstName { get; set; }
         public String LastName { get; set; }
         public String Email { get; set; }
-        //public byte[] ProfilePicture { get; set; }
+        public byte[] ProfilePicture { get; set; }
         public String Bio { get; set; }
         public String City { get; set; }
         public String State { get; set; }

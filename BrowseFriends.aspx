@@ -33,10 +33,15 @@
                 <div class="input-group my-2">
                     <asp:TextBox ID="TBSearch" type="text" class="form-control" placeholder="Search" runat="server"></asp:TextBox>
                     <asp:Button ID="BtnSearch" runat="server" Text="Search" CssClass="btn btn-primary" OnClick="BtnSearch_Click" />
+
                 </div>
             </div>
 
             <div class="container mb-5">
+                <h2 class="mb-4 mb-3 font-weight-normal txt-center">
+                    <asp:Label ID="LSearchTitle" runat="server"  Text=""></asp:Label>
+                    <asp:Label ID="LSearchEmpty" runat="server"  class="badge badge-primary" Text=""></asp:Label>
+                </h2>
                 <asp:Panel ID="SearchPanel" CssClass="row col-12 my-3" runat="server"></asp:Panel>
             </div>
 

@@ -15,7 +15,7 @@ namespace DogeBook
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            // !!! CHANGE
+            // !!! CHANGE remember to fiz the profile pics too
             // userId = Session["UserId"];
             Session["UserID"] = 1;
             userId = 1;
@@ -81,7 +81,7 @@ namespace DogeBook
 
                 ctrl.FirstName = friends[i].FirstName.ToString();
                 ctrl.LastName = friends[i].LastName.ToString();
-                ctrl.ImageUrl = friends[i].ProfilePicture.ToString();
+                ///ctrl.ImageUrl = friends[i].ProfilePicture.ToString();
                 ctrl.Bio = friends[i].Bio.ToString();
                 ctrl.UserId = int.Parse(friends[i].UserId.ToString());
 
@@ -123,7 +123,7 @@ namespace DogeBook
 
                 ctrl.FirstName = friends[i].FirstName.ToString();
                 ctrl.LastName = friends[i].LastName.ToString();
-                ctrl.ImageUrl = friends[i].ProfilePicture.ToString();
+                //ctrl.ImageUrl = friends[i].ProfilePicture.ToString();
                 //ctrl.Bio = friends[i].Bio.ToString();
                 ctrl.UserId = int.Parse(friends[i].UserId.ToString());
 
@@ -143,7 +143,7 @@ namespace DogeBook
 
         protected void BtnSearch_Click(object sender, EventArgs e)
         {
-            SearchPanel.Controls.Clear();
+            //SearchPanel.Controls.Clear();
 
             string searchTerm = TBSearch.Text;
             SearchPanel.Visible = true;
@@ -168,27 +168,76 @@ namespace DogeBook
 
             for (int i = 0; i < friends.Length; i++)
             {
-                // check if friend and load friend card if theyre friends
+                // exclude if self 
+
+                if (friends[i].UserId != userId)
+                {
 
 
-                NonFriendCard ctrl = (NonFriendCard)LoadControl("NonFriendCard.ascx");
+                    // check if friend and load friend card if theyre friends
+                    bool areFriends = AreFriends(friends[i].UserId);
 
-                ctrl.FirstName = friends[i].FirstName.ToString();
-                ctrl.LastName = friends[i].LastName.ToString();
-                ctrl.ImageUrl = friends[i].ProfilePicture.ToString();
-                ctrl.Bio = friends[i].Bio.ToString();
-                ctrl.UserId = int.Parse(friends[i].UserId.ToString());
+                    if (!areFriends)
+                    {
+                        NonFriendCard ctrl = (NonFriendCard)LoadControl("NonFriendCard.ascx");
 
-                // bind data to ctrl
-                ctrl.DataBind();
+                        ctrl.FirstName = friends[i].FirstName.ToString();
+                        ctrl.LastName = friends[i].LastName.ToString();
+                        //ctrl.ImageUrl = friends[i].ProfilePicture.ToString();
+                        //ctrl.Bio = friends[i].Bio.ToString();
+                        ctrl.UserId = int.Parse(friends[i].UserId.ToString());
 
-                // add to panel
-                SearchPanel.Controls.Add(ctrl);
+                        // bind data to ctrl
+                        ctrl.DataBind();
+
+                        // add to panel
+                        SearchPanel.Controls.Add(ctrl);
+                    } else
+                    {
+                        FriendCard ctrl = (FriendCard)LoadControl("FriendCard.ascx");
+
+                        ctrl.FirstName = friends[i].FirstName.ToString();
+                        ctrl.LastName = friends[i].LastName.ToString();
+                        //ctrl.ImageUrl = friends[i].ProfilePicture.ToString();
+                        //ctrl.Bio = friends[i].Bio.ToString();
+                        ctrl.UserId = int.Parse(friends[i].UserId.ToString());
+
+                        // bind data to ctrl
+                        ctrl.DataBind();
+
+                        // add to panel
+                        SearchPanel.Controls.Add(ctrl);
+
+                    }
+
+
+                }
             }
+            LSearchTitle.Text = "Search results for \"" + searchTerm + "\""; 
+            LSearchEmpty.Text = friends.Length.ToString();
+
+        }
+
+
+        protected bool AreFriends(int otherPersonId)
+        {
+            WebRequest request = WebRequest.Create(path + "AreFriends/" + userId + "/" + otherPersonId);
+
+            WebResponse response = request.GetResponse();
+            Stream theDataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(theDataStream);
+
+            String data = reader.ReadToEnd();
+
+            reader.Close();
+            response.Close();
 
 
 
+            JavaScriptSerializer js = new JavaScriptSerializer();
 
+            bool areFriends = js.Deserialize<bool>(data);
+            return areFriends;
         }
 
 

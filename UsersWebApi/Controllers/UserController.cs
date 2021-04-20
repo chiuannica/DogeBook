@@ -64,21 +64,24 @@ namespace UsersWebAPI.Controllers
 
             List<User> users = new List<User>();
 
-            User user = new User();
             if (ds.Tables[0].Rows.Count != 0)
             {
-                DataRow record = ds.Tables[0].Rows[0];
-                user.UserId = int.Parse(record["UserId"].ToString());
-                user.FirstName = record["FirstName"].ToString();
-                user.LastName = record["LastName"].ToString();
-                user.Email = record["Email"].ToString();
-                user.ProfilePicture = record["ProfilePicture"].ToString();
-                user.Bio = record["Bio"].ToString();
-                user.City = record["City"].ToString();
-                user.State = record["State"].ToString();
-                user.Interests = record["Interests"].ToString();
-                user.Verified = record["Verified"].ToString();
-                users.Add(user);
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    User user = new User();
+                    DataRow record = ds.Tables[0].Rows[i];
+                    user.UserId = int.Parse(record["UserId"].ToString());
+                    user.FirstName = record["FirstName"].ToString();
+                    user.LastName = record["LastName"].ToString();
+                    user.Email = record["Email"].ToString();
+                    //user.ProfilePicture = record["ProfilePicture"].ToString();
+                    user.Bio = record["Bio"].ToString();
+                    user.City = record["City"].ToString();
+                    user.State = record["State"].ToString();
+                    user.Interests = record["Interests"].ToString();
+                    user.Verified = record["Verified"].ToString();
+                    users.Add(user);
+                }
             }
             return users;
         }
@@ -306,7 +309,7 @@ namespace UsersWebAPI.Controllers
                     user.FirstName = record["FirstName"].ToString();
                     user.LastName = record["LastName"].ToString();
                     user.Email = record["Email"].ToString();
-                    user.ProfilePicture = record["ProfilePicture"].ToString();
+                    //user.ProfilePicture = record["ProfilePicture"].ToString();
                     user.Bio = record["Bio"].ToString();
                     user.City = record["City"].ToString();
                     user.State = record["State"].ToString();
@@ -347,7 +350,7 @@ namespace UsersWebAPI.Controllers
                         user.FirstName = record["FirstName"].ToString();
                         user.LastName = record["LastName"].ToString();
                         user.Email = record["Email"].ToString();
-                        user.ProfilePicture = record["ProfilePicture"].ToString();
+                        //user.ProfilePicture = record["ProfilePicture"].ToString();
                         user.Bio = record["Bio"].ToString();
                         user.City = record["City"].ToString();
                         user.State = record["State"].ToString();
