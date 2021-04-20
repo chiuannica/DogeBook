@@ -9,24 +9,29 @@ namespace DogeBook
 {
     public partial class CreateAccount : System.Web.UI.Page
     {
+        public AccountManagementService.AccountManagement proxy;
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Response.Write("test");
-
-            //AccountManagementService.AccountManagement proxy = new AccountManagementService.AccountManagement();
-            //double sum = proxy.Add(31212, 12);
-            //Response.Write(sum);
-
-            Response.Write("12");
-
+            proxy = new AccountManagementService.AccountManagement();
+        }
+        protected bool EmailUsed(string email)
+        {
+            return proxy.EmailUsed(email);
         }
 
         protected string InputValidation()
         {
             string warning = "";
+            
             if (TBEmail.Text == "")
             {
-                warning += "Enter hubababa. <br>";
+                warning += "Enter email. <br>";
+            } else { 
+                // check if this email has been used before
+                if (EmailUsed(TBEmail.Text))
+                {
+                    warning += "Email is already used. <br>";
+                }
             } 
             if (TBFirstName.Text == "")
             {
@@ -44,20 +49,129 @@ namespace DogeBook
             {
                 warning += "Passwords do not match. <br> ";
             }
+            if (TBSecurityQuestion1.Text == "")
+            {
+                warning += "Enter an answer for security question 1. <br> ";
+            }
+            if (TBSecurityQuestion2.Text == "")
+            {
+                warning += "Enter an answer for security question 2. <br> ";
+            }
+            if (TBSecurityQuestion3.Text == "")
+            {
+                warning += "Enter an answer for security question 3. <br> ";
+            }
+
             return warning;
         }
+        protected bool CreateAccountFromUserInput()
+        {
+            string firstName = TBFirstName.Text;
+            string lastName = TBLastName.Text;
+            string email = TBEmail.Text;
+            string password = TBPassword.Text;
+            if (proxy.CreateAccount(firstName, lastName, email, password))
+            {
+                return true;
+            }
+            return false;
+        }
+        protected bool SendVerificationEmail()
+        {
+            // !!!important fix me
+            string email = TBEmail.Text;
+
+            return true;
+        }
+        protected bool AddSecurityQuestions()
+        {
+            string email = TBEmail.Text;
+            // get security question and answer
+            string question1 = DDLSecurityQuestion1.SelectedValue.ToString();
+            string answer1 = TBSecurityQuestion1.Text;
+
+            string question2 = DDLSecurityQuestion2.SelectedValue;
+            string answer2 = TBSecurityQuestion2.Text;
+
+            string question3 = DDLSecurityQuestion3.SelectedValue;
+            string answer3 = TBSecurityQuestion3.Text;
+
+
+
+            // get user id 
+            int userId = proxy.GetUserIdFromEmail(email);
+
+            if (userId == -1) // if no userId, can't find user Id
+            {
+                return false;
+            }
+
+
+            // insert security questions 
+
+            // THIS DON'T WORK !!!!!!!
+            bool insert1 = AddSecurityQuestion(userId, question1, answer1);
+            bool insert2 = AddSecurityQuestion(userId, question2, answer2);
+            bool insert3 = AddSecurityQuestion(userId, question3, answer3);
+
+            // if all inserted
+            if (insert1 && insert2 && insert3)
+            {
+                return true;
+            } else 
+            {
+                return false;
+            }
+        }
+        protected bool AddSecurityQuestion(int userId, string question, string answer)
+        {
+            return proxy.AddSecurityQuestion(userId, question, answer);
+        }
+
 
         protected void BtnSubmit_Click(object sender, EventArgs e)
         {
             string warning = InputValidation();
 
-            // check if email is used already
-
+            // if there is a warning
             if (warning != "")
+            {
                 LblWarning.Visible = true;
                 LblWarning.Text = warning;
+                return;
+            }
 
-            // insert new user record
+            // no warning, create an account
+            bool createdAccount = CreateAccountFromUserInput();
+
+            // send an email to validate
+            bool sentVerification = SendVerificationEmail();
+
+            // add security questions
+            bool addedSecurityQuestions = AddSecurityQuestions();
+
+            // if successfully created account and sent email
+            if (createdAccount && sentVerification && addedSecurityQuestions) 
+            {
+                CreatedAccountSuccessfully();
+            } else
+            {
+                CreatedAccountFailed();
+            }
+            return;
+        }
+        protected void CreatedAccountSuccessfully()
+        {
+            LblWarning.Visible = false;
+            LblSuccess.Visible = true;
+            LblSuccess.Text = "Account created successfully. <br/> Check your email to verify your account";
+            BtnRedirectToLogin.Visible = true;
+        }
+        protected void CreatedAccountFailed()
+        {
+            LblSuccess.Visible = false;
+            LblWarning.Visible = true;
+            LblWarning.Text = "Failed to create account.";
         }
     }
 }

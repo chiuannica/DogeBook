@@ -11,7 +11,7 @@ namespace DogeBook
 {
 
 
-    public partial class ForgotPassword
+    public partial class EditProfile
     {
 
         /// <summary>
@@ -33,102 +33,138 @@ namespace DogeBook
         protected global::DogeBook.Navbar Navbar;
 
         /// <summary>
-        /// TBEmail control.
+        /// ScriptManager1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBEmail;
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
-        /// BtnGetSecurityQuestions control.
+        /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnGetSecurityQuestions;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
-        /// RSecurityQuestions control.
+        /// LFirstName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater RSecurityQuestions;
+        protected global::System.Web.UI.WebControls.Label LFirstName;
 
         /// <summary>
-        /// BtnSubmitAns control.
+        /// LLastName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnSubmitAns;
+        protected global::System.Web.UI.WebControls.Label LLastName;
 
         /// <summary>
-        /// LPassword control.
+        /// ImgProfilePic control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LPassword;
+        protected global::System.Web.UI.WebControls.Image ImgProfilePic;
 
         /// <summary>
-        /// TBPassword control.
+        /// fuProfilePic control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBPassword;
+        protected global::System.Web.UI.WebControls.FileUpload fuProfilePic;
 
         /// <summary>
-        /// LConfirmPassword control.
+        /// btnUploadProfilePicture control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LConfirmPassword;
+        protected global::System.Web.UI.WebControls.Button btnUploadProfilePicture;
 
         /// <summary>
-        /// TBConfirmPassword control.
+        /// lblUploadStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBConfirmPassword;
+        protected global::System.Web.UI.WebControls.Label lblUploadStatus;
 
         /// <summary>
-        /// BtnCreateNewPass control.
+        /// LBio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnCreateNewPass;
+        protected global::System.Web.UI.WebControls.Label LBio;
 
         /// <summary>
-        /// LblWarning control.
+        /// LInterests control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblWarning;
+        protected global::System.Web.UI.WebControls.Label LInterests;
 
         /// <summary>
-        /// LblSuccess control.
+        /// LCity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblSuccess;
+        protected global::System.Web.UI.WebControls.Label LCity;
+
+        /// <summary>
+        /// LState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LState;
+
+        /// <summary>
+        /// FriendCard1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DogeBook.FriendCard FriendCard1;
+
+        /// <summary>
+        /// FriendCard2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DogeBook.FriendCard FriendCard2;
+
+        /// <summary>
+        /// FriendCard3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DogeBook.FriendCard FriendCard3;
     }
 }

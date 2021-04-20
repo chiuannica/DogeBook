@@ -11,17 +11,8 @@ namespace DogeBook
 {
 
 
-    public partial class ForgotPassword
+    public partial class BrowseFriends
     {
-
-        /// <summary>
-        /// form1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
         /// Navbar control.
@@ -33,102 +24,147 @@ namespace DogeBook
         protected global::DogeBook.Navbar Navbar;
 
         /// <summary>
-        /// TBEmail control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBEmail;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// BtnGetSecurityQuestions control.
+        /// TBSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnGetSecurityQuestions;
+        protected global::System.Web.UI.WebControls.TextBox TBSearch;
 
         /// <summary>
-        /// RSecurityQuestions control.
+        /// BtnSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater RSecurityQuestions;
+        protected global::System.Web.UI.WebControls.Button BtnSearch;
 
         /// <summary>
-        /// BtnSubmitAns control.
+        /// SearchPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnSubmitAns;
+        protected global::System.Web.UI.WebControls.Panel SearchPanel;
 
         /// <summary>
-        /// LPassword control.
+        /// LFriendsEmpty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LPassword;
+        protected global::System.Web.UI.WebControls.Label LFriendsEmpty;
 
         /// <summary>
-        /// TBPassword control.
+        /// BtnFriendsHide control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBPassword;
+        protected global::System.Web.UI.WebControls.Button BtnFriendsHide;
 
         /// <summary>
-        /// LConfirmPassword control.
+        /// BtnFriends control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LConfirmPassword;
+        protected global::System.Web.UI.WebControls.Button BtnFriends;
 
         /// <summary>
-        /// TBConfirmPassword control.
+        /// FriendsPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBConfirmPassword;
+        protected global::System.Web.UI.WebControls.Panel FriendsPanel;
 
         /// <summary>
-        /// BtnCreateNewPass control.
+        /// LFriendOfFriendsEmpty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnCreateNewPass;
+        protected global::System.Web.UI.WebControls.Label LFriendOfFriendsEmpty;
 
         /// <summary>
-        /// LblWarning control.
+        /// BtnFriendOfFriendsHide control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblWarning;
+        protected global::System.Web.UI.WebControls.Button BtnFriendOfFriendsHide;
 
         /// <summary>
-        /// LblSuccess control.
+        /// BtnFriendOfFriends control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblSuccess;
+        protected global::System.Web.UI.WebControls.Button BtnFriendOfFriends;
+
+        /// <summary>
+        /// FriendsOfFriendsPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel FriendsOfFriendsPanel;
+
+        /// <summary>
+        /// LNonFriendsEmpty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LNonFriendsEmpty;
+
+        /// <summary>
+        /// BtnAllHide control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnAllHide;
+
+        /// <summary>
+        /// BtnAll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnAll;
+
+        /// <summary>
+        /// NonFriendPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel NonFriendPanel;
     }
 }

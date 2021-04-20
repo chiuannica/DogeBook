@@ -69,11 +69,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BrowseFriends.aspx" />
     <Content Include="CreateAccount.aspx" />
     <Content Include="ForgotPassword.aspx" />
     <Content Include="FriendCard.ascx" />
+    <Content Include="FriendRequests.aspx" />
     <Content Include="Navbar.ascx" />
+    <Content Include="NonFriendCard.ascx" />
     <Content Include="PostControl.ascx" />
+    <Content Include="EditProfile.aspx" />
     <Content Include="Profile.aspx" />
     <Content Include="Images\DogeBook-Logo.png" />
     <Content Include="Login.aspx" />
@@ -81,11 +85,19 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Content Include="testPage.aspx" />
     <None Include="Web References\AccountManagementService\AccountManagement.disco" />
     <Content Include="Timeline.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BrowseFriends.aspx.cs">
+      <DependentUpon>BrowseFriends.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BrowseFriends.aspx.designer.cs">
+      <DependentUpon>BrowseFriends.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ForgotPassword.aspx.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -100,6 +112,13 @@
     <Compile Include="FriendCard.ascx.designer.cs">
       <DependentUpon>FriendCard.ascx</DependentUpon>
     </Compile>
+    <Compile Include="FriendRequests.aspx.cs">
+      <DependentUpon>FriendRequests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FriendRequests.aspx.designer.cs">
+      <DependentUpon>FriendRequests.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Navbar.ascx.cs">
       <DependentUpon>Navbar.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -107,12 +126,27 @@
     <Compile Include="Navbar.ascx.designer.cs">
       <DependentUpon>Navbar.ascx</DependentUpon>
     </Compile>
+    <Compile Include="NonFriendCard.ascx.cs">
+      <DependentUpon>NonFriendCard.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NonFriendCard.ascx.designer.cs">
+      <DependentUpon>NonFriendCard.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Post.cs" />
     <Compile Include="PostControl.ascx.cs">
       <DependentUpon>PostControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="PostControl.ascx.designer.cs">
       <DependentUpon>PostControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditProfile.aspx.cs">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditProfile.aspx.designer.cs">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
@@ -141,6 +175,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="testPage.aspx.cs">
+      <DependentUpon>testPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="testPage.aspx.designer.cs">
+      <DependentUpon>testPage.aspx</DependentUpon>
     <Compile Include="Timeline.aspx.cs">
       <DependentUpon>Timeline.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

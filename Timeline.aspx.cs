@@ -11,7 +11,9 @@ namespace DogeBook
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            pc1.PostId = 3;
+            pc1.DataBind();
+
         }
     }
 }

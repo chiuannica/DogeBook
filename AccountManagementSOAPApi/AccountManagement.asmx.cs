@@ -35,7 +35,6 @@ namespace AccountManagementSOAPApi
         }
 
         [WebMethod]
-
         public string hashPassword(string password)
         {
             // hash stuff
@@ -66,7 +65,7 @@ namespace AccountManagementSOAPApi
                 user.FirstName = record["FirstName"].ToString();
                 user.LastName = record["LastName"].ToString();
                 user.Email = record["Email"].ToString();
-                user.ProfilePicture = record["ProfilePicture"].ToString();
+                //user.ProfilePicture = (byte[])record["ProfilePicture"];
                 user.Bio = record["Bio"].ToString();
                 user.City = record["City"].ToString();
                 user.State = record["State"].ToString();
@@ -95,6 +94,24 @@ namespace AccountManagementSOAPApi
         }
 
         [WebMethod]
+        public int GetUserIdFromEmail(string email)
+        {
+            DBConnect objDB = new DBConnect();
+
+            string strSQL = "SELECT UserId " +
+                            "FROM TP_Users " +
+                            "WHERE Email='" + email + "' ";
+            DataSet ds = objDB.GetDataSet(strSQL);
+
+            if (ds.Tables[0].Rows.Count != 0)
+            {
+                DataRow record = ds.Tables[0].Rows[0];
+                return int.Parse(record["UserId"].ToString());
+            }
+            return -1;
+        }
+
+        [WebMethod]
         public bool CreateAccount(string firstName, string lastName, string email, string password)
         {
             DBConnect objDB = new DBConnect();
@@ -110,19 +127,22 @@ namespace AccountManagementSOAPApi
                 return true;
             return false;
         }
+
         [WebMethod]
-        public bool AddSecurityQuestion(int userId, string question, string answer)
+        public bool AddSecurityQuestion(int userId, string securityQuestion, string answer)
         {
             DBConnect objDB = new DBConnect();
-
             string strSQL = "INSERT INTO TP_SecurityQuestions(UserId, SecurityQuestion, Answer) " +
-                            "VALUES(" + userId + ", '" + question + "', '" + answer + "')";
+                            "VALUES(" + userId + ", '" + securityQuestion + "', '" + answer + "') ";
             int result = objDB.DoUpdate(strSQL);
 
             if (result > 0)
+            {
                 return true;
+            }
             return false;
         }
+
 
         [WebMethod]
         public bool VerifyAccount(int userId)

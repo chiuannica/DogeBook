@@ -33,13 +33,13 @@ namespace DogeBook
         protected global::System.Web.UI.WebControls.Label lblAuthor;
 
         /// <summary>
-        /// postBody control.
+        /// cardBody control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl postBody;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cardBody;
 
         /// <summary>
         /// imgPostImage control.
@@ -69,6 +69,15 @@ namespace DogeBook
         protected global::System.Web.UI.HtmlControls.HtmlButton btnLike;
 
         /// <summary>
+        /// likeIcon control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl likeIcon;
+
+        /// <summary>
         /// btnComment control.
         /// </summary>
         /// <remarks>
@@ -76,6 +85,24 @@ namespace DogeBook
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnComment;
+
+        /// <summary>
+        /// TextBox1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+
+        /// <summary>
+        /// cardFooter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cardFooter;
 
         /// <summary>
         /// lblTimestamp control.

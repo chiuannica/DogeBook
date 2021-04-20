@@ -15,8 +15,12 @@
 </head>
 <body>
     <form id="form1" runat="server">
+
+
         <div class="row justify-content-center">
-            <uc1:PostControl runat="server" id="PostControl" />
+            <div class="col-4">
+                <uc1:PostControl runat="server" ID="pc1"/>
+            </div>
         </div>
         
     </form>
