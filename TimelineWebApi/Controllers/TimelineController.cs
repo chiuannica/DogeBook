@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace TimelineWebApi.Controllers
 {
     [Route("api/[controller]")]
-    public class TimelineController : ControllerBase
+    public class TimelineController : Controller
     {
         // GET: api/Timeline
         [HttpGet]
@@ -24,6 +24,7 @@ namespace TimelineWebApi.Controllers
         [HttpPost]
         public void Post([FromBody] string value)
         {
+
         }
 
         // PUT: api/Timeline/5

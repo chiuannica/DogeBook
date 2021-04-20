@@ -74,6 +74,7 @@
     <Content Include="FriendCard.ascx" />
     <Content Include="Navbar.ascx" />
     <Content Include="PostControl.ascx" />
+    <Content Include="EditProfile.aspx" />
     <Content Include="Profile.aspx" />
     <Content Include="Images\DogeBook-Logo.png" />
     <Content Include="Login.aspx" />
@@ -113,6 +114,13 @@
     </Compile>
     <Compile Include="PostControl.ascx.designer.cs">
       <DependentUpon>PostControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditProfile.aspx.cs">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditProfile.aspx.designer.cs">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
