@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DogeBookLibrary;
 using Microsoft.AspNetCore.Mvc;
 
 namespace TimelineWebApi.Controllers
@@ -14,10 +15,12 @@ namespace TimelineWebApi.Controllers
         }
 
         // GET: api/Timeline/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("GetTimelineByUserId/{userId}")]
+        public List<Post> GetTimeLineByUserId(int id)
         {
-            return "value";
+            List<Post> timeline = new List<Post>();
+            //Get all your posts + all your friends' posts and sort by timestamp
+            return timeline;
         }
 
         // POST: api/Timeline
