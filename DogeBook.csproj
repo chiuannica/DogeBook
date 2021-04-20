@@ -76,6 +76,8 @@
     <Content Include="FriendRequests.aspx" />
     <Content Include="Navbar.ascx" />
     <Content Include="NonFriendCard.ascx" />
+    <Content Include="PostControl.ascx" />
+    <Content Include="EditProfile.aspx" />
     <Content Include="Profile.aspx" />
     <Content Include="Images\DogeBook-Logo.png" />
     <Content Include="Login.aspx" />
@@ -85,6 +87,7 @@
     </None>
     <Content Include="testPage.aspx" />
     <None Include="Web References\AccountManagementService\AccountManagement.disco" />
+    <Content Include="Timeline.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -131,6 +134,20 @@
       <DependentUpon>NonFriendCard.ascx</DependentUpon>
     </Compile>
     <Compile Include="Post.cs" />
+    <Compile Include="PostControl.ascx.cs">
+      <DependentUpon>PostControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PostControl.ascx.designer.cs">
+      <DependentUpon>PostControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditProfile.aspx.cs">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditProfile.aspx.designer.cs">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -164,6 +181,12 @@
     </Compile>
     <Compile Include="testPage.aspx.designer.cs">
       <DependentUpon>testPage.aspx</DependentUpon>
+    <Compile Include="Timeline.aspx.cs">
+      <DependentUpon>Timeline.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Timeline.aspx.designer.cs">
+      <DependentUpon>Timeline.aspx</DependentUpon>
     </Compile>
     <Compile Include="Web References\AccountManagementService\Reference.cs">
       <AutoGen>True</AutoGen>

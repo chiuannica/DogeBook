@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
 namespace TimelineWebApi.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
-    public class TimelineController : ControllerBase
+    public class TimelineController : Controller
     {
         // GET: api/Timeline
         [HttpGet]
@@ -29,6 +24,7 @@ namespace TimelineWebApi.Controllers
         [HttpPost]
         public void Post([FromBody] string value)
         {
+
         }
 
         // PUT: api/Timeline/5
