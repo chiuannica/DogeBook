@@ -36,6 +36,27 @@ namespace DogeBookLibrary
             return loginData;
         }
 
+        public int GetUserIdByEmail(String email)
+        {
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_GetUserIdByEmail";
+            myCommandObj.Parameters.Clear();
+
+            SqlParameter inputEmail = new SqlParameter("@Email", email);
+            inputEmail.Direction = ParameterDirection.Input;
+            myCommandObj.Parameters.Add(inputEmail);
+            
+            DataSet ds = dBConnect.GetDataSetUsingCmdObj(myCommandObj);
+            if(ds != null && ds.Tables[0].Rows.Count > 0){
+                return (int)ds.Tables[0].Rows[0]["UserId"];
+            }
+            else
+            {
+                return -1;
+            }
+
+        }
+
         protected HttpCookie Encrypt(String email, String password)
         {
             Byte[] key = { 250, 101, 18, 76, 45, 135, 207, 118, 4, 171, 3, 168, 202, 241, 37, 199 };
