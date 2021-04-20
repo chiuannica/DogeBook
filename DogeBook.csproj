@@ -181,6 +181,7 @@
     </Compile>
     <Compile Include="testPage.aspx.designer.cs">
       <DependentUpon>testPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Timeline.aspx.cs">
       <DependentUpon>Timeline.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
