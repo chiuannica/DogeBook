@@ -21,7 +21,7 @@
     <form id="form1" runat="server">
         <uc1:Navbar runat="server" ID="Navbar" />
         <div class="text-center">
-            <h1 class="display-1">Forgot Password</h1>
+            <h1 class="display-1">Forgot Password testy test test</h1>
         </div>
         
         <div class="container col-md-6 col-sm-12">
