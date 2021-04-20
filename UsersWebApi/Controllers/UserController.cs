@@ -72,7 +72,7 @@ namespace UsersWebAPI.Controllers
                 user.FirstName = record["FirstName"].ToString();
                 user.LastName = record["LastName"].ToString();
                 user.Email = record["Email"].ToString();
-                user.ProfilePicture = record["ProfilePicture"].ToString();
+                //user.ProfilePicture = record["ProfilePicture"].ToString();
                 user.Bio = record["Bio"].ToString();
                 user.City = record["City"].ToString();
                 user.State = record["State"].ToString();
@@ -306,7 +306,7 @@ namespace UsersWebAPI.Controllers
                     user.FirstName = record["FirstName"].ToString();
                     user.LastName = record["LastName"].ToString();
                     user.Email = record["Email"].ToString();
-                    user.ProfilePicture = record["ProfilePicture"].ToString();
+                    //user.ProfilePicture = record["ProfilePicture"].ToString();
                     user.Bio = record["Bio"].ToString();
                     user.City = record["City"].ToString();
                     user.State = record["State"].ToString();
@@ -347,7 +347,7 @@ namespace UsersWebAPI.Controllers
                         user.FirstName = record["FirstName"].ToString();
                         user.LastName = record["LastName"].ToString();
                         user.Email = record["Email"].ToString();
-                        user.ProfilePicture = record["ProfilePicture"].ToString();
+                        //user.ProfilePicture = record["ProfilePicture"].ToString();
                         user.Bio = record["Bio"].ToString();
                         user.City = record["City"].ToString();
                         user.State = record["State"].ToString();
