@@ -15,12 +15,17 @@
     <script src="https://kit.fontawesome.com/0a596c6382.js" crossorigin="anonymous"></script>
 
 
-    <title>Create an Account</title>
+    <title>Create an Account</title>        
 </head>
 <body>
     <form id="form1" runat="server">
         <uc1:Navbar runat="server" id="Navbar" />
-        <div class="container col-6">
+
+        <div class="container text-center">
+            <h1 class="mb-4 mb-3 font-weight-normal">Create an Account</h1>
+        </div>
+
+        <div class="container col-md-6 col-sm-12">
             <div class="form-group">
                 <label >Email address</label>
                 <asp:TextBox ID="TBEmail" type="email" class="form-control" placeholder="Email" runat="server"></asp:TextBox>
@@ -45,7 +50,7 @@
                 <label>Security Question 1</label>
                 <div>
                     <asp:DropDownList ID="DDLSecurityQuestion1" class="dropdown btn dropdown-toggle" runat="server">
-                        <asp:ListItem class="dropdown-item">What is your mother's maiden name?</asp:ListItem>
+                        <asp:ListItem class="dropdown-item">What is the maiden name of your mother?</asp:ListItem>
                         <asp:ListItem class="dropdown-item">Where did you go to elementary school?</asp:ListItem>
                         <asp:ListItem class="dropdown-item">Who was your favorite teacher?</asp:ListItem>
                     </asp:DropDownList>
@@ -67,7 +72,7 @@
                 <label>Security Question 3</label>
                 <div>
                     <asp:DropDownList ID="DDLSecurityQuestion3" class="dropdown btn dropdown-toggle" runat="server">
-                        <asp:ListItem class="dropdown-item">What was your grandmother's name?</asp:ListItem>
+                        <asp:ListItem class="dropdown-item">What was the name of your grandmother?</asp:ListItem>
                         <asp:ListItem class="dropdown-item">Where did you go to elementary school?</asp:ListItem>
                         <asp:ListItem class="dropdown-item">Who was your favorite teacher?</asp:ListItem>
                     </asp:DropDownList>
@@ -79,6 +84,13 @@
             </div>
             <div class="containerlfluid my-3">
                 <asp:Label ID="LblWarning" Visible="false" style="display:block" class="container alert alert-danger" runat="server" Text="Warning"></asp:Label>
+            </div>
+            <div class="containerlfluid my-3">
+                <asp:Label ID="LblSuccess" Visible="false" style="display:block" class="container alert alert-success" runat="server" Text="Success"></asp:Label>
+            </div>
+            
+            <div>
+                <asp:Button ID="BtnRedirectToLogin" class="btn btn-primary" runat="server" Text="Go to Login" Visible="false"/>
             </div>
         </div>
         

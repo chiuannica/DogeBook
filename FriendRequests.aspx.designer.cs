@@ -11,61 +11,52 @@ namespace DogeBook
 {
 
 
-    public partial class FriendCard
+    public partial class FriendRequests
     {
 
         /// <summary>
-        /// ImgFriend control.
+        /// Navbar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image ImgFriend;
+        protected global::DogeBook.Navbar Navbar;
 
         /// <summary>
-        /// LFriendFName control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LFriendFName;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// LFriendLName control.
+        /// LNumFriendRequests control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LFriendLName;
+        protected global::System.Web.UI.WebControls.Label LNumFriendRequests;
 
         /// <summary>
-        /// BtnGoToProfile control.
+        /// LMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnGoToProfile;
+        protected global::System.Web.UI.WebControls.Label LMessage;
 
         /// <summary>
-        /// BtnDeleteFriend control.
+        /// RFriendRequests control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnDeleteFriend;
-
-        /// <summary>
-        /// LblDisplay control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblDisplay;
+        protected global::System.Web.UI.WebControls.Repeater RFriendRequests;
     }
 }
