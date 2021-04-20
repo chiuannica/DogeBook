@@ -143,7 +143,6 @@ namespace DogeBook
 
         protected void BtnSearch_Click(object sender, EventArgs e)
         {
-            //SearchPanel.Controls.Clear();
 
             string searchTerm = TBSearch.Text;
             SearchPanel.Visible = true;

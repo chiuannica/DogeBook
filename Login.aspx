@@ -1,5 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="DogeBook.Login" %>
 
+<%@ Register Src="~/NavbarNotLoggedIn.ascx" TagPrefix="uc1" TagName="NavbarNotLoggedIn" %>
+
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -12,6 +15,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <uc1:NavbarNotLoggedIn runat="server" ID="NavbarNotLoggedIn" />
         <div>
             <div class="d-flex justify-content-center mt-5">
                 <div class="card" style="width: 25rem;">
@@ -34,6 +38,7 @@
                         </div>
                         <asp:Button ID="Btn_SignIn" runat="server" Text="Sign In" Class="btn btn-md btn-primary btn-block" OnClick="Btn_SignIn_Click" />
                         <asp:Button ID="Btn_CreateAccount" runat="server" Text="Create Account" Class="btn btn-link" OnClick="Btn_CreateAccount_Click" />
+                        <a class="btn btn-link" href="ForgotPassword.aspx" >Forgot Password</a>
                         <p class="mt-5 mb-3 text-muted">Stylianos Dimitriadis & Annica Chiu <br /> Copyright&copy; 2021</p>
                     </div>
                 </div>

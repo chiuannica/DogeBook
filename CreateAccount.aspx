@@ -1,6 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CreateAccount.aspx.cs" Inherits="DogeBook.CreateAccount" %>
 
 <%@ Register Src="~/Navbar.ascx" TagPrefix="uc1" TagName="Navbar" %>
+<%@ Register Src="~/NavbarNotLoggedIn.ascx" TagPrefix="uc1" TagName="NavbarNotLoggedIn" %>
+
 
 
 <!DOCTYPE html>
@@ -19,7 +21,8 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <uc1:Navbar runat="server" id="Navbar" />
+        <uc1:NavbarNotLoggedIn runat="server" ID="NavbarNotLoggedIn" />
+
 
         <div class="container text-center">
             <h1 class="mb-4 mb-3 font-weight-normal">Create an Account</h1>

@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DogeBook {
-    
-    
-    public partial class Login {
-        
+namespace DogeBook
+{
+
+
+    public partial class Login
+    {
+
         /// <summary>
         /// form1 control.
         /// </summary>
@@ -20,7 +22,16 @@ namespace DogeBook {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
+
+        /// <summary>
+        /// NavbarNotLoggedIn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DogeBook.Navbar NavbarNotLoggedIn;
+
         /// <summary>
         /// ErrorDiv control.
         /// </summary>
@@ -29,7 +40,7 @@ namespace DogeBook {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ErrorDiv;
-        
+
         /// <summary>
         /// Errors control.
         /// </summary>
@@ -38,7 +49,7 @@ namespace DogeBook {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Errors;
-        
+
         /// <summary>
         /// TxtEmail_SignIn control.
         /// </summary>
@@ -47,7 +58,7 @@ namespace DogeBook {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TxtEmail_SignIn;
-        
+
         /// <summary>
         /// TxtPassword_SignIn control.
         /// </summary>
@@ -56,7 +67,7 @@ namespace DogeBook {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TxtPassword_SignIn;
-        
+
         /// <summary>
         /// RemeberChkBox control.
         /// </summary>
@@ -65,7 +76,7 @@ namespace DogeBook {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox RemeberChkBox;
-        
+
         /// <summary>
         /// Btn_SignIn control.
         /// </summary>
@@ -74,7 +85,7 @@ namespace DogeBook {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Btn_SignIn;
-        
+
         /// <summary>
         /// Btn_CreateAccount control.
         /// </summary>

@@ -96,6 +96,15 @@ namespace DogeBook
         protected global::System.Web.UI.WebControls.Label LState;
 
         /// <summary>
+        /// LFriendsNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LFriendsNumber;
+
+        /// <summary>
         /// FriendPanel control.
         /// </summary>
         /// <remarks>
@@ -105,39 +114,48 @@ namespace DogeBook
         protected global::System.Web.UI.WebControls.Panel FriendPanel;
 
         /// <summary>
-        /// FriendCard1 control.
+        /// TBSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DogeBook.FriendCard FriendCard1;
+        protected global::System.Web.UI.WebControls.TextBox TBSearch;
 
         /// <summary>
-        /// FriendCard2 control.
+        /// BtnSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DogeBook.FriendCard FriendCard2;
+        protected global::System.Web.UI.WebControls.Button BtnSearch;
 
         /// <summary>
-        /// FriendCard3 control.
+        /// LSearchTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DogeBook.FriendCard FriendCard3;
+        protected global::System.Web.UI.WebControls.Label LSearchTitle;
 
         /// <summary>
-        /// FriendCard control.
+        /// LSearchEmpty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DogeBook.FriendCard FriendCard;
+        protected global::System.Web.UI.WebControls.Label LSearchEmpty;
+
+        /// <summary>
+        /// SearchPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel SearchPanel;
     }
 }

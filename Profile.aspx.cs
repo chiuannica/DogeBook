@@ -68,8 +68,6 @@ namespace DogeBook
         }
         protected void LoadFriends()
         {
-            
-
             WebRequest request = WebRequest.Create(path + "GetFriendsByUserId/" + userId);
             WebResponse response = request.GetResponse();
 
@@ -105,12 +103,61 @@ namespace DogeBook
                 // Add the control object to the WebForm's Controls collection
 
                 FriendPanel.Controls.Add(ctrl);
-
             }
+             // update the badge to show how many   
+            LFriendsNumber.Text = friends.Length.ToString();
+        }
 
-            //gvTeams.DataSource = teams;
+        protected void BtnSearch_Click(object sender, EventArgs e)
+        {
 
-            //.DataBind();
+            string searchTerm = TBSearch.Text;
+            SearchPanel.Visible = true;
+
+            searchTerm = searchTerm.ToLower();
+
+
+            WebRequest request = WebRequest.Create(path + "SearchForFriends/" + userId + "/" + searchTerm);
+            WebResponse response = request.GetResponse();
+
+
+            Stream theDataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(theDataStream);
+            String data = reader.ReadToEnd();
+
+            reader.Close();
+            response.Close();
+
+            JavaScriptSerializer js = new JavaScriptSerializer();
+
+            User[] friends = js.Deserialize<User[]>(data);
+
+            for (int i = 0; i < friends.Length; i++)
+            {
+                // exclude if self 
+
+                if (friends[i].UserId != userId)
+                {
+
+                    FriendCard ctrl = (FriendCard)LoadControl("FriendCard.ascx");
+
+                    ctrl.FirstName = friends[i].FirstName.ToString();
+                    ctrl.LastName = friends[i].LastName.ToString();
+                    //ctrl.ImageUrl = friends[i].ProfilePicture.ToString();
+                    //ctrl.Bio = friends[i].Bio.ToString();
+                    ctrl.UserId = int.Parse(friends[i].UserId.ToString());
+
+                    // bind data to ctrl
+                    ctrl.DataBind();
+
+                    // add to panel
+                    SearchPanel.Controls.Add(ctrl);
+
+
+                }
+            }
+            LSearchTitle.Text = "Search results for \"" + searchTerm + "\"";
+            LSearchEmpty.Text = friends.Length.ToString();
         }
     }
 }

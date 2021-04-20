@@ -86,6 +86,27 @@ namespace UsersWebAPI.Controllers
             return users;
         }
 
+        [HttpGet("SearchForFriends/{userId}/{searchTerm}")]
+        public List<User> SearchForFriends(int userId, string searchTerm)
+        {
+
+            List<User> users = GetFriendsByUserId(userId);
+
+            searchTerm = searchTerm.ToLower();
+
+            List<User> friends = new List<User>();
+
+
+            for (int i = 0; i < users.Count; i++)
+            {
+                if (users[i].FirstName.ToLower().Contains(searchTerm) || users[i].LastName.ToLower().Contains(searchTerm)
+                    || users[i].City.ToLower().Contains(searchTerm) || users[i].State.ToLower().Contains(searchTerm))
+                {
+                    friends.Add(users[i]);
+                }
+            }
+            return friends;
+        }
 
         [HttpGet("AreFriends/{userId}/{otherId}")]
         public bool AreFriends(int userId, int otherId)
