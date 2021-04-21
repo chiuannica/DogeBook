@@ -35,6 +35,12 @@ namespace DogeBookLibrary
 
             return loginData;
         }
+
+        public string ProfPicArrayToImage(byte[] image)
+        {
+            throw new NotImplementedException();
+        }
+
         public int GetUserIdByEmail(String email)
         {
             myCommandObj.CommandType = CommandType.StoredProcedure;

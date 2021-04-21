@@ -36,7 +36,6 @@ namespace UsersWebAPI.Controllers
                 user.FirstName = record["FirstName"].ToString();
                 user.LastName = record["LastName"].ToString();
                 user.Email = record["Email"].ToString();
-                //user.ProfilePicture = record["ProfilePicture"].ToString();
                 user.Bio = record["Bio"].ToString();
                 user.City = record["City"].ToString();
                 user.State = record["State"].ToString();
@@ -74,7 +73,6 @@ namespace UsersWebAPI.Controllers
                     user.FirstName = record["FirstName"].ToString();
                     user.LastName = record["LastName"].ToString();
                     user.Email = record["Email"].ToString();
-                    //user.ProfilePicture = record["ProfilePicture"].ToString();
                     user.Bio = record["Bio"].ToString();
                     user.City = record["City"].ToString();
                     user.State = record["State"].ToString();
@@ -181,7 +179,6 @@ namespace UsersWebAPI.Controllers
                     user.FirstName = record["FirstName"].ToString();
                     user.LastName = record["LastName"].ToString();
                     user.Email = record["Email"].ToString();
-                    //user.ProfilePicture = record["ProfilePicture"].ToString();
                     user.Bio = record["Bio"].ToString();
                     user.City = record["City"].ToString();
                     user.State = record["State"].ToString();
@@ -213,7 +210,6 @@ namespace UsersWebAPI.Controllers
                     user.FirstName = record["FirstName"].ToString();
                     user.LastName = record["LastName"].ToString();
                     user.Email = record["Email"].ToString();
-                    //user.ProfilePicture = (byte[])record["ProfilePicture"];
                     user.Bio = record["Bio"].ToString();
                     user.City = record["City"].ToString();
                     user.State = record["State"].ToString();
@@ -330,7 +326,6 @@ namespace UsersWebAPI.Controllers
                     user.FirstName = record["FirstName"].ToString();
                     user.LastName = record["LastName"].ToString();
                     user.Email = record["Email"].ToString();
-                    //user.ProfilePicture = record["ProfilePicture"].ToString();
                     user.Bio = record["Bio"].ToString();
                     user.City = record["City"].ToString();
                     user.State = record["State"].ToString();
@@ -371,7 +366,6 @@ namespace UsersWebAPI.Controllers
                         user.FirstName = record["FirstName"].ToString();
                         user.LastName = record["LastName"].ToString();
                         user.Email = record["Email"].ToString();
-                        //user.ProfilePicture = record["ProfilePicture"].ToString();
                         user.Bio = record["Bio"].ToString();
                         user.City = record["City"].ToString();
                         user.State = record["State"].ToString();
@@ -417,7 +411,6 @@ namespace UsersWebAPI.Controllers
                     user.FirstName = record["FirstName"].ToString();
                     user.LastName = record["LastName"].ToString();
                     user.Email = record["Email"].ToString();
-                    //user.ProfilePicture = (byte[])record["ProfilePicture"];
                     user.Bio = record["Bio"].ToString();
                     user.City = record["City"].ToString();
                     user.State = record["State"].ToString();
@@ -601,43 +594,6 @@ namespace UsersWebAPI.Controllers
             return false;
         }
 
-
-
-
-
-
-
-
-        /*
-         // DELETED because we aren't using FriendRecord table anymore
-        // create a new friend record
-        [HttpPost("AcceptFriend/{friendRequestId}")]
-        public bool AcceptFriendPost(int friendRequestId)
-        {
-
-            DBConnect objDB = new DBConnect();
-            string getSQL = "SELECT * " +
-                            "FROM TP_FriendRequests " +
-                            "WHERE FriendRequestId=" + friendRequestId;
-            DataSet ds = objDB.GetDataSet(getSQL);
-
-
-            if (ds.Tables[0].Rows.Count != 0)
-            {
-                DataRow record = ds.Tables[0].Rows[0];
-                string friend1Id = record["Friend1Id"].ToString(); 
-                string friend2Id = record["Friend2Id"].ToString();
-
-                string postSQL = "INSERT INTO TP_FriendRecords(Friend1Id, Friend2Id) " +
-                                 "VALUES(" + friend1Id + ", " + friend2Id + ")";
-                int result = objDB.DoUpdate(postSQL);
-
-                if (result > 0)
-                    return true;
-            }
-            return false;
-        }
-        */
     }
 
 

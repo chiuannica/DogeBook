@@ -18,7 +18,6 @@ namespace DogeBook
         int userId = 1;
         string path = "https://localhost:44386/api/User/";
 
-        //int userId = Session["UserId"];
         protected void Page_Load(object sender, EventArgs e)
         {
             Session["UserId"] = userId;

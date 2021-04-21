@@ -22,7 +22,7 @@
         <uc1:Navbar runat="server" ID="Navbar" />
 
         <div class="container">
-            <h1 class="mb-4 mb-3 font-weight-normal">Profile</h1>
+            <h1 class="mb-4 mb-3 font-weight-normal text-center">Profile</h1>
         </div>
         
 
@@ -73,7 +73,7 @@
 
 
         <div class="container">
-            <h2 class="mb-4 mb-3 font-weight-normal">Friends
+            <h2 class="mb-4 mb-3 font-weight-normal  text-center">Friends
                 <asp:Label ID="LFriendsNumber" runat="server"  class="badge badge-primary" Text=""></asp:Label>
             </h2>
                 <asp:Panel ID="FriendPanel" CssClass="row " runat="server"></asp:Panel>
