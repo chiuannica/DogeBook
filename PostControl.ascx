@@ -1,17 +1,17 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="PostControl.ascx.cs" Inherits="DogeBook.PostControl" %>
 
-<div class="card text-center text-white bg-dark mt-1 mb-1" id="cardDiv">
+<div class="card text-white bg-dark mt-1 mb-1" id="cardDiv">
     <div class="card-header text-left" id="cardHeader">
         <asp:Image ID="imgAuthor" Height="50px" Width="50px" ImageUrl="Images/DogeBook-Logo.png" runat="server" class="img-thumbnail" />
         <asp:Label ID="lblAuthor" runat="server">Author</asp:Label>
     </div>
-    <div class="card-body" runat="server" id="cardBody">
+    <div class="card-body text-center" runat="server" id="cardBody">
         <asp:Image ImageUrl="Images/DogeBook-Logo.png" ID="imgPostImage" class="img-fluid" runat="server" />
         <br />
         <asp:Label ID="lblPostText" runat="server" class="card-text">Here lies the dogebook post text</asp:Label><br />
         <button id="btnLike" runat="server" class="btn btn-success" onclick="btnLike_Click"><i class="far fa-thumbs-up" runat="server" id="likeIcon"></i></button>
 
-        <asp:Button class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#collapseCommentStandard" ID="btnComment" runat="server" Text="Comment" />
+        <asp:Button class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#collapseCommentStandard" ID="btnComment" runat="server" OnClientClick="return false;" Text="Comment" />
         <div class="collapse" id="collapseCommentStandard">
             <div class="border-bottom mb-3">
                 What would you like to comment?<span class="required">*</span>
@@ -58,7 +58,7 @@
             </div>
         </div>
     </div>
-    <div runat="server" class="card-footer text-muted" id="cardFooter">
+    <div runat="server" class="card-footer text-muted text-center" id="cardFooter">
         <asp:Label runat="server" ID="lblTimestamp">Timestamp</asp:Label>
     </div>
 </div>
