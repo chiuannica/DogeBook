@@ -81,7 +81,7 @@ namespace DogeBook
 
                 ctrl.FirstName = friends[i].FirstName.ToString();
                 ctrl.LastName = friends[i].LastName.ToString();
-                //ctrl.ImageUrl = friends[i].ProfilePicture.ToString();
+                ///ctrl.ImageUrl = friends[i].ProfilePicture.ToString();
                 ctrl.Bio = friends[i].Bio.ToString();
                 ctrl.UserId = int.Parse(friends[i].UserId.ToString());
 
@@ -173,11 +173,6 @@ namespace DogeBook
                 {
 
 
-                ctrl.FirstName = friends[i].FirstName.ToString();
-                ctrl.LastName = friends[i].LastName.ToString();
-                //ctrl.ImageUrl = friends[i].ProfilePicture.ToString();
-                ctrl.Bio = friends[i].Bio.ToString();
-                ctrl.UserId = int.Parse(friends[i].UserId.ToString());
                     // check if friend and load friend card if theyre friends
                     bool areFriends = AreFriends(friends[i].UserId);
 
