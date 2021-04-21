@@ -13,8 +13,9 @@ namespace DogeBook
         {
             pc1.PostId = 3;
             pc1.DataBind();
-            //Response.Write("<script>alert('" + Session["UserId"].ToString() + "');</script>");
-            //Console.Write(Session["UserId"]);
+            Response.Write("<script>alert('" + Session["UserId"].ToString() + "');</script>");
+            Console.Write(Session["UserId"]);
+
         }
     }
 }

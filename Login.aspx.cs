@@ -26,9 +26,9 @@ namespace DogeBook
             if (!IsPostBack && Request.Cookies["LoginCookie"] != null)
 
             {
-                //HttpCookie myCookie = Request.Cookies["LoginCookie"];
-                //TxtEmail_SignIn.Text = myCookie.Values["Email"];
-                //TxtPassword_SignIn.Text = myCookie.Values["Password"];
+                HttpCookie myCookie = Request.Cookies["LoginCookie"];
+                TxtEmail_SignIn.Text = myCookie.Values["Email"];
+                TxtPassword_SignIn.Text = myCookie.Values["Password"];
                 //lblDisplay.Text = "Data read from cookie.";
             }
         }
@@ -63,6 +63,19 @@ namespace DogeBook
 
                     }
 
+                    //if (int.Parse(dBConnect.GetField("Active", 0).ToString()) == 0)
+                    //{
+                    //    Errors.Text += "You have been banned!";
+                    //    ErrorDiv.Visible = true;
+                    //}
+                    //else
+                    //{
+                    //    Session["UserId"] = dBConnect.GetField("UserId", 0);
+                    //    Session["UserName"] = dBConnect.GetField("UserName", 0);
+                    //    Session["Address"] = dBConnect.GetField("Address", 0);
+                    //    Session["PhoneNumber"] = dBConnect.GetField("PhoneNumber", 0);
+                    //    Session["CreatedEmailAddress"] = dBConnect.GetField("CreatedEmailAddress", 0);
+                    //    Session["Avatar"] = dBConnect.GetField("Avatar", 0);
                     //    if (RemeberChkBox.Checked)
                     //    {
                     //        Response.Cookies["UserName"].Expires = DateTime.Now.AddDays(30);
@@ -76,10 +89,17 @@ namespace DogeBook
                     //    }
                     //    Response.Cookies["UserName"].Value = TxtEmail_SignIn.Text.Trim();
                     //    Response.Cookies["Password"].Value = TxtPassword_SignIn.Text.Trim();
-
-                    Session["UserId"] = util.GetUserIdByEmail(TxtEmail_SignIn.Text).ToString();
-                    Response.Redirect("Timeline.aspx");
-                    
+                    //    //User
+                    //    if ((dBConnect.GetField("Type", 0).ToString()).Equals("User"))
+                    //    {
+                    //        Response.Redirect("EmailClient.aspx");
+                    //    }
+                    //    //Admin
+                    //    else
+                    //    {
+                    //        Response.Redirect("AdminManagement.aspx");
+                    //    }
+                    // }
                 }
                 else
                 {
