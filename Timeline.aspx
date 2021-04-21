@@ -1,6 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Timeline.aspx.cs" Inherits="DogeBook.Timeline" %>
 
 <%@ Register Src="~/PostControl.ascx" TagPrefix="uc1" TagName="PostControl" %>
+<%@ Register Src="~/Navbar.ascx" TagPrefix="uc1" TagName="Navbar" %>
+
 
 <!DOCTYPE html>
 
@@ -10,13 +12,21 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/0a596c6382.js" crossorigin="anonymous"></script>
     <title>Timeline</title>
+    <style>
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="input-group">
-            <input class="form-control" type="text" placeholder="Such " aria-label="default input example" />
-            <div class="input-group-btn">
-                <input class="form-control" type="file" id="formFile" />
+        <uc1:Navbar runat="server" ID="Navbar" />
+        <div class="row justify-content-center">
+            <div class="col-7">
+                <div class="input-group">
+                    <input class="form-control rounded-pill" type="text" placeholder="Such " />
+                    <div class="input-group-append">
+                        <input id="final_button" class="btn form-control btn-filestack btn-widget" type="file" />
+                    </div>
+                    <asp:button runat="server" class="btn btn-outline-secondary rounded-pill m-auto" text="Post" ID="btnPost" OnClick="btnPost_Click"></asp:button>
+                </div>
             </div>
         </div>
 
@@ -25,7 +35,6 @@
                 <uc1:PostControl runat="server" ID="pc1" />
             </div>
         </div>
-
     </form>
 </body>
 </html>

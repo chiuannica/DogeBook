@@ -7,12 +7,17 @@ namespace DogeBookLibrary
 {
     public partial class Post
     {
-        private String Text { get; set; }
-        private String ImageUrl { get; set; }
-        private String Timestamp { get; set; }
+        private string timestamp;
+        private string text;
+        private string imageUrl;
+
+        public String Text { get => text; set => text = value; }
+        public String ImageUrl { get => imageUrl; set => imageUrl = value; }
+        public String Timestamp { get => timestamp; set => timestamp = value; }
+
         public Post()
         {
         }
-        
+
     }
 }
