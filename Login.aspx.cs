@@ -74,7 +74,8 @@ namespace DogeBook
 
                     //    }
 
-
+                    Session["UserId"] = util.GetUserIdByEmail(TxtEmail_SignIn.Text);
+                    Response.Redirect("Timeline.aspx");
                 }
                 else
                 {
