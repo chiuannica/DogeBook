@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DogeBookLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,9 +14,18 @@ namespace DogeBook
         {
             pc1.PostId = 3;
             pc1.DataBind();
-            Response.Write("<script>alert('" + Session["UserId"].ToString() + "');</script>");
-            Console.Write(Session["UserId"]);
+            //Response.Write("<script>alert('" + Session["UserId"].ToString() + "');</script>");
+            //Console.Write(Session["UserId"]);
 
         }
+
+        protected void btnPost_Click(object sender, EventArgs e)
+        {
+            Post post = new Post();
+            post.Timestamp = DateTime.Now.ToString();
+            
+        }
+
+        
     }
 }
