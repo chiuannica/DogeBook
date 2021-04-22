@@ -123,7 +123,12 @@ namespace DogeBook
         {
 
             string searchTerm = TBSearch.Text;
-            SearchPanel.Visible = true;
+            if (string.IsNullOrWhiteSpace(searchTerm))
+            {
+                LSearchTitle.Text = "Search results for \"" + searchTerm + "\"";
+                LSearchEmpty.Text = "0";
+                return;
+            }
 
             searchTerm = searchTerm.ToLower();
 
@@ -172,6 +177,8 @@ namespace DogeBook
 
                 }
             }
+            SearchPanel.Visible = true;
+
             LSearchTitle.Text = "Search results for \"" + searchTerm + "\"";
             LSearchEmpty.Text = friends.Length.ToString();
         }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using DogeBookLibrary; 
 
 namespace DogeBook
 {
@@ -78,10 +79,19 @@ namespace DogeBook
         }
         protected bool SendVerificationEmail()
         {
-            // !!!important fix me
-            string email = TBEmail.Text;
+            //string toEmail = TBEmail.Text;
+            //string fromEmail = "chiuannica@gmail.com";
+            //string subject = "Verify your DogeBook Account";
+            //string body = "test go to https://google.com";
+            //string cc = "";
+            //string bcc = "";
 
-            return true;
+            //// create email object
+            //Email verificationEmail = new Email();
+            //// send the email
+            //bool sent = verificationEmail.SendMail(toEmail, fromEmail, subject, body, cc, bcc);
+            bool sent = true;
+            return sent;
         }
         protected bool AddSecurityQuestions()
         {
@@ -109,7 +119,6 @@ namespace DogeBook
 
             // insert security questions 
 
-            // THIS DON'T WORK !!!!!!!
             bool insert1 = AddSecurityQuestion(userId, question1, answer1);
             bool insert2 = AddSecurityQuestion(userId, question2, answer2);
             bool insert3 = AddSecurityQuestion(userId, question3, answer3);
@@ -160,6 +169,7 @@ namespace DogeBook
             }
             return;
         }
+
         protected void CreatedAccountSuccessfully()
         {
             LblWarning.Visible = false;
@@ -173,5 +183,6 @@ namespace DogeBook
             LblWarning.Visible = true;
             LblWarning.Text = "Failed to create account.";
         }
+
     }
 }

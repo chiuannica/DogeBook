@@ -9,13 +9,17 @@ namespace DogeBook
 {
     public partial class Navbar : System.Web.UI.UserControl
     {
-        int userId;
         protected void Page_Load(object sender, EventArgs e)
         {
-            // load the userId
-            if (Session["UserId"] != null)
-                userId = int.Parse(Session["UserId"].ToString());
-            
+            if (!IsPostBack)
+            {
+                // load the userId
+                if (Session["UserId"] == null)
+                {
+                    Session["UserId"] = -1;
+                    Response.Redirect("Login.aspx");
+                }
+            }
         }
     }
 }

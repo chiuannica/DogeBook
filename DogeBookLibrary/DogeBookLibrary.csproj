@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Connection.cs" />
+    <Compile Include="Email.cs" />
     <Compile Include="FriendRequest.cs" />
     <Compile Include="Post.cs" />
     <Compile Include="Question.cs" />

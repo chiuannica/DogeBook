@@ -49,6 +49,13 @@ namespace UsersWebAPI.Controllers
         [HttpGet("SearchForUser/{searchTerm}")]
         public List<User> SearchForUser(string searchTerm)
         {
+            List<User> users = new List<User>();
+
+            if (searchTerm == null || searchTerm == "")
+            {
+                return users;
+            }
+
             searchTerm = searchTerm.ToLower();
 
             DBConnect objDB = new DBConnect();
@@ -60,8 +67,6 @@ namespace UsersWebAPI.Controllers
                                 "OR LOWER(State) LIKE '" + searchTerm + "' ";
 
             DataSet ds = objDB.GetDataSet(strSQL);
-
-            List<User> users = new List<User>();
 
             if (ds.Tables[0].Rows.Count != 0)
             {
@@ -87,12 +92,15 @@ namespace UsersWebAPI.Controllers
         [HttpGet("SearchForFriends/{userId}/{searchTerm}")]
         public List<User> SearchForFriends(int userId, string searchTerm)
         {
+            List<User> friends = new List<User>();
 
+            if (searchTerm == null || searchTerm == "")
+            {
+                return friends;
+            }
             List<User> users = GetFriendsByUserId(userId);
 
             searchTerm = searchTerm.ToLower();
-
-            List<User> friends = new List<User>();
 
 
             for (int i = 0; i < users.Count; i++)

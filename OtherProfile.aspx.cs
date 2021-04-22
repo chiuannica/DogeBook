@@ -202,8 +202,14 @@ namespace DogeBook
 
         protected void BtnSearch_Click(object sender, EventArgs e)
         {
-
             string searchTerm = TBSearch.Text;
+            if (string.IsNullOrWhiteSpace(searchTerm))
+            {
+                LSearchTitle.Text = "Search results for \"" + searchTerm + "\"";
+                LSearchEmpty.Text = "0";
+                return;
+            }
+
             SearchPanel.Visible = true;
 
             searchTerm = searchTerm.ToLower();
