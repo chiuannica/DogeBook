@@ -33,6 +33,33 @@ namespace DogeBook
         protected global::DogeBook.Navbar Navbar;
 
         /// <summary>
+        /// txtPostText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPostText;
+
+        /// <summary>
+        /// fuPost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fuPost;
+
+        /// <summary>
+        /// lblUploadStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUploadStatus;
+
+        /// <summary>
         /// btnPost control.
         /// </summary>
         /// <remarks>
