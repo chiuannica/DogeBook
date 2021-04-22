@@ -88,8 +88,8 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Content Include="SelfCard.ascx" />
-    <Content Include="testPage.aspx" />
     <Content Include="Timeline.aspx" />
+    <Content Include="VerifyEmail.aspx" />
     <None Include="Web References\AccountManagementService\AccountManagement.disco" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -198,19 +198,19 @@
     <Compile Include="SelfCard.ascx.designer.cs">
       <DependentUpon>SelfCard.ascx</DependentUpon>
     </Compile>
-    <Compile Include="testPage.aspx.cs">
-      <DependentUpon>testPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="testPage.aspx.designer.cs">
-      <DependentUpon>testPage.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Timeline.aspx.cs">
       <DependentUpon>Timeline.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Timeline.aspx.designer.cs">
       <DependentUpon>Timeline.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VerifyEmail.aspx.cs">
+      <DependentUpon>VerifyEmail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VerifyEmail.aspx.designer.cs">
+      <DependentUpon>VerifyEmail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Web References\AccountManagementService\Reference.cs">
       <AutoGen>True</AutoGen>

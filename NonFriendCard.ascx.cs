@@ -23,8 +23,11 @@ namespace DogeBook
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ImgFriend.ImageUrl = "https://news.bitcoin.com/wp-content/uploads/2021/01/cant-keep-a-good-dog-down-meme-token-dogecoin-spiked-over-500-this-year.jpg";
 
+            if (!IsPostBack)
+            {
+                ImgFriend.ImageUrl = "https://news.bitcoin.com/wp-content/uploads/2021/01/cant-keep-a-good-dog-down-meme-token-dogecoin-spiked-over-500-this-year.jpg";
+            }
         }
         public override void DataBind()
         {

@@ -14,7 +14,10 @@ namespace DogeBook
         AccountManagementService.Question[] questionsFromDb;
         protected void Page_Load(object sender, EventArgs e)
         {
-            proxy = new AccountManagementService.AccountManagement();
+            if (!IsPostBack)
+            {
+                proxy = new AccountManagementService.AccountManagement();
+            }
         }
 
         public void BtnGetSecurityQuestions_Click(object sender, EventArgs e)

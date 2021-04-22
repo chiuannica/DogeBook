@@ -24,7 +24,6 @@ namespace DogeBook
         {
             // Read encrypted password from cookie
             if (!IsPostBack && Request.Cookies["LoginCookie"] != null)
-
             {
                 HttpCookie myCookie = Request.Cookies["LoginCookie"];
                 TxtEmail_SignIn.Text = myCookie.Values["Email"];

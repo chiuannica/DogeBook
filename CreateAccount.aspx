@@ -85,15 +85,15 @@
             <div>
                 <asp:Button ID="BtnSubmit" class="btn btn-primary" runat="server" Text="Submit" OnClick="BtnSubmit_Click" />
             </div>
-            <div class="containerlfluid my-3">
+            <div class=" my-3">
                 <asp:Label ID="LblWarning" Visible="false" style="display:block" class="container alert alert-danger" runat="server" Text="Warning"></asp:Label>
             </div>
-            <div class="containerlfluid my-3">
+            <div class=" my-3">
                 <asp:Label ID="LblSuccess" Visible="false" style="display:block" class="container alert alert-success" runat="server" Text="Success"></asp:Label>
             </div>
             
             <div>
-                <asp:Button ID="BtnRedirectToLogin" class="btn btn-primary" runat="server" Text="Go to Login" Visible="false"/>
+                <asp:Button ID="BtnRedirectToLogin" class="btn btn-primary" runat="server" Text="Go to Login" Visible="false" OnClick="BtnRedirectToLogin_Click"/>
             </div>
         </div>
         

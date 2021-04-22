@@ -51,10 +51,8 @@ namespace DogeBook
             {
                 BtnAll.Visible = false;
                 BtnAllHide.Visible = false;
-            } 
+            }
         }
-
-
 
         protected List<NonFriendCard> LoadUsers(string extension, Panel panel)
         {
