@@ -64,7 +64,7 @@ namespace DogeBook
 
                 LBio.Text = user.Bio;
                 LInterests.Text = user.Interests;
-                LCity.Text = user.City;
+                LCity.Text = user.City + ", " ;
                 LState.Text = user.State;
             }
         }
@@ -174,6 +174,11 @@ namespace DogeBook
             }
             LSearchTitle.Text = "Search results for \"" + searchTerm + "\"";
             LSearchEmpty.Text = friends.Length.ToString();
+        }
+
+        protected void BtnEditProfile_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("EditProfile.aspx");
         }
     }
 }

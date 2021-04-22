@@ -94,7 +94,8 @@ namespace DogeBook
 
         protected void BtnGoToProfile_Click(object sender, EventArgs e)
         {
-
+            Session["OtherPersonId"] = UserId.ToString();
+            Response.Redirect("OtherProfile.aspx");
         }
     }
 }

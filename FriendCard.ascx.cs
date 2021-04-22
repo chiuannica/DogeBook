@@ -22,7 +22,6 @@ namespace DogeBook
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
         public override void DataBind()
         {
@@ -42,7 +41,7 @@ namespace DogeBook
         protected void BtnGoToProfile_Click(object sender, EventArgs e)
         {
             Session["OtherPersonId"] = UserId.ToString();
-            //Response.Redirect();
+            Response.Redirect("OtherProfile.aspx");
         }
 
         protected void BtnDeleteFriend_Click(object sender, EventArgs e)

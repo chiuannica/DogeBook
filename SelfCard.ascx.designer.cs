@@ -11,7 +11,7 @@ namespace DogeBook
 {
 
 
-    public partial class NonFriendCard
+    public partial class SelfCard
     {
 
         /// <summary>
@@ -49,24 +49,6 @@ namespace DogeBook
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BtnGoToProfile;
-
-        /// <summary>
-        /// BtnAddFriend control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnAddFriend;
-
-        /// <summary>
-        /// LBio control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LBio;
 
         /// <summary>
         /// LblDisplay control.
