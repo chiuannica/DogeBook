@@ -105,66 +105,48 @@ namespace DogeBook
         protected global::System.Web.UI.WebControls.Label lblUploadStatus;
 
         /// <summary>
-        /// LBio control.
+        /// TBBio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LBio;
+        protected global::System.Web.UI.WebControls.TextBox TBBio;
 
         /// <summary>
-        /// LInterests control.
+        /// TBInterests control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LInterests;
+        protected global::System.Web.UI.WebControls.TextBox TBInterests;
 
         /// <summary>
-        /// LCity control.
+        /// TBCity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LCity;
+        protected global::System.Web.UI.WebControls.TextBox TBCity;
 
         /// <summary>
-        /// LState control.
+        /// TBState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LState;
+        protected global::System.Web.UI.WebControls.TextBox TBState;
 
         /// <summary>
-        /// FriendCard1 control.
+        /// BtnUpdateProfile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DogeBook.FriendCard FriendCard1;
-
-        /// <summary>
-        /// FriendCard2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DogeBook.FriendCard FriendCard2;
-
-        /// <summary>
-        /// FriendCard3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DogeBook.FriendCard FriendCard3;
+        protected global::System.Web.UI.WebControls.Button BtnUpdateProfile;
     }
 }

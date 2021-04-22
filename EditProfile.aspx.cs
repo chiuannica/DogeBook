@@ -15,12 +15,13 @@ namespace DogeBook
     public partial class EditProfile : System.Web.UI.Page
     {
         Utility util = new Utility();
-        int userId = 1;
+        int userId;
         string path = "https://localhost:44386/api/User/";
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["UserId"] = userId;
+            userId = int.Parse(Session["UserId"].ToString());
+
             LoadUserInformation();
         }
 
@@ -46,12 +47,21 @@ namespace DogeBook
                 LFirstName.Text = user.FirstName;
                 LLastName.Text = user.LastName;
 
-                ImgProfilePic.ImageUrl = util.ProfPicArrayToImage((int)Session["userId"]);
+                string imageUrl = util.ProfPicArrayToImage(userId);
 
-                LBio.Text = user.Bio;
-                LInterests.Text = user.Interests;
-                LCity.Text = user.City;
-                LState.Text = user.State;
+                if (imageUrl == null || imageUrl == "")
+                {
+                    ImgProfilePic.ImageUrl = "https://news.bitcoin.com/wp-content/uploads/2021/01/cant-keep-a-good-dog-down-meme-token-dogecoin-spiked-over-500-this-year.jpg";
+                }
+                else
+                {
+                    ImgProfilePic.ImageUrl = imageUrl;
+                }
+
+                TBBio.Text = user.Bio;
+                TBInterests.Text = user.Interests;
+                TBCity.Text = user.City;
+                TBState.Text = user.State;
             }
         }
 
@@ -75,6 +85,10 @@ namespace DogeBook
 
         protected void btnUploadProfilePicture_Click(object sender, EventArgs e)
         {
+            UpdateProfilePicture();
+        }
+        protected void UpdateProfilePicture()
+        {
             Utility util = new Utility();
             int imageSize = 0, result = 0;
             String fileExtension, imageName;
@@ -94,8 +108,8 @@ namespace DogeBook
                     {
                         //Get userid from session
                         //use ajax or storeprocedure to put image data into TP_Users -> ProfilePicture
-                        result = util.InsertProfilePicture(1, imageData);
-                        lblUploadStatus.Text = "Image Uploaded successfully";
+                        result = util.InsertProfilePicture(userId, imageData);
+                        lblUploadStatus.Text = "Image uploaded successfully";
                     }
                     else
                     {
@@ -104,13 +118,23 @@ namespace DogeBook
                 }
                 else
                 {
-                    lblUploadStatus.Text = "Plz upload the image!!!!";
+                    lblUploadStatus.Text = "Please select the image before uploading.";
                 }
                 lblUploadStatus.Visible = true;
             }
-            catch(Exception ex)
-            { 
+            catch (Exception ex)
+            {
                 lblUploadStatus.Text = "Error ocurred: [" + ex.Message + "] cmd=" + result;
+            }
+            // reload user information
+            LoadUserInformation();
+        }
+
+        protected void BtnUpdateProfile_Click(object sender, EventArgs e)
+        {
+            if (fuProfilePic.HasFile)
+            {
+                UpdateProfilePicture();
             }
         }
     }
