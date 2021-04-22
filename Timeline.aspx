@@ -21,11 +21,12 @@
         <div class="row justify-content-center">
             <div class="col-7">
                 <div class="input-group">
-                    <input class="form-control rounded-pill" type="text" placeholder="Such " />
+                    <asp:TextBox class="form-control rounded-pill" placeholder="Such" id="txtPostText" runat="server"></asp:TextBox>
                     <div class="input-group-append">
-                        <input id="final_button" class="btn form-control btn-filestack btn-widget" type="file" />
+                        <asp:FileUpload ID="fuPost" class="btn form-control" runat="server" />
+                        <asp:Label ID="lblUploadStatus" runat="server" Text="Label" Visible="False"></asp:Label>
                     </div>
-                    <asp:button runat="server" class="btn btn-outline-secondary rounded-pill m-auto" text="Post" ID="btnPost" OnClick="btnPost_Click"></asp:button>
+                    <asp:Button runat="server" class="btn btn-outline-secondary rounded-pill m-auto" Text="Post" ID="btnPost" OnClick="btnPost_Click"></asp:Button>
                 </div>
             </div>
         </div>
