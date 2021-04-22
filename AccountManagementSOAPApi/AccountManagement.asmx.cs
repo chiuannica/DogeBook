@@ -34,6 +34,11 @@ namespace AccountManagementSOAPApi
             return a + b;
         }
 
+
+        /*
+          hashPassword and Login are not used.
+            Other methods are used for those purposes
+         */
         [WebMethod]
         public string hashPassword(string password)
         {
@@ -76,6 +81,7 @@ namespace AccountManagementSOAPApi
             return user;
         }
 
+        // check if the email has been used already when creating account
         [WebMethod]
         public bool EmailUsed(string email)
         {
@@ -93,6 +99,7 @@ namespace AccountManagementSOAPApi
             return false;
         }
 
+        // get userId from email for when adding security questions
         [WebMethod]
         public int GetUserIdFromEmail(string email)
         {
@@ -111,6 +118,7 @@ namespace AccountManagementSOAPApi
             return -1;
         }
 
+        // create account with info, verified = 0 
         [WebMethod]
         public bool CreateAccount(string firstName, string lastName, string email, string password)
         {
@@ -128,6 +136,10 @@ namespace AccountManagementSOAPApi
             return false;
         }
 
+
+        /*
+         SECURITY QUESTION
+         */
         [WebMethod]
         public bool AddSecurityQuestion(int userId, string securityQuestion, string answer)
         {
@@ -143,7 +155,7 @@ namespace AccountManagementSOAPApi
             return false;
         }
 
-
+        // set verified to be 1 after confirming with email
         [WebMethod]
         public bool VerifyAccount(int userId)
         {
@@ -224,5 +236,24 @@ namespace AccountManagementSOAPApi
             }
             return false;
         }
+        /*
+         UPDATE PROFILE
+         */
+        // gets called by other methods
+        [WebMethod]
+        public bool UpdateProfile(int userId, string columnName, string content)
+        {
+            DBConnect objDB = new DBConnect();
+            string strSQL = "UPDATE TP_Users " +
+                            "SET " + columnName + "='" + content + "' " +
+                            "WHERE UserId=" + userId;
+
+            int result = objDB.DoUpdate(strSQL);
+
+            if (result > 0)
+                return true;
+            return false;
+        }
+        
     }
 }

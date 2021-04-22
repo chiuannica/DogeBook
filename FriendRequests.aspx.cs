@@ -14,17 +14,14 @@ namespace DogeBook
     public partial class FriendRequests : System.Web.UI.Page
     {
         string path = "https://localhost:44386/api/User/";
-        int userId = 1;
+        int userId;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
-            { 
-
-                // !!! CHANGE
-                // userId = Session["UserId"];
-                //Session["UserID"] = 1;
-                //userId = 1;
+            {
+                // load the userId
+                userId = int.Parse(Session["UserId"].ToString());
 
                 LoadFriendRequests();
                 LNumFriendRequests.Visible = true;
@@ -109,12 +106,9 @@ namespace DogeBook
 
                 responseCode = response.StatusCode.ToString();
 
-
                 response.Close();
-
             }
             catch (Exception ex)
-
             {
                 LMessage.Text = "Error: " + ex.Message;
             }

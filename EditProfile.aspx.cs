@@ -15,19 +15,23 @@ namespace DogeBook
     public partial class EditProfile : System.Web.UI.Page
     {
         Utility util = new Utility();
-        int userId = 1;
-        string path = "https://localhost:44386/api/User/";
+        AccountManagementService.AccountManagement proxy;
 
-        //int userId = Session["UserId"];
+        int userId;
+        string path = "https://localhost:44386/api/User/";
+        User user;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["UserId"] = userId;
+            userId = int.Parse(Session["UserId"].ToString());
+
+            proxy = new AccountManagementService.AccountManagement();
+
             LoadUserInformation();
         }
 
         protected void LoadUserInformation()
         {
-
             WebRequest request = WebRequest.Create(path + "GetUserById/" + userId);
             WebResponse response = request.GetResponse();
 
@@ -40,19 +44,28 @@ namespace DogeBook
 
             JavaScriptSerializer js = new JavaScriptSerializer();
 
-            User user = js.Deserialize<User>(data);
+            user = js.Deserialize<User>(data);
 
             if (user != null)
             {
                 LFirstName.Text = user.FirstName;
                 LLastName.Text = user.LastName;
 
-                ImgProfilePic.ImageUrl = util.ProfPicArrayToImage((int)Session["userId"]);
+                string imageUrl = util.ProfPicArrayToImage(userId);
 
-                LBio.Text = user.Bio;
-                LInterests.Text = user.Interests;
-                LCity.Text = user.City;
-                LState.Text = user.State;
+                if (imageUrl == null || imageUrl == "")
+                {
+                    ImgProfilePic.ImageUrl = "https://news.bitcoin.com/wp-content/uploads/2021/01/cant-keep-a-good-dog-down-meme-token-dogecoin-spiked-over-500-this-year.jpg";
+                }
+                else
+                {
+                    ImgProfilePic.ImageUrl = imageUrl;
+                }
+
+                TBBio.Text = user.Bio;
+                TBInterests.Text = user.Interests;
+                TBCity.Text = user.City;
+                TBState.Text = user.State;
             }
         }
 
@@ -76,9 +89,14 @@ namespace DogeBook
 
         protected void btnUploadProfilePicture_Click(object sender, EventArgs e)
         {
+            UpdateProfilePicture();
+        }
+        protected bool UpdateProfilePicture()
+        {
             Utility util = new Utility();
             int imageSize = 0, result = 0;
             String fileExtension, imageName;
+            bool updatedProfilePicture = false;
             try
             {
                 if (fuProfilePic.HasFile)
@@ -95,8 +113,10 @@ namespace DogeBook
                     {
                         //Get userid from session
                         //use ajax or storeprocedure to put image data into TP_Users -> ProfilePicture
-                        result = util.InsertProfilePicture(1, imageData);
-                        lblUploadStatus.Text = "Image Uploaded successfully";
+                        result = util.InsertProfilePicture(userId, imageData);
+                        lblUploadStatus.Text = "Image uploaded successfully";
+
+                        updatedProfilePicture = true;
                     }
                     else
                     {
@@ -105,14 +125,77 @@ namespace DogeBook
                 }
                 else
                 {
-                    lblUploadStatus.Text = "Plz upload the image!!!!";
+                    lblUploadStatus.Text = "Please select the image before uploading.";
                 }
                 lblUploadStatus.Visible = true;
             }
-            catch(Exception ex)
-            { 
+            catch (Exception ex)
+            {
                 lblUploadStatus.Text = "Error ocurred: [" + ex.Message + "] cmd=" + result;
             }
+            // reload user information
+            LoadUserInformation();
+            return updatedProfilePicture;
+        }
+
+        protected void BtnUpdateProfile_Click(object sender, EventArgs e)
+        {
+
+            bool updated = true;
+            // if there is a new picture, update picture
+            if (fuProfilePic.HasFile)
+            {
+                updated = updated && UpdateProfilePicture();
+            }
+            // only update them if they were changed
+            string bio = TBBio.Text;
+            if (user.Bio !=  bio)
+            {
+                updated = updated && UpdateBio(userId, TBBio.Text);
+            }
+            if (user.Interests != TBInterests.Text)
+            {
+                updated = updated && UpdateInterests(userId, TBInterests.Text);
+            }
+            if (user.City != TBCity.Text)
+            {
+                updated = updated && UpdateCity(userId, TBCity.Text);
+            }
+            if (user.State != TBState.Text)
+            {
+                updated = updated && UpdateState(userId, TBState.Text);
+            }
+            // reload profile
+            LoadUserInformation();
+
+            // display message if the profile was updated or not
+            LUpdateProfile.Visible = true;
+            if (updated)
+                LUpdateProfile.Text = "Your profile was updated.";
+            else
+                LUpdateProfile.Text = "A problem occurred. Your profile was not updated.";
+        }
+
+        protected bool UpdateProfile(int userId, string columnName, string content)
+        {
+            return proxy.UpdateProfile(userId, columnName, content);
+        }
+
+        public bool UpdateBio(int userId, string content)
+        {
+            return UpdateProfile(userId, "Bio", content);
+        }
+        public bool UpdateInterests(int userId, string content)
+        {
+            return UpdateProfile(userId, "Interests", content);
+        }
+        public bool UpdateCity(int userId, string content)
+        {
+            return UpdateProfile(userId, "City", content);
+        }
+        public bool UpdateState(int userId, string content)
+        {
+            return UpdateProfile(userId, "State", content);
         }
     }
 }

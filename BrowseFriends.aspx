@@ -21,7 +21,7 @@
     
             
     <div class="container">
-        <h1 class="mb-4 mb-3 font-weight-normal txt-center">Browse</h1>
+        <h1 class="mb-4 mb-3 font-weight-normal  text-center">Browse</h1>
                 
                 
     </div>

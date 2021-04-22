@@ -24,65 +24,62 @@
                 <asp:PostBackTrigger ControlID="btnUploadProfilePicture" />
             </Triggers>
             <ContentTemplate>
-                <div class="container my-3">
-                    <div class="row">
-                        <div class="mr-3">
-                            <asp:Label ID="LFirstName" runat="server" Text="First" CssClass="display-2"></asp:Label>
-                        </div>
-                        <div>
-                            <asp:Label ID="LLastName" runat="server" Text="Last" CssClass="display-2"></asp:Label>
-                        </div>
-                    </div>
+                <div class="container">
+                    <h1 class="mb-4 mb-3 font-weight-normal text-center">
+                        <asp:Label ID="LFirstName" runat="server" Text="First" class="h2 mr-1"></asp:Label>
+                        <asp:Label ID="LLastName" runat="server" Text="Last" class="h2"></asp:Label>
+                    </h1>
                 </div>
+        
                 <div class="container  border my-3 px-3 py-3">
 
                     <div class="row col-md-4 col-sm-12">
                         <asp:Image ID="ImgProfilePic" runat="server" class="img-thumbnail rounded" />
-                        <asp:FileUpload ID="fuProfilePic" runat="server" />
-                        <asp:Button ID="btnUploadProfilePicture" runat="server" OnClick="btnUploadProfilePicture_Click" Text="Upload Profile Picture" />
-                        <br />
-                        <asp:Label ID="lblUploadStatus" runat="server" Text="Label" Visible="False"></asp:Label>
-                        <br />
                     </div>
 
 
-                    <div class="row col-md-8 col-sm-12 my-3">
-                        <asp:Label ID="LBio" runat="server" Text="Biography Biography Biography Biography Biography 
-                                                                Biography Biography Biography Biography Biography
-                        Biography Biography Biography Biography Biography Biography Biography Biography Biography 
-                        Biography Biography Biography Biography Biography Biography Biography Biography Biography">
-                        </asp:Label>
-                    </div>
-                    <div class="row col-md-8 col-sm-12 my-3">
-                        <asp:Label ID="LInterests" runat="server" Text="Interests Interests Interests Interests Interests 
-                        Interests Interests Interests Interests Interests Interests ">
-                        </asp:Label>
-                    </div>
-                    <div class="row col-md-8 col-sm-12 my-3">
-                        <asp:Label ID="LCity" runat="server" Text="DogeVile"></asp:Label>
-                        <span class="mr-3">,</span>
-                        <asp:Label ID="LState" runat="server" Text="Pennsylvania"></asp:Label>
-                    </div>
-
-                </div>
-
-                <div class="container my-3">
-                    <div class="row">
-                        <p class="display-2">Friends</p>
-                    </div>
-                </div>
-
-                <div class="container border my-2 px-3 py-3">
-                    <div class="row">
-                        <div class="col-md-4 col-sm-6">
-                            <uc1:FriendCard runat="server" ID="FriendCard1" />
+                    <div class="row col-md-6 col-sm-12">
+                        <div class="container my-2">
+                            <div class="row">
+                                <asp:FileUpload ID="fuProfilePic" type="file" CssClass="btn btn-light"  runat="server" />
+                            </div>
+                            <div class="row my-2">
+                                <asp:Button ID="btnUploadProfilePicture" runat="server" CssClass="btn btn-light" OnClick="btnUploadProfilePicture_Click" Text="Upload Profile Picture" />
+                            </div>
+                            <div class="row">
+                                <asp:Label ID="lblUploadStatus" CssClass="alert alert-primary" runat="server" Text="Label" Visible="False"></asp:Label>
+                            </div>
                         </div>
-                        <div class="col-md-4 col-sm-6">
-                            <uc1:FriendCard runat="server" ID="FriendCard2" />
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <uc1:FriendCard runat="server" ID="FriendCard3" />
-                        </div>
+                    </div>
+
+                    
+                    <div class="col-md-8 col-sm-12 my-3">
+                        <h4>Biography</h4>
+                        <p>
+                            <asp:TextBox ID="TBBio" runat="server" TextMode="MultiLine" UpdateSourceTrigger="PropertyChanged"></asp:TextBox>
+                        </p>
+                    </div>
+
+                    <div class="col-md-8 col-sm-12 my-3">
+                        <h4>Interests</h4>
+                        <p>
+                            <asp:TextBox ID="TBInterests" runat="server" TextMode="MultiLine"></asp:TextBox>
+                        </p>
+                    </div>
+            
+                    <div class="col-md-8 col-sm-12 my-3">
+                        <asp:TextBox ID="TBCity" runat="server"></asp:TextBox>
+                    </div>
+
+                    <div class="col-md-8 col-sm-12 my-3">
+                        <asp:TextBox ID="TBState" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="col-md-8 col-sm-12 my-3">
+                        <asp:Button ID="BtnUpdateProfile" runat="server" CssClass="btn btn-primary" Text="Update Information" OnClick="BtnUpdateProfile_Click" />
+                    </div>
+                    
+                    <div class="col-md-8 col-sm-12 my-3">
+                        <asp:Label ID="LUpdateProfile" CssClass="alert alert-primary" runat="server" Text="" Visible="False"></asp:Label>
                     </div>
 
                 </div>
