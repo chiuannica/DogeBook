@@ -39,17 +39,16 @@
 
 
                     <div class="row col-md-6 col-sm-12">
-                        <div class="container">
+                        <div class="container my-2">
                             <div class="row">
-                                <asp:FileUpload ID="fuProfilePic" type="file" CssClass=""  runat="server" />
+                                <asp:FileUpload ID="fuProfilePic" type="file" CssClass="btn btn-light"  runat="server" />
                             </div>
-                            <div class="row">
+                            <div class="row my-2">
                                 <asp:Button ID="btnUploadProfilePicture" runat="server" CssClass="btn btn-light" OnClick="btnUploadProfilePicture_Click" Text="Upload Profile Picture" />
                             </div>
                             <div class="row">
                                 <asp:Label ID="lblUploadStatus" CssClass="alert alert-primary" runat="server" Text="Label" Visible="False"></asp:Label>
                             </div>
-
                         </div>
                     </div>
 
@@ -57,29 +56,33 @@
                     <div class="col-md-8 col-sm-12 my-3">
                         <h4>Biography</h4>
                         <p>
-                            <asp:TextBox ID="TBBio" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="TBBio" runat="server" TextMode="MultiLine" UpdateSourceTrigger="PropertyChanged"></asp:TextBox>
                         </p>
                     </div>
 
                     <div class="col-md-8 col-sm-12 my-3">
                         <h4>Interests</h4>
                         <p>
-                            <asp:TextBox ID="TBInterests" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="TBInterests" runat="server" TextMode="MultiLine"></asp:TextBox>
                         </p>
                     </div>
             
                     <div class="col-md-8 col-sm-12 my-3">
                         <asp:TextBox ID="TBCity" runat="server"></asp:TextBox>
-                        <span class="mr-1"></span>
+                    </div>
+
+                    <div class="col-md-8 col-sm-12 my-3">
                         <asp:TextBox ID="TBState" runat="server"></asp:TextBox>
                     </div>
-                    <div>
-                        <asp:Button ID="BtnUpdateProfile" runat="server" Text="Update Information" OnClick="BtnUpdateProfile_Click" />
+                    <div class="col-md-8 col-sm-12 my-3">
+                        <asp:Button ID="BtnUpdateProfile" runat="server" CssClass="btn btn-primary" Text="Update Information" OnClick="BtnUpdateProfile_Click" />
+                    </div>
+                    
+                    <div class="col-md-8 col-sm-12 my-3">
+                        <asp:Label ID="LUpdateProfile" CssClass="alert alert-primary" runat="server" Text="" Visible="False"></asp:Label>
                     </div>
 
-
                 </div>
-
             </ContentTemplate>
         </asp:UpdatePanel>
     </form>

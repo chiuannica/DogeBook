@@ -14,9 +14,6 @@ namespace DogeBook
         public string LastName { get; set; }
         public int UserId { get; set; }
 
-        string path = "https://localhost:44386/api/User/";
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
         }

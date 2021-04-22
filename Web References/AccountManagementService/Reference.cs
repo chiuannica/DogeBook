@@ -53,6 +53,8 @@ namespace DogeBook.AccountManagementService {
         
         private System.Threading.SendOrPostCallback CheckSecurityQuestionOperationCompleted;
         
+        private System.Threading.SendOrPostCallback UpdateProfileOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -126,6 +128,9 @@ namespace DogeBook.AccountManagementService {
         
         /// <remarks/>
         public event CheckSecurityQuestionCompletedEventHandler CheckSecurityQuestionCompleted;
+        
+        /// <remarks/>
+        public event UpdateProfileCompletedEventHandler UpdateProfileCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -488,6 +493,39 @@ namespace DogeBook.AccountManagementService {
             if ((this.CheckSecurityQuestionCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.CheckSecurityQuestionCompleted(this, new CheckSecurityQuestionCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateProfile", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool UpdateProfile(int userId, string columnName, string content) {
+            object[] results = this.Invoke("UpdateProfile", new object[] {
+                        userId,
+                        columnName,
+                        content});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UpdateProfileAsync(int userId, string columnName, string content) {
+            this.UpdateProfileAsync(userId, columnName, content, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateProfileAsync(int userId, string columnName, string content, object userState) {
+            if ((this.UpdateProfileOperationCompleted == null)) {
+                this.UpdateProfileOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateProfileOperationCompleted);
+            }
+            this.InvokeAsync("UpdateProfile", new object[] {
+                        userId,
+                        columnName,
+                        content}, this.UpdateProfileOperationCompleted, userState);
+        }
+        
+        private void OnUpdateProfileOperationCompleted(object arg) {
+            if ((this.UpdateProfileCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateProfileCompleted(this, new UpdateProfileCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -996,6 +1034,32 @@ namespace DogeBook.AccountManagementService {
         private object[] results;
         
         internal CheckSecurityQuestionCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void UpdateProfileCompletedEventHandler(object sender, UpdateProfileCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UpdateProfileCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UpdateProfileCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

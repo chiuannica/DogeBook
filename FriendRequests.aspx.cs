@@ -106,12 +106,9 @@ namespace DogeBook
 
                 responseCode = response.StatusCode.ToString();
 
-
                 response.Close();
-
             }
             catch (Exception ex)
-
             {
                 LMessage.Text = "Error: " + ex.Message;
             }
