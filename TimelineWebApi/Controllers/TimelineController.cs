@@ -5,6 +5,7 @@ using System.Net;
 using System.Web.Script.Serialization;
 using Microsoft.AspNetCore.Mvc;
 using DogeBookLibrary;
+using System.Data;
 
 namespace TimelineWebApi.Controllers
 {
@@ -13,22 +14,124 @@ namespace TimelineWebApi.Controllers
     {
         // GET: api/Timeline
         [HttpGet ("GetTimeline/{userId}")]
-        public IEnumerable<string> GetTimeline(int userId)
+        public String GetTimeline(int userId)
         {
-            string path = "https://localhost:44386/api/User/";
-            WebRequest request = WebRequest.Create(path + "GetFriends/" + userId);
-            WebResponse response = request.GetResponse();
+            //string path = "https://localhost:44386/api/User/";
+            //WebRequest request = WebRequest.Create(path + "GetFriends/" + userId);
+            //WebResponse response = request.GetResponse();
 
-            Stream theDataStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(theDataStream);
+            //Stream theDataStream = response.GetResponseStream();
+            //StreamReader reader = new StreamReader(theDataStream);
 
-            String data = reader.ReadToEnd();
-            reader.Close();
-            response.Close();
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            User[] friends = js.Deserialize<User[]>(data);
+            //String data = reader.ReadToEnd();
+            //reader.Close();
+            //response.Close();
+            //JavaScriptSerializer js = new JavaScriptSerializer();
+            //User[] friends = js.Deserialize<User[]>(data);
 
-            return Array.ConvertAll(friends, x => x.ToString());
+            DBConnect objDB = new DBConnect();
+            // get the friend 2 if the FriendReq has them as friend 1
+
+            string sqlString = "" +
+                "SELECT f2.UserId, f2.FirstName, f2.LastName, f2.Email, " +
+                    "f2.ProfilePicture, f2.Bio, f2.City, " +
+                    "f2.State, f2.Interests, f2.Verified " +
+                "FROM TP_Users f1 INNER JOIN TP_FriendRequests rec " +
+                    "ON f1.UserId=rec.Friend1Id " +
+                    "INNER JOIN TP_Users f2 " +
+                    "ON rec.Friend2Id=f2.UserId " +
+                "WHERE f1.UserId=" + userId + " " +
+                "AND Accept=1";
+            DataSet ds = objDB.GetDataSet(sqlString);
+            List<int> timelineUsers = new List<int>();
+            timelineUsers.Add(userId);
+
+            if (ds.Tables[0].Rows.Count != 0)
+            {
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    User user = new User();
+                    DataRow record = ds.Tables[0].Rows[i];
+                    user.UserId = int.Parse(record["UserId"].ToString());
+                    user.FirstName = record["FirstName"].ToString();
+                    user.LastName = record["LastName"].ToString();
+                    user.Email = record["Email"].ToString();
+                    user.Bio = record["Bio"].ToString();
+                    user.City = record["City"].ToString();
+                    user.State = record["State"].ToString();
+                    user.Interests = record["Interests"].ToString();
+                    user.Verified = record["Verified"].ToString();
+                    timelineUsers.Add(user.UserId);
+                }
+            }
+
+            // get the friend 1 if the FriendReq has them as friend 2
+            sqlString = "SELECT f1.UserId, f1.FirstName, f1.LastName, f1.Email, " +
+                    "f1.ProfilePicture, f1.Bio, f1.City, " +
+                    "f1.State, f1.Interests, f1.Verified " +
+                "FROM TP_Users f1 INNER JOIN TP_FriendRequests rec " +
+                    "ON f1.UserId=rec.Friend1Id " +
+                    "INNER JOIN TP_Users f2 " +
+                    "ON rec.Friend2Id=f2.UserId " +
+                "WHERE f2.UserId=" + userId + " " +
+                "AND Accept=1";
+
+            ds = objDB.GetDataSet(sqlString);
+            if (ds.Tables[0].Rows.Count != 0)
+            {
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    User user = new User();
+                    DataRow record = ds.Tables[0].Rows[i];
+                    user.UserId = int.Parse(record["UserId"].ToString());
+                    user.FirstName = record["FirstName"].ToString();
+                    user.LastName = record["LastName"].ToString();
+                    user.Email = record["Email"].ToString();
+                    user.Bio = record["Bio"].ToString();
+                    user.City = record["City"].ToString();
+                    user.State = record["State"].ToString();
+                    user.Interests = record["Interests"].ToString();
+                    user.Verified = record["Verified"].ToString();
+                    timelineUsers.Add(user.UserId);
+                }
+            }
+
+            //return Array.ConvertAll(friends, x => x.ToString());
+            //Okay now friends and userId from the param is a list of all users
+            //Which i need to grab the posts from and return in a list of posts
+            //bada bing bada boom
+            //
+            List<Post> tempTimeline = new List<Post>();
+            foreach(int user in timelineUsers)
+            {
+                sqlString = "SELECT * FROM TP_Posts WHERE UserId=" + user;
+                ds = objDB.GetDataSet(sqlString);
+                //String tempString = "User: " + userId;
+                if (ds.Tables[0].Rows.Count != 0)
+                {
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    {
+                        Post post = new Post();
+                        DataRow record = ds.Tables[0].Rows[i];
+
+                        //tempString += "Post text:  " + record["Text"].ToString() + Environment.NewLine +
+                        //              "PostId: " + record["PostId"].ToString() + Environment.NewLine;
+                        post.Timestamp = (DateTime)record["Timestamp"];
+                        // ...
+
+                        tempTimeline.Add(post);
+                    }
+                    //tempTimeline.Add(tempString);
+                }
+            }
+            tempTimeline.Sort((x, y) => DateTime.Compare(x.Timestamp, y.Timestamp));
+            String tempString = "";
+            foreach (Post post in tempTimeline)
+            {
+                tempString +=  post.Timestamp + " | ";
+            }
+
+            return tempString;
         }
 
         // GET: api/Timeline/5
