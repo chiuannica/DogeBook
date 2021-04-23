@@ -24,7 +24,7 @@
                     <asp:TextBox class="form-control rounded-pill" placeholder="Such" id="txtPostText" runat="server"></asp:TextBox>
                     <div class="input-group-append">
                         <asp:FileUpload ID="fuPost" class="btn form-control" runat="server" />
-                        <asp:Label ID="lblUploadStatus" runat="server" Text="Label" Visible="False"></asp:Label>
+                        <asp:Label ID="lblUploadStatus" runat="server" Text="" Visible="False"></asp:Label>
                     </div>
                     <asp:Button runat="server" class="btn btn-outline-secondary rounded-pill m-auto" Text="Post" ID="btnPost" OnClick="btnPost_Click"></asp:Button>
                 </div>

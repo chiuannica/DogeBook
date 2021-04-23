@@ -197,6 +197,26 @@ namespace DogeBookLibrary
             myCommandObj.Parameters.AddWithValue("@ProfilePicture", bytes);
             return dBConnect.DoUpdateUsingCmdObj(myCommandObj);
         }
+        // int userId, string text, byte[] bytes, DateTime timestamp
+        public int InsertPost(int userId, string text, byte[] bytes, DateTime timestamp)
+        {
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_InsertPost";
+            myCommandObj.Parameters.Clear();
+
+            myCommandObj.Parameters.AddWithValue("@UserId", userId);
+            myCommandObj.Parameters.AddWithValue("@Text", text);
+            myCommandObj.Parameters.AddWithValue("@Image", bytes);
+            myCommandObj.Parameters.AddWithValue("@Timestamp", timestamp);
+            //Get Output, return postid
+            SqlParameter postId = new SqlParameter("@PostId", DbType.Int32);
+            postId.Direction = ParameterDirection.Output;
+            myCommandObj.Parameters.Add(postId);
+
+            dBConnect.DoUpdateUsingCmdObj(myCommandObj);
+
+            return int.Parse(myCommandObj.Parameters["@PostId"].Value.ToString());
+        }
 
         public Byte[] GetProfilePicture(int userId)
         {
@@ -220,6 +240,21 @@ namespace DogeBookLibrary
         {
 
             byte[] bytes = GetProfilePicture(userid);
+            string imageUrl;
+            if (bytes == null)
+            {
+                imageUrl = null;
+            }
+            else
+            {
+                imageUrl = "data:image/jpg;base64," + Convert.ToBase64String(bytes);
+
+            }
+            return imageUrl;
+        }
+
+        public string ByteArrayToImageUrl(byte[] bytes)
+        {
             string imageUrl;
             if (bytes == null)
             {
