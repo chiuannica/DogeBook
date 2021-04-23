@@ -10,7 +10,7 @@ namespace DogeBook
 {
     public partial class CreateAccount : System.Web.UI.Page
     {
-        public AccountManagementService.AccountManagement proxy= new AccountManagementService.AccountManagement();
+        public AccountManagementService.AccountManagement proxy = new AccountManagementService.AccountManagement();
         protected void Page_Load(object sender, EventArgs e)
         {
         }

@@ -9,6 +9,7 @@ namespace DogeBook
 {
     public partial class VerifyEmail : System.Web.UI.Page
     {
+        public AccountManagementService.AccountManagement proxy = new AccountManagementService.AccountManagement();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -28,14 +29,48 @@ namespace DogeBook
 
             string warning = "";
 
-            // if there is a warning
-            if (string.IsNullOrWhiteSpace(TBEmail.Text))
+            string email = TBEmail.Text;
+            // if nothing in the textbox
+            if (string.IsNullOrWhiteSpace(email))
             {
                 warning = "Enter your email. ";
                 LblWarning.Visible = true;
                 LblWarning.Text = warning;
                 return;
             }
+            int userId = proxy.GetUserIdFromEmail(email);
+            // if there is no email found 
+            if (userId < 0)
+            {
+                warning = "Email not found. ";
+                LblWarning.Visible = true;
+                LblWarning.Text = warning;
+                return;
+            } else // if there is a userId for this email
+            {
+                // hide warning
+                LblWarning.Visible = false;
+
+                // Verify account
+                bool verified = proxy.VerifyAccount(userId);
+
+                // if verified successfully
+                if (verified)
+                {
+                    // show success message
+                    LblSuccess.Visible = true;
+                    LblSuccess.Text = warning;
+                    // show go to login button
+                    BtnRedirectToLogin.Visible = true; 
+                } else // not verified
+                {
+                    warning = "Failed to verify email. ";
+                    LblWarning.Visible = true;
+                    LblWarning.Text = warning;
+                }
+            }
+
+
             return;
         }
     }

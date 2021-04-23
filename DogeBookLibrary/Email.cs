@@ -33,72 +33,46 @@ namespace DogeBookLibrary
 
 
         public bool SendMail(String recipient, String sender, String subject, String body, String cc = "", String bcc = "")
-
         {
 
             try
-
             {
-
                 this.Recipient = recipient;
-
                 this.Sender = sender;
-
                 this.Subject = subject;
-
                 this.Message = body;
 
 
-
                 objMail.To.Add(this.toAddress);
-
                 objMail.From = this.fromAddress;
-
                 objMail.Subject = this.subject;
-
                 objMail.Body = this.messageBody;
-
                 objMail.IsBodyHtml = this.isHTMLBody;
-
                 objMail.Priority = this.priority;
 
 
-
                 if (cc != null && !cc.Equals(String.Empty))
-
                 {
-
                     this.CCAddress = cc;
-
                     objMail.CC.Add(this.ccAddress);
-
                 }
 
 
-
                 if (bcc != null && !bcc.Equals(String.Empty))
-
                 {
-
                     this.BCCAddress = bcc;
-
                     objMail.Bcc.Add(this.bccAddress);
-
                 }
 
                 SmtpClient smtpMailClient = new SmtpClient(this.mailHost);
                 smtpMailClient.Send(objMail);
                 return true;
             }
-
             catch (Exception ex)
-
             {
-                throw ex;
                 return false;
+                throw ex;
             }
-
-
 
         }
 

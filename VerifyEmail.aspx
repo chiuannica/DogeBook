@@ -1,7 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="VerifyEmail.aspx.cs" Inherits="DogeBook.VerifyEmail" %>
 
-<%@ Register Src="~/NavbarNotLoggedIn.ascx" TagPrefix="uc1" TagName="NavbarNotLoggedIn" %>
-
 
 <!DOCTYPE html>
 
@@ -17,30 +15,37 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <uc1:NavbarNotLoggedIn runat="server" ID="NavbarNotLoggedIn" />
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="Login.aspx">DogeBook <i class="fas fa-paw"></i></a>
+        </nav>
         
         <div class="container text-center">
-            <h1 class="mb-4 mb-3 font-weight-normal">Create an Account</h1>
+            <h1 class="mb-4 mb-3 font-weight-normal">Verify Account</h1>
         </div>
+        <div class="container col-md-6 col-sm-12">
+            
+        </div>
+        
         <div class="container col-md-6 col-sm-12">
             <div class="form-group">
                 <label >Email address</label>
                 <asp:TextBox ID="TBEmail" type="email" class="form-control" placeholder="Email" runat="server"></asp:TextBox>
             </div>
-        </div>
-
-        <div>
-            <asp:Button ID="BtnSubmit" class="btn btn-primary" runat="server" Text="Submit" OnClick="BtnSubmit_Click"/>
-        </div>
-        <div class=" my-3">
-            <asp:Label ID="LblWarning" Visible="false" style="display:block" class="container alert alert-danger" runat="server" Text="Warning"></asp:Label>
-        </div>
-        <div class=" my-3">
-            <asp:Label ID="LblSuccess" Visible="false" style="display:block" class="container alert alert-success" runat="server" Text="Success"></asp:Label>
-        </div>
+            <div>
+                <asp:Button ID="BtnSubmit" class="btn btn-primary" runat="server" Text="Submit" OnClick="BtnSubmit_Click"/>
+            </div>
+            
+            <div class=" my-3">
+                <asp:Label ID="LblWarning" Visible="false" style="display:block" class="container alert alert-danger" runat="server" Text="Warning"></asp:Label>
+            </div>
+            <div class=" my-3">
+                <asp:Label ID="LblSuccess" Visible="false" style="display:block" class="container alert alert-success" runat="server" Text="Success"></asp:Label>
+            </div>
         
-        <div>
-            <asp:Button ID="BtnRedirectToLogin" class="btn btn-primary" runat="server" Text="Go to Login" Visible="false" OnClick="BtnRedirectToLogin_Click"/>
+            <div>
+                <asp:Button ID="BtnRedirectToLogin" class="btn btn-primary" runat="server" Text="Go to Login" Visible="false" OnClick="BtnRedirectToLogin_Click"/>
+            </div>
+
         </div>
     </form>
 </body>
