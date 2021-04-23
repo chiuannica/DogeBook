@@ -12,11 +12,11 @@ namespace TimelineWebApi.Controllers
     public class TimelineController : Controller
     {
         // GET: api/Timeline
-        [HttpGet ("Timeline/{userId}")]
+        [HttpGet ("GetTimeline/{userId}")]
         public IEnumerable<string> GetTimeline(int userId)
         {
             string path = "https://localhost:44386/api/User/";
-            WebRequest request = WebRequest.Create(path + "GetFriends/"+ userId);
+            WebRequest request = WebRequest.Create(path + "GetFriends/" + userId);
             WebResponse response = request.GetResponse();
 
             Stream theDataStream = response.GetResponseStream();
@@ -28,8 +28,6 @@ namespace TimelineWebApi.Controllers
             JavaScriptSerializer js = new JavaScriptSerializer();
             User[] friends = js.Deserialize<User[]>(data);
 
-            String[] friendsS = new string[friends.Length];
-            
             return Array.ConvertAll(friends, x => x.ToString());
         }
 
@@ -37,7 +35,7 @@ namespace TimelineWebApi.Controllers
         [HttpGet("{id}", Name = "Get")]
         public string Get(int id)
         {
-            return "value";
+            return "" + id;
         }
 
         // POST: api/Timeline
