@@ -137,24 +137,11 @@ namespace DogeBook
             {
                 updated = updated && UpdateProfilePicture();
             }
-            user = GetUser();
-
-            if (user.Bio != TBBio.Text)
-            {
-                updated = updated && UpdateBio(userId, TBBio.Text);
-            }
-            if (user.Interests != TBInterests.Text)
-            {
-                updated = updated && UpdateInterests(userId, TBInterests.Text);
-            }
-            if (user.City != TBCity.Text)
-            {
-                updated = updated && UpdateCity(userId, TBCity.Text);
-            }
-            if (user.State != TBState.Text)
-            {
-                updated = updated && UpdateState(userId, TBState.Text);
-            }
+            updated = updated && UpdateBio(userId, TBBio.Text);
+            updated = updated && UpdateInterests(userId, TBInterests.Text);
+            updated = updated && UpdateCity(userId, TBCity.Text);
+            updated = updated && UpdateState(userId, TBState.Text);
+            
             // reload profile
             LoadUserInformation();
 

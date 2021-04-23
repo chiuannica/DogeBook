@@ -14,10 +14,7 @@ namespace DogeBook
         AccountManagementService.Question[] questionsFromDb;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                proxy = new AccountManagementService.AccountManagement();
-            }
+            proxy = new AccountManagementService.AccountManagement();
         }
 
         public void BtnGetSecurityQuestions_Click(object sender, EventArgs e)
@@ -45,7 +42,6 @@ namespace DogeBook
         }
         protected void GetSecurityQuestions()
         {
-            // !!!!! Loading questions doesn't work
             // get the security questions
             string email = TBEmail.Text;
             int userId = proxy.GetUserIdFromEmail(email);

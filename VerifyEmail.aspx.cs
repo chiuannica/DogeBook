@@ -59,7 +59,7 @@ namespace DogeBook
                 {
                     // show success message
                     LblSuccess.Visible = true;
-                    LblSuccess.Text = warning;
+                    LblSuccess.Text = "Verified account successfully. ";
                     // show go to login button
                     BtnRedirectToLogin.Visible = true; 
                 } else // not verified

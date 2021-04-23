@@ -153,7 +153,8 @@ namespace DogeBook
             bool createdAccount = CreateAccountFromUserInput();
 
             // send an email to validate
-            bool sentVerification = SendVerificationEmail();
+            //bool sentVerification = SendVerificationEmail();
+            bool sentVerification = true;
 
             // add security questions
             bool addedSecurityQuestions = AddSecurityQuestions();

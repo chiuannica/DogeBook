@@ -25,6 +25,7 @@
 
         <div class="container text-center">
             <h1 class="mb-4 mb-3 font-weight-normal">Forgot Password</h1>
+         </div>
         
         <div class="container col-md-6 col-sm-12">
             <div class="form-group">
@@ -76,12 +77,12 @@
 
 
 
-            <div class="container-fluid my-3">
-                <asp:Label ID="LblWarning" style="display:block" Visible="false" class="container alert alert-danger" runat="server" Text="Warning"></asp:Label>
+            <div class="container my-3">
+                <asp:Label ID="LblWarning" style="display:block" Visible="false" class="alert alert-danger" runat="server" Text="Warning"></asp:Label>
             </div>
 
-            <div class="container-fluid my-3">
-                <asp:Label ID="LblSuccess" style="display:block" Visible="false" class="container alert alert-success" runat="server" Text="Success"></asp:Label>
+            <div class="container my-3">
+                <asp:Label ID="LblSuccess" style="display:block" Visible="false" class="alert alert-success" runat="server" Text="Success"></asp:Label>
             </div>
 
         </div>

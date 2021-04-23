@@ -26,6 +26,7 @@ namespace UsersWebAPI.Controllers
         {
             DBConnect objDB = new DBConnect();
 
+
             DataSet ds = objDB.GetDataSet("SELECT * FROM TP_Users WHERE UserId=" + userId);
 
             User user = new User();
