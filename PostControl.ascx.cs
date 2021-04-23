@@ -98,7 +98,7 @@ namespace DogeBook
             DataRow row = postData.Tables[0].Rows[0];
             lblAuthor.Text = row["FirstName"].ToString() + " " + row["LastName"].ToString();
             imgAuthor.ImageUrl = util.ProfPicArrayToImage((int)row["UserId"]);
-            imgPostImage.ImageUrl = row["ImageUrl"].ToString();
+            imgPostImage.ImageUrl = util.ByteArrayToImageUrl((byte[])row["Image"]);
             lblPostText.Text = row["Text"].ToString();
             lblTimestamp.Text = row["TimeStamp"].ToString();
 
