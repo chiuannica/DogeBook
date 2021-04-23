@@ -1,5 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using System.Web.Script.Serialization;
 using Microsoft.AspNetCore.Mvc;
+using DogeBookLibrary;
 
 namespace TimelineWebApi.Controllers
 {
@@ -7,10 +12,25 @@ namespace TimelineWebApi.Controllers
     public class TimelineController : Controller
     {
         // GET: api/Timeline
-        [HttpGet]
-        public IEnumerable<string> Get()
+        [HttpGet ("Timeline/{userId}")]
+        public IEnumerable<string> GetTimeline(int userId)
         {
-            return new string[] { "value1", "value2" };
+            string path = "https://localhost:44386/api/User/";
+            WebRequest request = WebRequest.Create(path + "GetFriends/"+ userId);
+            WebResponse response = request.GetResponse();
+
+            Stream theDataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(theDataStream);
+
+            String data = reader.ReadToEnd();
+            reader.Close();
+            response.Close();
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            User[] friends = js.Deserialize<User[]>(data);
+
+            String[] friendsS = new string[friends.Length];
+            
+            return Array.ConvertAll(friends, x => x.ToString());
         }
 
         // GET: api/Timeline/5
