@@ -14,7 +14,7 @@ namespace TimelineWebApi.Controllers
     {
         // GET: api/Timeline
         [HttpGet ("GetTimeline/{userId}")]
-        public String GetTimeline(int userId)
+        public int[] GetTimeline(int userId)
         {
             //string path = "https://localhost:44386/api/User/";
             //WebRequest request = WebRequest.Create(path + "GetFriends/" + userId);
@@ -102,7 +102,8 @@ namespace TimelineWebApi.Controllers
             //bada bing bada boom
             //
             List<Post> tempTimeline = new List<Post>();
-            foreach(int user in timelineUsers)
+            
+            foreach (int user in timelineUsers)
             {
                 sqlString = "SELECT * FROM TP_Posts WHERE UserId=" + user;
                 ds = objDB.GetDataSet(sqlString);
@@ -113,25 +114,27 @@ namespace TimelineWebApi.Controllers
                     {
                         Post post = new Post();
                         DataRow record = ds.Tables[0].Rows[i];
-
+                        post.PostId = (int)record["PostId"];
                         //tempString += "Post text:  " + record["Text"].ToString() + Environment.NewLine +
                         //              "PostId: " + record["PostId"].ToString() + Environment.NewLine;
                         post.Timestamp = (DateTime)record["Timestamp"];
                         // ...
-
+                        
                         tempTimeline.Add(post);
                     }
                     //tempTimeline.Add(tempString);
                 }
             }
             tempTimeline.Sort((x, y) => DateTime.Compare(x.Timestamp, y.Timestamp));
-            String tempString = "";
+            int[] timeline = new int[tempTimeline.Count];
+            int r = 0;
             foreach (Post post in tempTimeline)
             {
-                tempString +=  post.Timestamp + " | ";
+                timeline[r] = post.PostId;
+                r++;
             }
 
-            return tempString;
+            return timeline;
         }
 
         // GET: api/Timeline/5
