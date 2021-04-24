@@ -13,7 +13,6 @@ namespace DogeBook
 {
     public partial class CreateAccount : System.Web.UI.Page
     {
-        public AccountManagementService.AccountManagement proxy;
         private Byte[] key = { 250, 101, 18, 76, 45, 135, 207, 118, 4, 171, 3, 168, 202, 241, 37, 199 };
         private Byte[] vector = { 146, 64, 191, 111, 23, 3, 113, 119, 231, 121, 252, 112, 79, 32, 114, 156 };
         public AccountManagementService.AccountManagement proxy = new AccountManagementService.AccountManagement();

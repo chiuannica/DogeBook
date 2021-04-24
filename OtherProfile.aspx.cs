@@ -86,38 +86,9 @@ namespace DogeBook
 
             for (int i = 0; i < friends.Length; i++)
             {
-
-                // check if friend and load friend card if theyre friends
-                bool areFriends = AreFriends(friends[i].UserId);
-
-                if (!areFriends)
+                if (friends[i].UserId == userId) // if friend is self
                 {
-                    NonFriendCard ctrl = (NonFriendCard)LoadControl("NonFriendCard.ascx");
-
-                    ctrl.FirstName = friends[i].FirstName.ToString();
-                    ctrl.LastName = friends[i].LastName.ToString();
-
-                    // if no profile pic, load default
-                    if (util.ProfPicArrayToImage((int)Session["userId"]) == "")
-                    {
-                        ctrl.ImageUrl = "https://www.telegraph.co.uk/content/dam/technology/2021/01/28/Screenshot-2021-01-28-at-13-20-35_trans_NvBQzQNjv4BqEGKV9LrAqQtLUTT1Z0gJNRFI0o2dlzyIcL3Nvd0Rwgc.png";
-                    }
-                    else
-                    {
-                        ctrl.ImageUrl = util.ProfPicArrayToImage((int)Session["userId"]);
-                    }
-                    ctrl.Description = friends[i].Bio.ToString();
-                    ctrl.UserId = int.Parse(friends[i].UserId.ToString());
-
-                    // bind data to ctrl
-                    ctrl.DataBind();
-
-                    // add to panel
-                    FriendPanel.Controls.Add(ctrl);
-                }
-                else
-                {
-                    FriendCard ctrl = (FriendCard)LoadControl("FriendCard.ascx");
+                    SelfCard ctrl = (SelfCard)LoadControl("SelfCard.ascx");
 
                     ctrl.FirstName = friends[i].FirstName.ToString();
                     ctrl.LastName = friends[i].LastName.ToString();
@@ -126,7 +97,7 @@ namespace DogeBook
                     ctrl.UserId = friendId;
 
                     // load default pic if there is no profile pic
-                    if (util.ProfPicArrayToImage((int)Session["userId"]) != "")
+                    if (util.ProfPicArrayToImage(friendId) != "")
                     {
                         ctrl.ImageUrl = util.ProfPicArrayToImage(friendId);
                     }
@@ -140,7 +111,68 @@ namespace DogeBook
 
                     // add to panel
                     FriendPanel.Controls.Add(ctrl);
+                }
+                else {
 
+                    // check if friend and load friend card if theyre friends
+                    bool areFriends = AreFriends(friends[i].UserId);
+
+                    if (!areFriends) // load non friend card if this person isn't a friend of current user
+                    {
+                        NonFriendCard ctrl = (NonFriendCard)LoadControl("NonFriendCard.ascx");
+
+                        ctrl.FirstName = friends[i].FirstName.ToString();
+                        ctrl.LastName = friends[i].LastName.ToString();
+
+                        int friendId = int.Parse(friends[i].UserId.ToString());
+                        ctrl.UserId = friendId;
+
+                        // if no profile pic, load default
+                        if (util.ProfPicArrayToImage(friendId) == "")
+                        {
+                            ctrl.ImageUrl = "https://www.telegraph.co.uk/content/dam/technology/2021/01/28/Screenshot-2021-01-28-at-13-20-35_trans_NvBQzQNjv4BqEGKV9LrAqQtLUTT1Z0gJNRFI0o2dlzyIcL3Nvd0Rwgc.png";
+                        }
+                        else
+                        {
+                            ctrl.ImageUrl = util.ProfPicArrayToImage(friendId);
+                        }
+                        ctrl.Description = friends[i].Bio.ToString();
+                        ctrl.UserId = int.Parse(friends[i].UserId.ToString());
+
+                        // bind data to ctrl
+                        ctrl.DataBind();
+
+                        // add to panel
+                        FriendPanel.Controls.Add(ctrl);
+                    }
+                    else // else if person is also a friend of current user
+                    {
+                        FriendCard ctrl = (FriendCard)LoadControl("FriendCard.ascx");
+
+                        ctrl.FirstName = friends[i].FirstName.ToString();
+                        ctrl.LastName = friends[i].LastName.ToString();
+
+                        int friendId = int.Parse(friends[i].UserId.ToString());
+                        ctrl.UserId = friendId;
+
+                        // load default pic if there is no profile pic
+                        if (util.ProfPicArrayToImage(friendId) != "")
+                        {
+                            ctrl.ImageUrl = util.ProfPicArrayToImage(friendId);
+                        }
+                        else
+                        {
+                            ctrl.ImageUrl = "https://www.telegraph.co.uk/content/dam/technology/2021/01/28/Screenshot-2021-01-28-at-13-20-35_trans_NvBQzQNjv4BqEGKV9LrAqQtLUTT1Z0gJNRFI0o2dlzyIcL3Nvd0Rwgc.png";
+                        }
+
+                        // bind data to ctrl
+                        ctrl.DataBind();
+
+                        // add to panel
+                        FriendPanel.Controls.Add(ctrl);
+
+
+                    }
 
                 }
             }
@@ -211,14 +243,16 @@ namespace DogeBook
                     ctrl.FirstName = friends[i].FirstName.ToString();
                     ctrl.LastName = friends[i].LastName.ToString();
 
+                    int friendId = int.Parse(friends[i].UserId.ToString());
+                    ctrl.UserId = friendId;
                     // if no profile pic, load default
-                    if (util.ProfPicArrayToImage((int)Session["userId"]) == "")
+                    if (util.ProfPicArrayToImage(friendId) == "")
                     {
                         ctrl.ImageUrl = "https://www.telegraph.co.uk/content/dam/technology/2021/01/28/Screenshot-2021-01-28-at-13-20-35_trans_NvBQzQNjv4BqEGKV9LrAqQtLUTT1Z0gJNRFI0o2dlzyIcL3Nvd0Rwgc.png";
                     }
                     else
                     {
-                        ctrl.ImageUrl = util.ProfPicArrayToImage((int)Session["userId"]);
+                        ctrl.ImageUrl = util.ProfPicArrayToImage(friendId);
                     }
                     ctrl.UserId = int.Parse(friends[i].UserId.ToString());
 
@@ -242,14 +276,16 @@ namespace DogeBook
                         ctrl.FirstName = friends[i].FirstName.ToString();
                         ctrl.LastName = friends[i].LastName.ToString();
 
+                        int friendId = int.Parse(friends[i].UserId.ToString());
+                        ctrl.UserId = friendId;
                         // if no profile pic, load default
-                        if (util.ProfPicArrayToImage((int)Session["userId"]) == "")
+                        if (util.ProfPicArrayToImage(friendId) == "")
                         {
                             ctrl.ImageUrl = "https://www.telegraph.co.uk/content/dam/technology/2021/01/28/Screenshot-2021-01-28-at-13-20-35_trans_NvBQzQNjv4BqEGKV9LrAqQtLUTT1Z0gJNRFI0o2dlzyIcL3Nvd0Rwgc.png";
                         }
                         else
                         {
-                            ctrl.ImageUrl = util.ProfPicArrayToImage((int)Session["userId"]);
+                            ctrl.ImageUrl = util.ProfPicArrayToImage(friendId);
                         }
                         ctrl.Description = friends[i].Bio.ToString();
                         ctrl.UserId = int.Parse(friends[i].UserId.ToString());
@@ -271,7 +307,7 @@ namespace DogeBook
                         ctrl.UserId = friendId;
 
                         // load default pic if there is no profile pic
-                        if (util.ProfPicArrayToImage((int)Session["userId"]) != "")
+                        if (util.ProfPicArrayToImage(friendId) != "")
                         {
                             ctrl.ImageUrl = util.ProfPicArrayToImage(friendId);
                         }
