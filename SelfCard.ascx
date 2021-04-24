@@ -13,13 +13,13 @@
             <div class="btn-group-vertical">
                 <asp:Button ID="BtnGoToProfile" class="btn btn-primary" runat="server" Text="Go to profile" OnClick="BtnGoToProfile_Click" />
             </div>
-
             
         </div>
-
+        
         <div class="card-footer">
-            <asp:Label ID="LblDisplay" runat="server" Visible="false""></asp:Label>
-
+            <div class="card-text">
+                <asp:Label ID="LblDisplay" runat="server" Visible="false"></asp:Label>
+            </div>
         </div>
 
     </div>

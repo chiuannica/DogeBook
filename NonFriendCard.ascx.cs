@@ -45,6 +45,17 @@ namespace DogeBook
             // the userId of the friend card, which is the friend's user id
             int friendId = UserId;
 
+            // check if there has already been a friend request
+            bool alreadySentFriendRequest = false;
+            if (alreadySentFriendRequest)
+            {
+                LblDisplay.Text = "Already added";
+                LblDisplay = true;
+
+                return;
+            }
+
+
 
             FriendRequest friendRequest = new FriendRequest();
 
