@@ -431,6 +431,32 @@ namespace UsersWebAPI.Controllers
             }
             return "temp posts " + tempString;
         }
+        // check if there is already a friend request sent 
+        [HttpGet("GetFriendRequest/{receiverId}/{senderId}")]
+        public bool GetFriendRequest(int receiverId, int senderId)
+        {
+
+            DBConnect dBConnect = new DBConnect();
+            SqlCommand myCommandObj = new SqlCommand();
+
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_GetFriendRequest";
+            myCommandObj.Parameters.Clear();
+
+            SqlParameter inputSenderId = new SqlParameter("@senderId", senderId);
+            SqlParameter inputReceiverId = new SqlParameter("@receiverId", receiverId);
+
+            myCommandObj.Parameters.Add(inputSenderId);
+            myCommandObj.Parameters.Add(inputReceiverId);
+
+            DataSet ds = dBConnect.GetDataSetUsingCmdObj(myCommandObj);
+
+            if (ds.Tables[0].Rows.Count > 0)
+                return true;
+            return false;
+        }
+
+
 
         [HttpPost("AddFriend")]
         public bool AddFriend([FromBody] FriendRequest friendRequest)
