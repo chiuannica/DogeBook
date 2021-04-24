@@ -25,7 +25,7 @@ namespace DogeBook
         protected void btnPost_Click(object sender, EventArgs e)
         {
             Post post = new Post();
-            post.Timestamp = DateTime.Now.ToString();
+            post.Timestamp = DateTime.Now;
             post.Text = txtPostText.Text;
             //Util.FileUpload? maybe something else
             int imageSize = 0, result = 0;
