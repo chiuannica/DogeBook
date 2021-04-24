@@ -1,16 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using DogeBookLibrary; 
+using DogeBookLibrary;
 
 namespace DogeBook
 {
     public partial class CreateAccount : System.Web.UI.Page
     {
+        public AccountManagementService.AccountManagement proxy;
+        private Byte[] key = { 250, 101, 18, 76, 45, 135, 207, 118, 4, 171, 3, 168, 202, 241, 37, 199 };
+        private Byte[] vector = { 146, 64, 191, 111, 23, 3, 113, 119, 231, 121, 252, 112, 79, 32, 114, 156 };
         public AccountManagementService.AccountManagement proxy = new AccountManagementService.AccountManagement();
+
         protected void Page_Load(object sender, EventArgs e)
         {
         }
@@ -26,12 +33,15 @@ namespace DogeBook
             if (string.IsNullOrWhiteSpace(TBEmail.Text))
             {
                 warning += "Enter email. <br>";
-            } else { 
+            }
+            else
+            {
                 // check if this email has been used before
                 if (EmailUsed(TBEmail.Text))
                 {
                     warning += "Email is already used. <br>";
                 }
+
             } 
             if (string.IsNullOrWhiteSpace(TBFirstName.Text))
             {
@@ -126,7 +136,8 @@ namespace DogeBook
             if (insert1 && insert2 && insert3)
             {
                 return true;
-            } else 
+            }
+            else
             {
                 return false;
             }
@@ -160,10 +171,60 @@ namespace DogeBook
             bool addedSecurityQuestions = AddSecurityQuestions();
 
             // if successfully created account and sent email
-            if (createdAccount && sentVerification && addedSecurityQuestions) 
+            if (createdAccount && sentVerification && addedSecurityQuestions)
             {
+                if (RemeberChkBox.Checked)
+                {
+                    String plainTextEmail = TBEmail.Text;
+                    String plainTextPassword = TBPassword.Text;
+                    String encryptedEmail;
+                    String encryptedPassword;
+
+                    UTF8Encoding encoder = new UTF8Encoding();
+                    Byte[] emailBytes;
+                    Byte[] passwordBytes;
+
+                    emailBytes = encoder.GetBytes(plainTextEmail);
+                    passwordBytes = encoder.GetBytes(plainTextPassword);
+
+                    RijndaelManaged rmEncryption = new RijndaelManaged();
+                    MemoryStream memStream = new MemoryStream();
+                    CryptoStream encryptionStream = new CryptoStream(memStream, rmEncryption.CreateEncryptor(key, vector), CryptoStreamMode.Write);
+
+                    //Store Cookie
+                    //Email
+                    encryptionStream.Write(emailBytes, 0, emailBytes.Length);
+                    encryptionStream.FlushFinalBlock();
+
+                    memStream.Position = 0;
+                    Byte[] encryptedEmailBytes = new byte[memStream.Length];
+                    memStream.Read(encryptedEmailBytes, 0, encryptedEmailBytes.Length);
+
+                    encryptionStream.Close();
+                    memStream.Close();
+
+                    //password
+                    memStream = new MemoryStream();
+                    encryptionStream = new CryptoStream(memStream, rmEncryption.CreateEncryptor(key, vector), CryptoStreamMode.Write);
+
+                    encryptionStream.Write(passwordBytes, 0, passwordBytes.Length);
+                    encryptionStream.FlushFinalBlock();
+
+                    memStream.Position = 0;
+                    Byte[] encryptedPasswordBytes = new byte[memStream.Length];
+                    memStream.Read(encryptedPasswordBytes, 0, encryptedPasswordBytes.Length);
+                    encryptedEmail = Convert.ToBase64String(encryptedEmailBytes);
+                    encryptedPassword = Convert.ToBase64String(encryptedPasswordBytes);
+
+                    HttpCookie myCookie = new HttpCookie("LoginCookie");
+                    myCookie.Values["Email"] = encryptedEmail;
+                    myCookie.Values["Password"] = encryptedPassword;
+                    myCookie.Expires = DateTime.Now.AddDays(30);
+                    Response.Cookies.Add(myCookie);
+                }
                 CreatedAccountSuccessfully();
-            } else
+            }
+            else
             {
                 CreatedAccountFailed();
             }

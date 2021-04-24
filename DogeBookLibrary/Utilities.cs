@@ -268,7 +268,29 @@ namespace DogeBookLibrary
             return imageUrl;
         }
 
+        public int LikePost(int userId, int postId)
+        {
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_LikePost";
+            myCommandObj.Parameters.Clear();
 
+            myCommandObj.Parameters.AddWithValue("@UserId", userId);
+            myCommandObj.Parameters.AddWithValue("@PostId", postId);
+
+            return dBConnect.DoUpdateUsingCmdObj(myCommandObj);
+        }
+
+        public int MakeComment(int postId, int userId, string text)
+        {
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_MakeComment";
+            myCommandObj.Parameters.Clear();
+
+            myCommandObj.Parameters.AddWithValue("@UserId", userId);
+            myCommandObj.Parameters.AddWithValue("@PostId", postId);
+            myCommandObj.Parameters.AddWithValue("@Text", text);
+            return dBConnect.DoUpdateUsingCmdObj(myCommandObj);
+        }
     }
 }
 
