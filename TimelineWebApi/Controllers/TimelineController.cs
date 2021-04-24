@@ -142,10 +142,21 @@ namespace TimelineWebApi.Controllers
         }
 
         // POST: api/Timeline
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPost("LikePost/{UserId}/{PostId}")]
+        public int LikePost(int userId, int postId)
         {
 
+            Utility util = new Utility();
+            return util.LikePost(userId, postId);
+        }
+
+        // POST: api/Timeline
+        [HttpPost("MakeComment/{UserId}/{PostId}/{Text}")]
+        public int MakeComment(int userId, int postId, string text)
+        {
+
+            Utility util = new Utility();
+            return util.MakeComment(postId, userId, text);
         }
 
         // PUT: api/Timeline/5
