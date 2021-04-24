@@ -17,7 +17,7 @@
     <script src="https://kit.fontawesome.com/0a596c6382.js" crossorigin="anonymous"></script>
 
 
-    <title>Create an Account</title>        
+    <title>Create an Account</title>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -30,15 +30,15 @@
 
         <div class="container col-md-6 col-sm-12">
             <div class="form-group">
-                <label >Email address</label>
+                <label>Email address</label>
                 <asp:TextBox ID="TBEmail" type="email" class="form-control" placeholder="Email" runat="server"></asp:TextBox>
             </div>
             <div class="form-group">
-                <label >First Name</label>
+                <label>First Name</label>
                 <asp:TextBox ID="TBFirstName" type="text" class="form-control" placeholder="First Name" runat="server"></asp:TextBox>
             </div>
             <div class="form-group">
-                <label >Last Name</label>
+                <label>Last Name</label>
                 <asp:TextBox ID="TBLastName" type="text" class="form-control" placeholder="Last Name" runat="server"></asp:TextBox>
             </div>
             <div class="form-group">
@@ -82,21 +82,27 @@
                 </div>
                 <asp:TextBox ID="TBSecurityQuestion3" type="text" class="form-control" placeholder="Answer" runat="server"></asp:TextBox>
             </div>
+            <div class="checkbox mb-3">
+                <label>
+                    <asp:CheckBox ID="RemeberChkBox" runat="server" type="checkbox" value="remember_me" />
+                    Remember me
+                </label>
+            </div>
             <div>
                 <asp:Button ID="BtnSubmit" class="btn btn-primary" runat="server" Text="Submit" OnClick="BtnSubmit_Click" />
             </div>
             <div class="containerlfluid my-3">
-                <asp:Label ID="LblWarning" Visible="false" style="display:block" class="container alert alert-danger" runat="server" Text="Warning"></asp:Label>
+                <asp:Label ID="LblWarning" Visible="false" Style="display: block" class="container alert alert-danger" runat="server" Text="Warning"></asp:Label>
             </div>
             <div class="containerlfluid my-3">
-                <asp:Label ID="LblSuccess" Visible="false" style="display:block" class="container alert alert-success" runat="server" Text="Success"></asp:Label>
+                <asp:Label ID="LblSuccess" Visible="false" Style="display: block" class="container alert alert-success" runat="server" Text="Success"></asp:Label>
             </div>
-            
+
             <div>
-                <asp:Button ID="BtnRedirectToLogin" class="btn btn-primary" runat="server" Text="Go to Login" Visible="false"/>
+                <asp:Button ID="BtnRedirectToLogin" class="btn btn-primary" runat="server" Text="Go to Login" Visible="false" />
             </div>
         </div>
-        
+
     </form>
 </body>
 </html>

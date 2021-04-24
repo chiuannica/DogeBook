@@ -132,6 +132,15 @@ namespace DogeBook
         protected global::System.Web.UI.WebControls.TextBox TBSecurityQuestion3;
 
         /// <summary>
+        /// RemeberChkBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox RemeberChkBox;
+
+        /// <summary>
         /// BtnSubmit control.
         /// </summary>
         /// <remarks>
