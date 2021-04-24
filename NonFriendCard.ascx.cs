@@ -16,7 +16,7 @@ namespace DogeBook
         public string ImageUrl { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Bio { get; set; }
+        public string Description { get; set; }
         public int UserId { get; set; }
 
         string path = "https://localhost:44386/api/User/";
@@ -34,7 +34,7 @@ namespace DogeBook
             ImgFriend.ImageUrl = ImageUrl;
             LFriendFName.Text = FirstName;
             LFriendLName.Text = LastName;
-            LBio.Text = Bio;
+            LDescription.Text = Description;
         }
 
 
