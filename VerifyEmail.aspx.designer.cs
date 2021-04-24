@@ -11,43 +11,61 @@ namespace DogeBook
 {
 
 
-    public partial class SelfCard
+    public partial class VerifyEmail
     {
 
         /// <summary>
-        /// ImgFriend control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image ImgFriend;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// LFriendFName control.
+        /// TBEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LFriendFName;
+        protected global::System.Web.UI.WebControls.TextBox TBEmail;
 
         /// <summary>
-        /// LFriendLName control.
+        /// BtnSubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LFriendLName;
+        protected global::System.Web.UI.WebControls.Button BtnSubmit;
 
         /// <summary>
-        /// BtnGoToProfile control.
+        /// LblWarning control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnGoToProfile;
+        protected global::System.Web.UI.WebControls.Label LblWarning;
+
+        /// <summary>
+        /// LblSuccess control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblSuccess;
+
+        /// <summary>
+        /// BtnRedirectToLogin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnRedirectToLogin;
     }
 }

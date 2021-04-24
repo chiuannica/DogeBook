@@ -24,7 +24,6 @@ namespace DogeBook
         {
             // load the userId
             userId = int.Parse(Session["UserId"].ToString());
-
             // load user information
             LoadUserInformation();
             // load friends

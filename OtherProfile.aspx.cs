@@ -136,7 +136,7 @@ namespace DogeBook
                         {
                             ctrl.ImageUrl = util.ProfPicArrayToImage((int)Session["userId"]);
                         }
-                        ctrl.Bio = friends[i].Bio.ToString();
+                        ctrl.Description = friends[i].Bio.ToString();
                         ctrl.UserId = int.Parse(friends[i].UserId.ToString());
 
                         // bind data to ctrl
@@ -282,7 +282,7 @@ namespace DogeBook
                         {
                             ctrl.ImageUrl = util.ProfPicArrayToImage((int)Session["userId"]);
                         }
-                        ctrl.Bio = friends[i].Bio.ToString();
+                        ctrl.Description = friends[i].Bio.ToString();
                         ctrl.UserId = int.Parse(friends[i].UserId.ToString());
 
                         // bind data to ctrl

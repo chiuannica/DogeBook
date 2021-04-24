@@ -34,63 +34,28 @@ namespace AccountManagementSOAPApi
             return a + b;
         }
 
-
-        /*
-          hashPassword and Login are not used.
-            Other methods are used for those purposes
-         */
-        [WebMethod]
         public string hashPassword(string password)
         {
-            // hash stuff
             return password;
         }
 
-        [WebMethod]
-        public User Login(string email, string password)
-        {
-
-            DBConnect objDB = new DBConnect();
-
-            // HASH the password here
-            string hashedPassword = hashPassword(password);
-
-            string strSQL = "SELECT * " +
-                            "FROM TP_Users " +
-                            "WHERE Email='" + email + "' " +
-                            "AND Password='" + hashedPassword + "'";
-            DataSet ds = objDB.GetDataSet(strSQL);
-
-            User user = new User();
-            user.UserId = -1;
-            if (ds.Tables[0].Rows.Count != 0)
-            {
-                DataRow record = ds.Tables[0].Rows[0];
-                user.UserId = int.Parse(record["UserId"].ToString());
-                user.FirstName = record["FirstName"].ToString();
-                user.LastName = record["LastName"].ToString();
-                user.Email = record["Email"].ToString();
-                //user.ProfilePicture = (byte[])record["ProfilePicture"];
-                user.Bio = record["Bio"].ToString();
-                user.City = record["City"].ToString();
-                user.State = record["State"].ToString();
-                user.Interests = record["Interests"].ToString();
-                user.Verified = record["Verified"].ToString();
-            }
-
-            return user;
-        }
 
         // check if the email has been used already when creating account
         [WebMethod]
         public bool EmailUsed(string email)
         {
-            DBConnect objDB = new DBConnect();
+            DBConnect dBConnect = new DBConnect();
+            SqlCommand myCommandObj = new SqlCommand();
 
-            string strSQL = "SELECT Email " +
-                            "FROM TP_Users " +
-                            "WHERE Email='" + email + "' ";
-            DataSet ds = objDB.GetDataSet(strSQL);
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_GetEmailFromEmail";
+            myCommandObj.Parameters.Clear();
+
+            SqlParameter inputEmail = new SqlParameter("@email", email);
+            inputEmail.Direction = ParameterDirection.Input;
+            myCommandObj.Parameters.Add(inputEmail);
+
+            DataSet ds = dBConnect.GetDataSetUsingCmdObj(myCommandObj);
 
             if (ds.Tables[0].Rows.Count != 0)
             {
@@ -103,12 +68,18 @@ namespace AccountManagementSOAPApi
         [WebMethod]
         public int GetUserIdFromEmail(string email)
         {
-            DBConnect objDB = new DBConnect();
+            DBConnect dBConnect = new DBConnect();
+            SqlCommand myCommandObj = new SqlCommand();
 
-            string strSQL = "SELECT UserId " +
-                            "FROM TP_Users " +
-                            "WHERE Email='" + email + "' ";
-            DataSet ds = objDB.GetDataSet(strSQL);
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_GetUserIdByEmail";
+            myCommandObj.Parameters.Clear();
+
+            SqlParameter inputEmail = new SqlParameter("@Email", email);
+            inputEmail.Direction = ParameterDirection.Input;
+            myCommandObj.Parameters.Add(inputEmail);
+
+            DataSet ds = dBConnect.GetDataSetUsingCmdObj(myCommandObj);
 
             if (ds.Tables[0].Rows.Count != 0)
             {
@@ -122,20 +93,32 @@ namespace AccountManagementSOAPApi
         [WebMethod]
         public bool CreateAccount(string firstName, string lastName, string email, string password)
         {
-            DBConnect objDB = new DBConnect();
-
             // hash the password
             string hashedPassword = hashPassword(password);
 
-            string strSQL = "INSERT INTO TP_Users(FirstName, LastName, Email, Password) " +
-                            "VALUES('" + firstName + "', '" + lastName + "', '" + email + "', '" + password + "')";
-            int result = objDB.DoUpdate(strSQL);
+            DBConnect dBConnect = new DBConnect();
+            SqlCommand myCommandObj = new SqlCommand();
+
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_InsertCreateAccount";
+            myCommandObj.Parameters.Clear();
+
+            SqlParameter inputFirstName = new SqlParameter("@firstName", firstName);
+            SqlParameter inputLastName = new SqlParameter("@lastName", lastName);
+            SqlParameter inputEmail = new SqlParameter("@email", email);
+            SqlParameter inputPassword = new SqlParameter("@password", hashedPassword);
+
+            myCommandObj.Parameters.Add(inputFirstName);
+            myCommandObj.Parameters.Add(inputLastName);
+            myCommandObj.Parameters.Add(inputEmail);
+            myCommandObj.Parameters.Add(inputPassword);
+
+            int result = dBConnect.DoUpdateUsingCmdObj(myCommandObj);
 
             if (result > 0)
                 return true;
             return false;
         }
-
 
         /*
          SECURITY QUESTION
@@ -143,11 +126,22 @@ namespace AccountManagementSOAPApi
         [WebMethod]
         public bool AddSecurityQuestion(int userId, string securityQuestion, string answer)
         {
-            DBConnect objDB = new DBConnect();
-            string strSQL = "INSERT INTO TP_SecurityQuestions(UserId, SecurityQuestion, Answer) " +
-                            "VALUES(" + userId + ", '" + securityQuestion + "', '" + answer + "') ";
-            int result = objDB.DoUpdate(strSQL);
+            DBConnect dBConnect = new DBConnect();
+            SqlCommand myCommandObj = new SqlCommand();
 
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_InsertSecurityQuestion";
+            myCommandObj.Parameters.Clear();
+
+            SqlParameter inputUserId = new SqlParameter("@userId", userId);
+            SqlParameter inputSecurityQuestion = new SqlParameter("@securityQuestion", securityQuestion);
+            SqlParameter inputAnswer = new SqlParameter("@answer", answer);
+
+            myCommandObj.Parameters.Add(inputUserId);
+            myCommandObj.Parameters.Add(inputSecurityQuestion);
+            myCommandObj.Parameters.Add(inputAnswer);
+
+            int result = dBConnect.DoUpdateUsingCmdObj(myCommandObj);
             if (result > 0)
             {
                 return true;
@@ -159,11 +153,17 @@ namespace AccountManagementSOAPApi
         [WebMethod]
         public bool VerifyAccount(int userId)
         {
-            DBConnect objDB = new DBConnect();
-            string strSQL = "UPDATE TP_Users " +
-                            "SET Verified=1 " +
-                            "WHERE UserId=" + userId;
-            int result = objDB.DoUpdate(strSQL);
+            DBConnect dBConnect = new DBConnect();
+            SqlCommand myCommandObj = new SqlCommand();
+
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_VerifyAccount";
+            myCommandObj.Parameters.Clear();
+
+            SqlParameter inputUserId = new SqlParameter("@userId", userId);
+
+            myCommandObj.Parameters.Add(inputUserId);
+            int result = dBConnect.DoUpdateUsingCmdObj(myCommandObj);
 
             if (result > 0)
                 return true;
@@ -172,11 +172,20 @@ namespace AccountManagementSOAPApi
         [WebMethod]
         public bool ChangePassword(int userId, string password)
         {
-            DBConnect objDB = new DBConnect();
-            string strSQL = "UPDATE TP_Users " +
-                            "SET Password=" + password + " " +
-                            "WHERE UserId=" + userId;
-            int result = objDB.DoUpdate(strSQL);
+            DBConnect dBConnect = new DBConnect();
+            SqlCommand myCommandObj = new SqlCommand();
+
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_ChangePassword";
+            myCommandObj.Parameters.Clear();
+
+            SqlParameter inputUserId = new SqlParameter("@userId", userId);
+            SqlParameter inputPassword = new SqlParameter("@password", password);
+
+            myCommandObj.Parameters.Add(inputUserId);
+            myCommandObj.Parameters.Add(inputPassword);
+
+            int result = dBConnect.DoUpdateUsingCmdObj(myCommandObj);
 
             if (result > 0)
                 return true;
@@ -186,12 +195,17 @@ namespace AccountManagementSOAPApi
         [WebMethod]
         public List<Question> GetSecurityQuestions(int userId)
         {
-            DBConnect objDB = new DBConnect();
+            DBConnect dBConnect = new DBConnect();
+            SqlCommand myCommandObj = new SqlCommand();
 
-            string strSQL = "SELECT * " +
-                            "FROM TP_SecurityQuestions " +
-                            "WHERE UserId=" + userId;
-            DataSet ds = objDB.GetDataSet(strSQL);
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_GetSecurityQuestionsByUserId";
+            myCommandObj.Parameters.Clear();
+
+            SqlParameter inputUserId = new SqlParameter("@userId", userId);
+            myCommandObj.Parameters.Add(inputUserId);
+
+            DataSet ds = dBConnect.GetDataSetUsingCmdObj(myCommandObj);
 
             List<Question> questions = new List<Question>();
 
@@ -212,6 +226,7 @@ namespace AccountManagementSOAPApi
             return questions;
         }
 
+        /*
         [WebMethod]
         public bool CheckSecurityQuestion(int securityQuestionId, string userAnswer)
         {
@@ -236,24 +251,101 @@ namespace AccountManagementSOAPApi
             }
             return false;
         }
+        */
         /*
          UPDATE PROFILE
          */
         // gets called by other methods
         [WebMethod]
-        public bool UpdateProfile(int userId, string columnName, string content)
+        public bool UpdateBio(int userId, string content)
         {
-            DBConnect objDB = new DBConnect();
-            string strSQL = "UPDATE TP_Users " +
-                            "SET " + columnName + "='" + content + "' " +
-                            "WHERE UserId=" + userId;
+            DBConnect dBConnect = new DBConnect();
+            SqlCommand myCommandObj = new SqlCommand();
 
-            int result = objDB.DoUpdate(strSQL);
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_UpdateBio";
+            myCommandObj.Parameters.Clear();
+
+            SqlParameter inputUserId = new SqlParameter("@userId", userId);
+            SqlParameter inputContent = new SqlParameter("@content", content);
+
+            myCommandObj.Parameters.Add(inputUserId);
+            myCommandObj.Parameters.Add(inputContent);
+
+            int result = dBConnect.DoUpdateUsingCmdObj(myCommandObj);
+
+            if (result > 0)
+                return true;
+            return false;
+        }
+
+        [WebMethod]
+        public bool UpdateInterests(int userId, string content)
+        {
+            DBConnect dBConnect = new DBConnect();
+            SqlCommand myCommandObj = new SqlCommand();
+
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_UpdateInterests";
+            myCommandObj.Parameters.Clear();
+
+            SqlParameter inputUserId = new SqlParameter("@userId", userId);
+            SqlParameter inputContent = new SqlParameter("@content", content);
+
+            myCommandObj.Parameters.Add(inputUserId);
+            myCommandObj.Parameters.Add(inputContent);
+
+            int result = dBConnect.DoUpdateUsingCmdObj(myCommandObj);
 
             if (result > 0)
                 return true;
             return false;
         }
         
+        [WebMethod]
+        public bool UpdateCity(int userId, string content)
+        {
+            DBConnect dBConnect = new DBConnect();
+            SqlCommand myCommandObj = new SqlCommand();
+
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_UpdateCity";
+            myCommandObj.Parameters.Clear();
+
+            SqlParameter inputUserId = new SqlParameter("@userId", userId);
+            SqlParameter inputContent = new SqlParameter("@content", content);
+
+            myCommandObj.Parameters.Add(inputUserId);
+            myCommandObj.Parameters.Add(inputContent);
+
+            int result = dBConnect.DoUpdateUsingCmdObj(myCommandObj);
+
+            if (result > 0)
+                return true;
+            return false;
+        }
+        
+        [WebMethod]
+        public bool UpdateState(int userId, string content)
+        {
+            DBConnect dBConnect = new DBConnect();
+            SqlCommand myCommandObj = new SqlCommand();
+
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_UpdateState";
+            myCommandObj.Parameters.Clear();
+
+            SqlParameter inputUserId = new SqlParameter("@userId", userId);
+            SqlParameter inputContent = new SqlParameter("@content", content);
+
+            myCommandObj.Parameters.Add(inputUserId);
+            myCommandObj.Parameters.Add(inputContent);
+
+            int result = dBConnect.DoUpdateUsingCmdObj(myCommandObj);
+
+            if (result > 0)
+                return true;
+            return false;
+        }
     }
 }

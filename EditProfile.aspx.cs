@@ -17,21 +17,23 @@ namespace DogeBook
         Utility util = new Utility();
         AccountManagementService.AccountManagement proxy;
 
-        int userId;
         string path = "https://localhost:44386/api/User/";
+
+        int userId;
         User user;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            userId = int.Parse(Session["UserId"].ToString());
-
-            proxy = new AccountManagementService.AccountManagement();
-
-            LoadUserInformation();
+            if (!IsPostBack)
+            {
+                userId = int.Parse(Session["UserId"].ToString());
+                proxy = new AccountManagementService.AccountManagement();
+                LoadUserInformation();
+            }
         }
-
-        protected void LoadUserInformation()
+        protected User GetUser()
         {
+            userId = int.Parse(Session["UserId"].ToString());
             WebRequest request = WebRequest.Create(path + "GetUserById/" + userId);
             WebResponse response = request.GetResponse();
 
@@ -45,6 +47,12 @@ namespace DogeBook
             JavaScriptSerializer js = new JavaScriptSerializer();
 
             user = js.Deserialize<User>(data);
+            return user;
+        }
+
+        protected void LoadUserInformation()
+        {
+            user = GetUser();
 
             if (user != null)
             {
@@ -52,7 +60,6 @@ namespace DogeBook
                 LLastName.Text = user.LastName;
 
                 string imageUrl = util.ProfPicArrayToImage(userId);
-
                 if (imageUrl == null || imageUrl == "")
                 {
                     ImgProfilePic.ImageUrl = "https://news.bitcoin.com/wp-content/uploads/2021/01/cant-keep-a-good-dog-down-meme-token-dogecoin-spiked-over-500-this-year.jpg";
@@ -69,22 +76,6 @@ namespace DogeBook
             }
         }
 
-        //private string ProfPicArrayToImage(int userid)
-        //{
-            
-        //    byte[] bytes = util.GetProfilePicture(userid);
-        //    string imageUrl;
-        //    if (bytes == null)
-        //    {
-        //        imageUrl = null;
-        //    }
-        //    else
-        //    {
-        //        imageUrl = "data:image/jpg;base64," + Convert.ToBase64String(bytes);
-
-        //    }
-        //    return imageUrl;
-        //}
 
 
         protected void btnUploadProfilePicture_Click(object sender, EventArgs e)
@@ -140,31 +131,18 @@ namespace DogeBook
 
         protected void BtnUpdateProfile_Click(object sender, EventArgs e)
         {
-
             bool updated = true;
+            userId = int.Parse(Session["UserId"].ToString());
             // if there is a new picture, update picture
             if (fuProfilePic.HasFile)
             {
                 updated = updated && UpdateProfilePicture();
             }
-            // only update them if they were changed
-            string bio = TBBio.Text;
-            if (user.Bio !=  bio)
-            {
-                updated = updated && UpdateBio(userId, TBBio.Text);
-            }
-            if (user.Interests != TBInterests.Text)
-            {
-                updated = updated && UpdateInterests(userId, TBInterests.Text);
-            }
-            if (user.City != TBCity.Text)
-            {
-                updated = updated && UpdateCity(userId, TBCity.Text);
-            }
-            if (user.State != TBState.Text)
-            {
-                updated = updated && UpdateState(userId, TBState.Text);
-            }
+            updated = updated && UpdateBio(userId, TBBio.Text);
+            updated = updated && UpdateInterests(userId, TBInterests.Text);
+            updated = updated && UpdateCity(userId, TBCity.Text);
+            updated = updated && UpdateState(userId, TBState.Text);
+            
             // reload profile
             LoadUserInformation();
 
@@ -176,26 +154,50 @@ namespace DogeBook
                 LUpdateProfile.Text = "A problem occurred. Your profile was not updated.";
         }
 
-        protected bool UpdateProfile(int userId, string columnName, string content)
-        {
-            return proxy.UpdateProfile(userId, columnName, content);
-        }
 
         public bool UpdateBio(int userId, string content)
         {
-            return UpdateProfile(userId, "Bio", content);
+            proxy = new AccountManagementService.AccountManagement();
+            return proxy.UpdateBio(userId, content);
         }
         public bool UpdateInterests(int userId, string content)
         {
-            return UpdateProfile(userId, "Interests", content);
+            proxy = new AccountManagementService.AccountManagement();
+            return proxy.UpdateInterests(userId, content);
         }
         public bool UpdateCity(int userId, string content)
         {
-            return UpdateProfile(userId, "City", content);
+            proxy = new AccountManagementService.AccountManagement();
+            return proxy.UpdateCity(userId, content);
         }
         public bool UpdateState(int userId, string content)
         {
-            return UpdateProfile(userId, "State", content);
+            proxy = new AccountManagementService.AccountManagement();
+            return proxy.UpdateState(userId, content);
         }
+
+        protected void BtnBackToProfile_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Profile.aspx");
+        }
+
+
+
+        //private string ProfPicArrayToImage(int userid)
+        //{
+
+        //    byte[] bytes = util.GetProfilePicture(userid);
+        //    string imageUrl;
+        //    if (bytes == null)
+        //    {
+        //        imageUrl = null;
+        //    }
+        //    else
+        //    {
+        //        imageUrl = "data:image/jpg;base64," + Convert.ToBase64String(bytes);
+
+        //    }
+        //    return imageUrl;
+        //}
     }
 }

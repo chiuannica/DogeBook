@@ -16,6 +16,7 @@ namespace DogeBook
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int UserId { get; set; }
+        public string Description { get; set; }
 
         string path = "https://localhost:44386/api/User/";
 
@@ -29,6 +30,8 @@ namespace DogeBook
             ImgFriend.ImageUrl = ImageUrl;
             LFriendFName.Text = FirstName;
             LFriendLName.Text = LastName;
+            LDescription.Text = Description;
+
 
             // if no picture, load default pic
             if (ImgFriend.ImageUrl == null || ImgFriend.ImageUrl == "")

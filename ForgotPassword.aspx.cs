@@ -42,7 +42,6 @@ namespace DogeBook
         }
         protected void GetSecurityQuestions()
         {
-            // !!!!! Loading questions doesn't work
             // get the security questions
             string email = TBEmail.Text;
             int userId = proxy.GetUserIdFromEmail(email);
