@@ -69,12 +69,12 @@ namespace DogeBook
         protected global::System.Web.UI.WebControls.Button btnPost;
 
         /// <summary>
-        /// pc1 control.
+        /// timeline control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DogeBook.PostControl pc1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl timeline;
     }
 }
