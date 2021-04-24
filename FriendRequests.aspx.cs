@@ -44,6 +44,7 @@ namespace DogeBook
 
         protected void LoadFriendRequests()
         {
+            RFriendRequests.Visible = true;
             string extension = "GetFriendRequests/";
             WebRequest request = WebRequest.Create(path + extension + userId);
             WebResponse response = request.GetResponse();
@@ -62,12 +63,10 @@ namespace DogeBook
 
             RFriendRequests.DataSource = friendRequests;
             RFriendRequests.DataBind();
-
         }
 
         protected void RFriendRequests_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-
             // get the person's id
             int rowIndex = e.Item.ItemIndex;
             Label LUserID = (Label)RFriendRequests.Items[rowIndex].FindControl("LUserId");
@@ -77,8 +76,6 @@ namespace DogeBook
             Label LLastName = (Label)RFriendRequests.Items[rowIndex].FindControl("LLastName");
 
             String otherPersonName = LFirstName.Text + " " + LLastName.Text;
-
-
             
             // if accept
             string extension = "";

@@ -47,7 +47,13 @@ namespace DogeBook.AccountManagementService {
         
         private System.Threading.SendOrPostCallback GetSecurityQuestionsOperationCompleted;
         
-        private System.Threading.SendOrPostCallback UpdateProfileOperationCompleted;
+        private System.Threading.SendOrPostCallback UpdateBioOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdateInterestsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdateCityOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdateStateOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -115,7 +121,16 @@ namespace DogeBook.AccountManagementService {
         public event GetSecurityQuestionsCompletedEventHandler GetSecurityQuestionsCompleted;
         
         /// <remarks/>
-        public event UpdateProfileCompletedEventHandler UpdateProfileCompleted;
+        public event UpdateBioCompletedEventHandler UpdateBioCompleted;
+        
+        /// <remarks/>
+        public event UpdateInterestsCompletedEventHandler UpdateInterestsCompleted;
+        
+        /// <remarks/>
+        public event UpdateCityCompletedEventHandler UpdateCityCompleted;
+        
+        /// <remarks/>
+        public event UpdateStateCompletedEventHandler UpdateStateCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -391,35 +406,126 @@ namespace DogeBook.AccountManagementService {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateProfile", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool UpdateProfile(int userId, string columnName, string content) {
-            object[] results = this.Invoke("UpdateProfile", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateBio", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool UpdateBio(int userId, string content) {
+            object[] results = this.Invoke("UpdateBio", new object[] {
                         userId,
-                        columnName,
                         content});
             return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void UpdateProfileAsync(int userId, string columnName, string content) {
-            this.UpdateProfileAsync(userId, columnName, content, null);
+        public void UpdateBioAsync(int userId, string content) {
+            this.UpdateBioAsync(userId, content, null);
         }
         
         /// <remarks/>
-        public void UpdateProfileAsync(int userId, string columnName, string content, object userState) {
-            if ((this.UpdateProfileOperationCompleted == null)) {
-                this.UpdateProfileOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateProfileOperationCompleted);
+        public void UpdateBioAsync(int userId, string content, object userState) {
+            if ((this.UpdateBioOperationCompleted == null)) {
+                this.UpdateBioOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateBioOperationCompleted);
             }
-            this.InvokeAsync("UpdateProfile", new object[] {
+            this.InvokeAsync("UpdateBio", new object[] {
                         userId,
-                        columnName,
-                        content}, this.UpdateProfileOperationCompleted, userState);
+                        content}, this.UpdateBioOperationCompleted, userState);
         }
         
-        private void OnUpdateProfileOperationCompleted(object arg) {
-            if ((this.UpdateProfileCompleted != null)) {
+        private void OnUpdateBioOperationCompleted(object arg) {
+            if ((this.UpdateBioCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.UpdateProfileCompleted(this, new UpdateProfileCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.UpdateBioCompleted(this, new UpdateBioCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateInterests", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool UpdateInterests(int userId, string content) {
+            object[] results = this.Invoke("UpdateInterests", new object[] {
+                        userId,
+                        content});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UpdateInterestsAsync(int userId, string content) {
+            this.UpdateInterestsAsync(userId, content, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateInterestsAsync(int userId, string content, object userState) {
+            if ((this.UpdateInterestsOperationCompleted == null)) {
+                this.UpdateInterestsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateInterestsOperationCompleted);
+            }
+            this.InvokeAsync("UpdateInterests", new object[] {
+                        userId,
+                        content}, this.UpdateInterestsOperationCompleted, userState);
+        }
+        
+        private void OnUpdateInterestsOperationCompleted(object arg) {
+            if ((this.UpdateInterestsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateInterestsCompleted(this, new UpdateInterestsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateCity", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool UpdateCity(int userId, string content) {
+            object[] results = this.Invoke("UpdateCity", new object[] {
+                        userId,
+                        content});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UpdateCityAsync(int userId, string content) {
+            this.UpdateCityAsync(userId, content, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateCityAsync(int userId, string content, object userState) {
+            if ((this.UpdateCityOperationCompleted == null)) {
+                this.UpdateCityOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateCityOperationCompleted);
+            }
+            this.InvokeAsync("UpdateCity", new object[] {
+                        userId,
+                        content}, this.UpdateCityOperationCompleted, userState);
+        }
+        
+        private void OnUpdateCityOperationCompleted(object arg) {
+            if ((this.UpdateCityCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateCityCompleted(this, new UpdateCityCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateState", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool UpdateState(int userId, string content) {
+            object[] results = this.Invoke("UpdateState", new object[] {
+                        userId,
+                        content});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UpdateStateAsync(int userId, string content) {
+            this.UpdateStateAsync(userId, content, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateStateAsync(int userId, string content, object userState) {
+            if ((this.UpdateStateOperationCompleted == null)) {
+                this.UpdateStateOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateStateOperationCompleted);
+            }
+            this.InvokeAsync("UpdateState", new object[] {
+                        userId,
+                        content}, this.UpdateStateOperationCompleted, userState);
+        }
+        
+        private void OnUpdateStateOperationCompleted(object arg) {
+            if ((this.UpdateStateCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateStateCompleted(this, new UpdateStateCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -735,17 +841,95 @@ namespace DogeBook.AccountManagementService {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void UpdateProfileCompletedEventHandler(object sender, UpdateProfileCompletedEventArgs e);
+    public delegate void UpdateBioCompletedEventHandler(object sender, UpdateBioCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class UpdateProfileCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class UpdateBioCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal UpdateProfileCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal UpdateBioCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void UpdateInterestsCompletedEventHandler(object sender, UpdateInterestsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UpdateInterestsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UpdateInterestsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void UpdateCityCompletedEventHandler(object sender, UpdateCityCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UpdateCityCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UpdateCityCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void UpdateStateCompletedEventHandler(object sender, UpdateStateCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UpdateStateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UpdateStateCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

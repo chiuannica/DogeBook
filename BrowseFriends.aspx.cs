@@ -195,15 +195,39 @@ namespace DogeBook
 
             for (int i = 0; i < friends.Length; i++)
             {
-                // exclude if self 
-
-                if (friends[i].UserId != userId)
+                // if self, load self card
+                if (friends[i].UserId == userId)
                 {
+                    SelfCard ctrl = (SelfCard)LoadControl("SelfCard.ascx");
 
+                    ctrl.FirstName = friends[i].FirstName.ToString();
+                    ctrl.LastName = friends[i].LastName.ToString();
 
+                    int friendId = int.Parse(friends[i].UserId.ToString());
+                    ctrl.UserId = friendId;
+
+                    // load default pic if there is no profile pic
+                    if (util.ProfPicArrayToImage((int)Session["userId"]) != "")
+                    {
+                        ctrl.ImageUrl = util.ProfPicArrayToImage(friendId);
+                    }
+                    else
+                    {
+                        ctrl.ImageUrl = "https://www.telegraph.co.uk/content/dam/technology/2021/01/28/Screenshot-2021-01-28-at-13-20-35_trans_NvBQzQNjv4BqEGKV9LrAqQtLUTT1Z0gJNRFI0o2dlzyIcL3Nvd0Rwgc.png";
+                    }
+
+                    // bind data to ctrl
+                    ctrl.DataBind();
+
+                    // add to panel
+                    SearchPanel.Controls.Add(ctrl);
+                }
+                else // not self
+                {
                     // check if friend and load friend card if theyre friends
                     bool areFriends = AreFriends(friends[i].UserId);
 
+                    // if not friends, load the not friends card
                     if (!areFriends)
                     {
                         NonFriendCard ctrl = (NonFriendCard)LoadControl("NonFriendCard.ascx");
@@ -253,15 +277,11 @@ namespace DogeBook
 
                         // add to panel
                         SearchPanel.Controls.Add(ctrl);
-
                     }
-
-
                 }
             }
             LSearchTitle.Text = "Search results for \"" + searchTerm + "\""; 
             LSearchEmpty.Text = friends.Length.ToString();
-
         }
 
 

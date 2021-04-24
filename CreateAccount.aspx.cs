@@ -81,7 +81,7 @@ namespace DogeBook
             string toEmail = TBEmail.Text;
             string fromEmail = "tui30639@temple.edu";
             string subject = "Verify your DogeBook Account";
-            string body = "test go to https://google.com";
+            string body = "Go to ____/VerifyAccount.aspx";
             string cc = "";
             string bcc = "";
 

@@ -132,6 +132,7 @@ namespace DogeBook
         protected void BtnUpdateProfile_Click(object sender, EventArgs e)
         {
             bool updated = true;
+            userId = int.Parse(Session["UserId"].ToString());
             // if there is a new picture, update picture
             if (fuProfilePic.HasFile)
             {
@@ -153,27 +154,31 @@ namespace DogeBook
                 LUpdateProfile.Text = "A problem occurred. Your profile was not updated.";
         }
 
-        protected bool UpdateProfile(int userId, string columnName, string content)
-        {
-            proxy = new AccountManagementService.AccountManagement();
-            return proxy.UpdateProfile(userId, columnName, content);
-        }
 
         public bool UpdateBio(int userId, string content)
         {
-            return UpdateProfile(userId, "Bio", content);
+            proxy = new AccountManagementService.AccountManagement();
+            return proxy.UpdateBio(userId, content);
         }
         public bool UpdateInterests(int userId, string content)
         {
-            return UpdateProfile(userId, "Interests", content);
+            proxy = new AccountManagementService.AccountManagement();
+            return proxy.UpdateInterests(userId, content);
         }
         public bool UpdateCity(int userId, string content)
         {
-            return UpdateProfile(userId, "City", content);
+            proxy = new AccountManagementService.AccountManagement();
+            return proxy.UpdateCity(userId, content);
         }
         public bool UpdateState(int userId, string content)
         {
-            return UpdateProfile(userId, "State", content);
+            proxy = new AccountManagementService.AccountManagement();
+            return proxy.UpdateState(userId, content);
+        }
+
+        protected void BtnBackToProfile_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Profile.aspx");
         }
 
 

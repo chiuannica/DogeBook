@@ -257,21 +257,42 @@ namespace AccountManagementSOAPApi
          */
         // gets called by other methods
         [WebMethod]
-        public bool UpdateProfile(int userId, string columnName, string content)
+        public bool UpdateBio(int userId, string content)
         {
             DBConnect dBConnect = new DBConnect();
             SqlCommand myCommandObj = new SqlCommand();
 
             myCommandObj.CommandType = CommandType.StoredProcedure;
-            myCommandObj.CommandText = "TP_UpdateProfile";
+            myCommandObj.CommandText = "TP_UpdateBio";
             myCommandObj.Parameters.Clear();
 
             SqlParameter inputUserId = new SqlParameter("@userId", userId);
-            SqlParameter inputColumnName = new SqlParameter("@columnName", columnName);
             SqlParameter inputContent = new SqlParameter("@content", content);
 
             myCommandObj.Parameters.Add(inputUserId);
-            myCommandObj.Parameters.Add(inputColumnName);
+            myCommandObj.Parameters.Add(inputContent);
+
+            int result = dBConnect.DoUpdateUsingCmdObj(myCommandObj);
+
+            if (result > 0)
+                return true;
+            return false;
+        }
+
+        [WebMethod]
+        public bool UpdateInterests(int userId, string content)
+        {
+            DBConnect dBConnect = new DBConnect();
+            SqlCommand myCommandObj = new SqlCommand();
+
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_UpdateInterests";
+            myCommandObj.Parameters.Clear();
+
+            SqlParameter inputUserId = new SqlParameter("@userId", userId);
+            SqlParameter inputContent = new SqlParameter("@content", content);
+
+            myCommandObj.Parameters.Add(inputUserId);
             myCommandObj.Parameters.Add(inputContent);
 
             int result = dBConnect.DoUpdateUsingCmdObj(myCommandObj);
@@ -281,5 +302,50 @@ namespace AccountManagementSOAPApi
             return false;
         }
         
+        [WebMethod]
+        public bool UpdateCity(int userId, string content)
+        {
+            DBConnect dBConnect = new DBConnect();
+            SqlCommand myCommandObj = new SqlCommand();
+
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_UpdateCity";
+            myCommandObj.Parameters.Clear();
+
+            SqlParameter inputUserId = new SqlParameter("@userId", userId);
+            SqlParameter inputContent = new SqlParameter("@content", content);
+
+            myCommandObj.Parameters.Add(inputUserId);
+            myCommandObj.Parameters.Add(inputContent);
+
+            int result = dBConnect.DoUpdateUsingCmdObj(myCommandObj);
+
+            if (result > 0)
+                return true;
+            return false;
+        }
+        
+        [WebMethod]
+        public bool UpdateState(int userId, string content)
+        {
+            DBConnect dBConnect = new DBConnect();
+            SqlCommand myCommandObj = new SqlCommand();
+
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_UpdateState";
+            myCommandObj.Parameters.Clear();
+
+            SqlParameter inputUserId = new SqlParameter("@userId", userId);
+            SqlParameter inputContent = new SqlParameter("@content", content);
+
+            myCommandObj.Parameters.Add(inputUserId);
+            myCommandObj.Parameters.Add(inputContent);
+
+            int result = dBConnect.DoUpdateUsingCmdObj(myCommandObj);
+
+            if (result > 0)
+                return true;
+            return false;
+        }
     }
 }

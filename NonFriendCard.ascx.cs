@@ -40,8 +40,6 @@ namespace DogeBook
 
         protected void BtnAddFriend_Click(object sender, EventArgs e)
         {
-
-
             // this is the user that is logged in
             int userId = (int)Session["UserId"];
             // the userId of the friend card, which is the friend's user id

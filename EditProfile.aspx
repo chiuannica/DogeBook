@@ -83,6 +83,10 @@
                     <div class="col-md-8 col-sm-12 my-3">
                         <asp:Button ID="BtnUpdateProfile" runat="server" CssClass="btn btn-primary" Text="Update Information" OnClick="BtnUpdateProfile_Click" />
                     </div>
+
+                    <div class="col-md-8 col-sm-12 my-3">
+                        <asp:Button ID="BtnBackToProfile" runat="server" CssClass="btn btn-outline-primary" Text="Go Back To Profile" OnClick="BtnBackToProfile_Click"/>
+                    </div>
                     
                     <div class="col-md-8 col-sm-12 my-3">
                         <asp:Label ID="LUpdateProfile" CssClass="alert alert-primary" runat="server" Text="" Visible="False"></asp:Label>
