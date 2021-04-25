@@ -56,26 +56,36 @@
                     <div class="col-md-8 col-sm-12 my-3">
                         <h4>Biography</h4>
                         <p>
-                            <asp:TextBox ID="TBBio" runat="server" TextMode="MultiLine" UpdateSourceTrigger="PropertyChanged"></asp:TextBox>
+                            <asp:TextBox ID="TBBio" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
                         </p>
                     </div>
 
                     <div class="col-md-8 col-sm-12 my-3">
                         <h4>Interests</h4>
                         <p>
-                            <asp:TextBox ID="TBInterests" runat="server" TextMode="MultiLine"></asp:TextBox>
+                            <asp:TextBox ID="TBInterests" runat="server"  CssClass="form-control"  TextMode="MultiLine"></asp:TextBox>
                         </p>
                     </div>
             
-                    <div class="col-md-8 col-sm-12 my-3">
-                        <asp:TextBox ID="TBCity" runat="server"></asp:TextBox>
+                    <div class="col-md-8 col-sm-12 my-3 input-group ">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">City</span>
+                        </div>
+                        <asp:TextBox ID="TBCity"  runat="server" CssClass="form-control" ></asp:TextBox>
                     </div>
 
-                    <div class="col-md-8 col-sm-12 my-3">
-                        <asp:TextBox ID="TBState" runat="server"></asp:TextBox>
+                    <div class="col-md-8 col-sm-12 my-3 input-group ">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">State</span>
+                        </div>
+                        <asp:TextBox ID="TBState" runat="server" CssClass="form-control" ></asp:TextBox>
                     </div>
                     <div class="col-md-8 col-sm-12 my-3">
                         <asp:Button ID="BtnUpdateProfile" runat="server" CssClass="btn btn-primary" Text="Update Information" OnClick="BtnUpdateProfile_Click" />
+                    </div>
+
+                    <div class="col-md-8 col-sm-12 my-3">
+                        <asp:Button ID="BtnBackToProfile" runat="server" CssClass="btn btn-outline-primary" Text="Go Back To Profile" OnClick="BtnBackToProfile_Click"/>
                     </div>
                     
                     <div class="col-md-8 col-sm-12 my-3">

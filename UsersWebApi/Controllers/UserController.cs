@@ -24,11 +24,20 @@ namespace UsersWebAPI.Controllers
         [HttpGet("GetUserById/{userId}")]
         public User GetUserById(int userId)
         {
-            DBConnect objDB = new DBConnect();
+            DBConnect dBConnect = new DBConnect();
+            SqlCommand myCommandObj = new SqlCommand();
 
-            DataSet ds = objDB.GetDataSet("SELECT * FROM TP_Users WHERE UserId=" + userId);
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_GetUserByUserId";
+            myCommandObj.Parameters.Clear();
 
+            SqlParameter inputUserId = new SqlParameter("@userId", userId);
+            myCommandObj.Parameters.Add(inputUserId);
+
+            DataSet ds = dBConnect.GetDataSetUsingCmdObj(myCommandObj);
+            
             User user = new User();
+
             if (ds.Tables[0].Rows.Count != 0)
             {
                 DataRow record = ds.Tables[0].Rows[0];
@@ -55,18 +64,21 @@ namespace UsersWebAPI.Controllers
             {
                 return users;
             }
-
+            
             searchTerm = searchTerm.ToLower();
 
-            DBConnect objDB = new DBConnect();
+            DBConnect dBConnect = new DBConnect();
+            SqlCommand myCommandObj = new SqlCommand();
 
-            string strSQL = "SELECT * FROM TP_Users " +
-                            "WHERE LOWER(FirstName) LIKE '" + searchTerm + "' " +
-                                "OR LOWER(LastName) LIKE '" + searchTerm + "' " +
-                                "OR LOWER(City) LIKE '" + searchTerm + "' " +
-                                "OR LOWER(State) LIKE '" + searchTerm + "' ";
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_SearchForUser";
+            myCommandObj.Parameters.Clear();
 
-            DataSet ds = objDB.GetDataSet(strSQL);
+            SqlParameter inputSearchTerm = new SqlParameter("@searchTerm", searchTerm);
+            inputSearchTerm.Direction = ParameterDirection.Input;
+            myCommandObj.Parameters.Add(inputSearchTerm);
+
+            DataSet ds = dBConnect.GetDataSetUsingCmdObj(myCommandObj);
 
             if (ds.Tables[0].Rows.Count != 0)
             {
@@ -117,38 +129,21 @@ namespace UsersWebAPI.Controllers
         [HttpGet("AreFriends/{userId}/{otherId}")]
         public bool AreFriends(int userId, int otherId)
         {
-            DBConnect objDB = new DBConnect();
 
-            string sqlString = "" +
-                "SELECT rec.FriendRequestId " +
-                "FROM TP_Users f1 INNER JOIN TP_FriendRequests rec " +
-                    "ON f1.UserId=rec.Friend1Id " +
-                    "INNER JOIN TP_Users f2 " +
-                    "ON rec.Friend2Id=f2.UserId " +
-                "WHERE f1.UserId=" + userId + " " +
-                "AND f2.UserId=" + otherId + " " +
-                "AND Accept=1";
+            DBConnect dBConnect = new DBConnect();
+            SqlCommand myCommandObj = new SqlCommand();
 
-            DataSet ds = objDB.GetDataSet(sqlString);
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_AreFriends";
+            myCommandObj.Parameters.Clear();
 
-            if (ds.Tables[0].Rows.Count != 0)
-            {
-                return true;
-            }
+            SqlParameter inputUserId = new SqlParameter("@userId", userId);
+            myCommandObj.Parameters.Add(inputUserId);
 
-            // try again with the ids swapped arround
-            sqlString = "" +
-                "SELECT rec.FriendRequestId " +
-                "FROM TP_Users f1 INNER JOIN TP_FriendRequests rec " +
-                    "ON f1.UserId=rec.Friend1Id " +
-                    "INNER JOIN TP_Users f2 " +
-                    "ON rec.Friend2Id=f2.UserId " +
-                "WHERE f1.UserId=" + otherId + " " +
-                "AND f2.UserId=" + userId + " " +
-                "AND Accept=1";
+            SqlParameter inputOtherId = new SqlParameter("@otherId", otherId);
+            myCommandObj.Parameters.Add(inputOtherId);
 
-            ds = objDB.GetDataSet(sqlString);
-
+            DataSet ds = dBConnect.GetDataSetUsingCmdObj(myCommandObj);
             if (ds.Tables[0].Rows.Count != 0)
             {
                 return true;
@@ -161,53 +156,20 @@ namespace UsersWebAPI.Controllers
         [HttpGet("GetFriendsByUserId/{userId}")]
         public List<User> GetFriendsByUserId(int userId)
         {
-            DBConnect objDB = new DBConnect();
-            // get the friend 2 if the FriendReq has them as friend 1
+            DBConnect dBConnect = new DBConnect();
+            SqlCommand myCommandObj = new SqlCommand();
 
-            string sqlString = "" +
-                "SELECT f2.UserId, f2.FirstName, f2.LastName, f2.Email, " +
-                    "f2.ProfilePicture, f2.Bio, f2.City, " +
-                    "f2.State, f2.Interests, f2.Verified " +
-                "FROM TP_Users f1 INNER JOIN TP_FriendRequests rec " +
-                    "ON f1.UserId=rec.Friend1Id " +
-                    "INNER JOIN TP_Users f2 " +
-                    "ON rec.Friend2Id=f2.UserId " +
-                "WHERE f1.UserId=" + userId + " " +
-                "AND Accept=1";
-            DataSet ds = objDB.GetDataSet(sqlString);
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_GetFriendsFromUserId";
+            myCommandObj.Parameters.Clear();
+
+            SqlParameter inputUserId = new SqlParameter("@userId", userId);
+            myCommandObj.Parameters.Add(inputUserId);
+
+            DataSet ds = dBConnect.GetDataSetUsingCmdObj(myCommandObj);
+
             List<User> friends = new List<User>();
 
-            if (ds.Tables[0].Rows.Count != 0)
-            {
-                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                {
-                    User user = new User();
-                    DataRow record = ds.Tables[0].Rows[i];
-                    user.UserId = int.Parse(record["UserId"].ToString());
-                    user.FirstName = record["FirstName"].ToString();
-                    user.LastName = record["LastName"].ToString();
-                    user.Email = record["Email"].ToString();
-                    user.Bio = record["Bio"].ToString();
-                    user.City = record["City"].ToString();
-                    user.State = record["State"].ToString();
-                    user.Interests = record["Interests"].ToString();
-                    user.Verified = record["Verified"].ToString();
-                    friends.Add(user);
-                }
-            }
-
-            // get the friend 1 if the FriendReq has them as friend 2
-            sqlString = "SELECT f1.UserId, f1.FirstName, f1.LastName, f1.Email, " +
-                    "f1.ProfilePicture, f1.Bio, f1.City, " +
-                    "f1.State, f1.Interests, f1.Verified " +
-                "FROM TP_Users f1 INNER JOIN TP_FriendRequests rec " +
-                    "ON f1.UserId=rec.Friend1Id " +
-                    "INNER JOIN TP_Users f2 " +
-                    "ON rec.Friend2Id=f2.UserId " +
-                "WHERE f2.UserId=" + userId + " " +
-                "AND Accept=1";
-
-            ds = objDB.GetDataSet(sqlString);
             if (ds.Tables[0].Rows.Count != 0)
             {
                 for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
@@ -252,7 +214,6 @@ namespace UsersWebAPI.Controllers
                         friendsOfFriend[j].Bio = "Friend of " + friends[i].FirstName + " " + friends[i].LastName;
                         friendsOfFriends.Add(friendsOfFriend[j]);
                     }
-
                 }
             }
 
@@ -314,13 +275,15 @@ namespace UsersWebAPI.Controllers
         [HttpGet("GetAllUsers")]
         public List<User> GetAllUser()
         {
-            // !! change to only get if verified
-            DBConnect objDB = new DBConnect();
+            DBConnect dBConnect = new DBConnect();
+            SqlCommand myCommandObj = new SqlCommand();
 
-            string sqlString = "" +
-                "SELECT * " +
-                "FROM TP_Users ";
-            DataSet ds = objDB.GetDataSet(sqlString);
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_GetAllUsers";
+            myCommandObj.Parameters.Clear();
+
+            DataSet ds = dBConnect.GetDataSetUsingCmdObj(myCommandObj);
+
             List<User> users = new List<User>();
 
             if (ds.Tables[0].Rows.Count != 0)
@@ -350,12 +313,15 @@ namespace UsersWebAPI.Controllers
         [HttpGet("GetNonFriendsByUserId/{userId}")]
         public List<User> GetNonFriends(int userId)
         {
-            DBConnect objDB = new DBConnect();
+            DBConnect dBConnect = new DBConnect();
+            SqlCommand myCommandObj = new SqlCommand();
 
-            string sqlString = "" +
-                "SELECT * " +
-                "FROM TP_Users ";
-            DataSet ds = objDB.GetDataSet(sqlString);
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_GetAllUsers";
+            myCommandObj.Parameters.Clear();
+
+            DataSet ds = dBConnect.GetDataSetUsingCmdObj(myCommandObj);
+
             List<User> users = new List<User>();
 
             if (ds.Tables[0].Rows.Count != 0)
@@ -392,21 +358,18 @@ namespace UsersWebAPI.Controllers
         [HttpGet("GetFriendRequestsByUserId/{userId}")]
         public List<User> GetFriendRequestsByUserId(int userId)
         {
-            DBConnect objDB = new DBConnect();
+            DBConnect dBConnect = new DBConnect();
+            SqlCommand myCommandObj = new SqlCommand();
 
-            // accept =0 because pending
-            // the current user would be the receiver
-            string sqlString = "" +
-                "SELECT f1.UserId, f1.FirstName, f1.LastName, f1.Email, " +
-                    "f1.ProfilePicture, f1.Bio, f1.City, " +
-                    "f1.State, f1.Interests, f1.Verified " +
-                "FROM TP_Users f1 INNER JOIN TP_FriendRequests rec " +
-                    "ON f1.UserId=rec.Friend1Id " +
-                    "INNER JOIN TP_Users f2 " +
-                    "ON rec.Friend2Id=f2.UserId " +
-                "WHERE f2.UserId=" + userId + " " +
-                "AND rec.Accept=0";
-            DataSet ds = objDB.GetDataSet(sqlString);
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_GetFriendRequestsByUserId";
+            myCommandObj.Parameters.Clear();
+
+            SqlParameter inputUserId = new SqlParameter("@userId", userId);
+            myCommandObj.Parameters.Add(inputUserId);
+
+            DataSet ds = dBConnect.GetDataSetUsingCmdObj(myCommandObj);
+
             List<User> friendRequests = new List<User>();
 
             if (ds.Tables[0].Rows.Count != 0)
@@ -436,9 +399,18 @@ namespace UsersWebAPI.Controllers
         {
             // get all the posts by user id
             // change return to ArrayList of Posts 
-            DBConnect objDB = new DBConnect();
-            string sqlString = "SELECT * FROM TP_Posts WHERE UserId=" + userId;
-            DataSet ds = objDB.GetDataSet(sqlString);
+            
+            DBConnect dBConnect = new DBConnect();
+            SqlCommand myCommandObj = new SqlCommand();
+
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_GetPostsFromUserId";
+            myCommandObj.Parameters.Clear();
+
+            SqlParameter inputUserId = new SqlParameter("@userId", userId);
+            myCommandObj.Parameters.Add(inputUserId);
+
+            DataSet ds = dBConnect.GetDataSetUsingCmdObj(myCommandObj);
 
             // List<Post> posts = new List<Post>();
 
@@ -459,62 +431,53 @@ namespace UsersWebAPI.Controllers
             }
             return "temp posts " + tempString;
         }
+        // check if there is already a friend request sent 
+        [HttpGet("GetFriendRequest/{receiverId}/{senderId}")]
+        public bool GetFriendRequest(int receiverId, int senderId)
+        {
+
+            DBConnect dBConnect = new DBConnect();
+            SqlCommand myCommandObj = new SqlCommand();
+
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_GetFriendRequest";
+            myCommandObj.Parameters.Clear();
+
+            SqlParameter inputSenderId = new SqlParameter("@senderId", senderId);
+            SqlParameter inputReceiverId = new SqlParameter("@receiverId", receiverId);
+
+            myCommandObj.Parameters.Add(inputSenderId);
+            myCommandObj.Parameters.Add(inputReceiverId);
+
+            DataSet ds = dBConnect.GetDataSetUsingCmdObj(myCommandObj);
+
+            if (ds.Tables[0].Rows.Count > 0)
+                return true;
+            return false;
+        }
+
+
 
         [HttpPost("AddFriend")]
         public bool AddFriend([FromBody] FriendRequest friendRequest)
         {
             // add new request record
             // accept = 0 because pending
-            DBConnect objDB = new DBConnect();
-            string strSQL = "INSERT INTO TP_FriendRequests(Friend1Id, Friend2Id, Accept) " +
-                            "VALUES(" + friendRequest.SenderId + ", " + friendRequest.ReceiverId + ", 0)";
-            int result = objDB.DoUpdate(strSQL);
 
-            if (result > 0)
-                return true;
-            return false;
-        }
+            DBConnect dBConnect = new DBConnect();
+            SqlCommand myCommandObj = new SqlCommand();
 
-        [HttpPut("DenyFriend/{friendRequestId}")]
-        public bool DenyFriend(int friendRequestId)
-        {
-            // change accept to -1
-            DBConnect objDB = new DBConnect();
-            string strSQL = "UPDATE TP_FriendRequests " +
-                            "SET Accept=-1 " +
-                            "WHERE FriendRequestId=" + friendRequestId;
-            int result = objDB.DoUpdate(strSQL);
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_AddFriend";
+            myCommandObj.Parameters.Clear();
 
-            if (result > 0)
-                return true;
-            return false;
-        }
+            SqlParameter inputSenderId = new SqlParameter("@senderId", friendRequest.SenderId);
+            SqlParameter inputReceiverId = new SqlParameter("@receiverId", friendRequest.ReceiverId);
 
-        // change friend request to accepted
-        [HttpPut("AcceptFriend/{friendRequestId}")]
-        public bool AcceptFriend(int friendRequestId)
-        {
-            // change accept to 1
-            DBConnect objDB = new DBConnect();
-            string strSQL = "UPDATE TP_FriendRequests " +
-                            "SET Accept=1 " +
-                            "WHERE FriendRequestId=" + friendRequestId;
-            int result = objDB.DoUpdate(strSQL);
+            myCommandObj.Parameters.Add(inputSenderId);
+            myCommandObj.Parameters.Add(inputReceiverId);
 
-            if (result > 0)
-                return true;
-            return false;
-        }
-
-        [HttpDelete("DeleteFriend/{friendRequestId}")]
-        public bool DeleteFriend(int friendRequestId)
-        {
-            // delete friendrequest record
-            DBConnect objDB = new DBConnect();
-            string strSQL = "DELETE FROM TP_FriendRequests " +
-                            "WHERE FriendRequestId=" + friendRequestId + " " +
-                            "AND Accept=1 ";
-            int result = objDB.DoUpdate(strSQL);
+            int result = dBConnect.DoUpdateUsingCmdObj(myCommandObj);
 
             if (result > 0)
                 return true;
@@ -525,14 +488,20 @@ namespace UsersWebAPI.Controllers
         [HttpPut("DenyFriend/{receiverId}/{senderId}")]
         public bool DenyFriendWithUserIds(int receiverId, int senderId)
         {
-            // change accept to -1
-            DBConnect objDB = new DBConnect();
-            string strSQL = "UPDATE TP_FriendRequests " +
-                            "SET Accept=-1 " +
-                            "WHERE Friend1Id=" + senderId + " " +
-                            "AND Friend2Id=" + receiverId;
+            DBConnect dBConnect = new DBConnect();
+            SqlCommand myCommandObj = new SqlCommand();
 
-            int result = objDB.DoUpdate(strSQL);
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_DenyFriendWithUserIds";
+            myCommandObj.Parameters.Clear();
+
+            SqlParameter inputSenderId = new SqlParameter("@senderId", senderId);
+            SqlParameter inputReceiverId = new SqlParameter("@receiverId", receiverId);
+
+            myCommandObj.Parameters.Add(inputSenderId);
+            myCommandObj.Parameters.Add(inputReceiverId);
+
+            int result = dBConnect.DoUpdateUsingCmdObj(myCommandObj);
 
             if (result > 0)
                 return true;
@@ -543,14 +512,41 @@ namespace UsersWebAPI.Controllers
         [HttpPut("AcceptFriend/{receiverId}/{senderId}")]
         public bool AcceptFriendWithUserIds(int receiverId, int senderId)
         {
-            // change accept to 1
-            DBConnect objDB = new DBConnect();
-            string strSQL = "UPDATE TP_FriendRequests " +
-                            "SET Accept=1 " +
-                            "WHERE Friend1Id=" + senderId + " " +
-                            "AND Friend2Id=" + receiverId;
+            DBConnect dBConnect = new DBConnect();
+            SqlCommand myCommandObj = new SqlCommand();
 
-            int result = objDB.DoUpdate(strSQL);
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_AcceptFriendWithUserIds";
+            myCommandObj.Parameters.Clear();
+
+            SqlParameter inputSenderId = new SqlParameter("@senderId", senderId);
+            SqlParameter inputReceiverId = new SqlParameter("@receiverId", receiverId);
+
+            myCommandObj.Parameters.Add(inputSenderId);
+            myCommandObj.Parameters.Add(inputReceiverId);
+
+            int result = dBConnect.DoUpdateUsingCmdObj(myCommandObj);
+
+            if (result > 0)
+                return true;
+            return false;
+        }
+
+        [HttpDelete("DeleteFriend/{friendRequestId}")]
+        public bool DeleteFriend(int friendRequestId)
+        {
+            DBConnect dBConnect = new DBConnect();
+            SqlCommand myCommandObj = new SqlCommand();
+
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_DeleteFriendRequestWithFriendRequestId";
+            myCommandObj.Parameters.Clear();
+
+            SqlParameter inputFriendRequestId = new SqlParameter("@friendRequestId", friendRequestId);
+
+            myCommandObj.Parameters.Add(inputFriendRequestId);
+
+            int result = dBConnect.DoUpdateUsingCmdObj(myCommandObj);
 
             if (result > 0)
                 return true;
@@ -561,14 +557,20 @@ namespace UsersWebAPI.Controllers
         public bool DeleteFriendWithUserIds(int userId, int friendId)
         {
 
-            // delete this friend record
-            DBConnect objDB = new DBConnect();
-            string strSQL = "SELECT FriendRequestId " +
-                            "FROM TP_FriendRequests " +
-                            "WHERE Friend1Id=" + friendId + " " +
-                            "AND Friend2Id=" + userId;
+            DBConnect dBConnect = new DBConnect();
+            SqlCommand myCommandObj = new SqlCommand();
 
-            DataSet ds = objDB.GetDataSet(strSQL);
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_DeleteFriendWithUserIds";
+            myCommandObj.Parameters.Clear();
+            
+            SqlParameter inputUserId1 = new SqlParameter("@userId1", friendId);
+            SqlParameter inputUserId2 = new SqlParameter("@userId2", userId);
+
+            myCommandObj.Parameters.Add(inputUserId1);
+            myCommandObj.Parameters.Add(inputUserId2);
+
+            DataSet ds = dBConnect.GetDataSetUsingCmdObj(myCommandObj);
 
             if (ds.Tables[0].Rows.Count != 0)
             {
@@ -581,13 +583,19 @@ namespace UsersWebAPI.Controllers
                     return true;
             }
 
-            // attempt again, swap around friendIds.
-            strSQL = "SELECT FriendRequestId " +
-                            "FROM TP_FriendRequests " +
-                            "WHERE Friend1Id=" + userId + " " +
-                            "AND Friend2Id=" + friendId;
+            myCommandObj = new SqlCommand();
 
-            ds = objDB.GetDataSet(strSQL);
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_DeleteFriendWithUserIds";
+            myCommandObj.Parameters.Clear();
+
+            inputUserId1 = new SqlParameter("@userId1", userId);
+            inputUserId2 = new SqlParameter("@userId2", friendId);
+
+            myCommandObj.Parameters.Add(inputUserId1);
+            myCommandObj.Parameters.Add(inputUserId2);
+
+            ds = dBConnect.GetDataSetUsingCmdObj(myCommandObj);
 
             if (ds.Tables[0].Rows.Count != 0)
             {
@@ -603,11 +611,6 @@ namespace UsersWebAPI.Controllers
         }
         
     }
-
-
-
-
-
 
 
 }

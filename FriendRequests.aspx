@@ -31,6 +31,7 @@
             <div class="container alert alert-primary text-center">
                 <asp:Label ID="LNumFriendRequests" CssClass="" Visible="false" runat="server" Text="Label"></asp:Label>
 
+                <asp:Label ID="LFriendMessage" CssClass="" Visible="false" runat="server" Text="Label"></asp:Label>
                 <asp:Label ID="LMessage" CssClass="" Visible="false" runat="server" Text="Label"></asp:Label>
             </div>
             

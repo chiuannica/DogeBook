@@ -13,7 +13,7 @@ namespace DogeBook
         string path = "https://localhost:44386/api/User/";
         int userId;
         Utility util = new Utility();
-
+        string defaultImgUrl  = "https://news.bitcoin.com/wp-content/uploads/2021/01/cant-keep-a-good-dog-down-meme-token-dogecoin-spiked-over-500-this-year.jpg";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -22,8 +22,8 @@ namespace DogeBook
 
             // load the cards for each section
             List<FriendCard> friends = LoadFriends();
-            List<NonFriendCard> nonFriends = LoadUsers("GetUnrelatedUsers/", NonFriendPanel);
-            List<NonFriendCard> friendsOfFriends = LoadUsers("GetFriendsOfFriends/", FriendsOfFriendsPanel);
+            List<object> nonFriends = LoadUsers("GetUnrelatedUsers/", NonFriendPanel);
+            List<object> friendsOfFriends = LoadUsers("GetFriendsOfFriends/", FriendsOfFriendsPanel);
 
             // show labels
             LFriendsEmpty.Visible = true;
@@ -51,12 +51,23 @@ namespace DogeBook
             {
                 BtnAll.Visible = false;
                 BtnAllHide.Visible = false;
-            } 
+            }
+        }
+        protected string GetProfilePicture(int userId)
+        {
+            string profilePicture = util.ProfPicArrayToImage(userId);
+            if (profilePicture == "" || profilePicture == null)
+            {
+                profilePicture = defaultImgUrl;
+            }
+            else
+            {
+                profilePicture = util.ProfPicArrayToImage(userId);
+            }
+            return profilePicture;
         }
 
-
-
-        protected List<NonFriendCard> LoadUsers(string extension, Panel panel)
+        protected List<object> LoadUsers(string extension, Panel panel)
         {
             WebRequest request = WebRequest.Create(path + extension  + userId);
             WebResponse response = request.GetResponse();
@@ -73,39 +84,91 @@ namespace DogeBook
 
             User[] friends = js.Deserialize<User[]>(data);
 
-            List<NonFriendCard> ctrls = new List<NonFriendCard>();
+            List<object> ctrls = new List<object>();
+
             for (int i = 0; i < friends.Length; i++)
             {
-                // create card and add data
-                NonFriendCard ctrl = (NonFriendCard)LoadControl("NonFriendCard.ascx");
-
-                ctrl.FirstName = friends[i].FirstName.ToString();
-                ctrl.LastName = friends[i].LastName.ToString();
-
-                int friendId = int.Parse(friends[i].UserId.ToString());
-                ctrl.UserId = friendId;
-
-                // load default pic if there is no profile pic
-                if (util.ProfPicArrayToImage((int)Session["userId"]) != "")
+                // if self, load self card
+                if (friends[i].UserId == userId)
                 {
-                    ctrl.ImageUrl = util.ProfPicArrayToImage(friendId);
+                    SelfCard ctrl = (SelfCard)LoadControl("SelfCard.ascx");
+
+                    ctrl.FirstName = friends[i].FirstName.ToString();
+                    ctrl.LastName = friends[i].LastName.ToString();
+
+                    int friendId = int.Parse(friends[i].UserId.ToString());
+                    ctrl.UserId = friendId;
+
+                    // load default pic if there is no profile pic
+                    if (util.ProfPicArrayToImage(friendId) != "")
+                    {
+                        ctrl.ImageUrl = util.ProfPicArrayToImage(friendId);
+                    }
+                    else
+                    {
+                        ctrl.ImageUrl = defaultImgUrl;
+                    }
+
+                    // bind data to ctrl
+                    ctrl.DataBind();
+
+                    ctrls.Add(ctrl);
+                    // add to panel
+                    panel.Controls.Add(ctrl);
                 }
-                else
+                else // not self
                 {
-                    ctrl.ImageUrl = "https://www.telegraph.co.uk/content/dam/technology/2021/01/28/Screenshot-2021-01-28-at-13-20-35_trans_NvBQzQNjv4BqEGKV9LrAqQtLUTT1Z0gJNRFI0o2dlzyIcL3Nvd0Rwgc.png";
+                    // check if friend and load friend card if theyre friends
+                    bool areFriends = AreFriends(friends[i].UserId);
+
+                    // if not friends, load the not friends card
+                    if (!areFriends)
+                    {
+                        NonFriendCard ctrl = (NonFriendCard)LoadControl("NonFriendCard.ascx");
+
+                        ctrl.FirstName = friends[i].FirstName.ToString();
+                        ctrl.LastName = friends[i].LastName.ToString();
+
+                        int friendId = int.Parse(friends[i].UserId.ToString());
+                        ctrl.UserId = friendId;
+                        // if no profile pic, load default
+
+                        string profilePicture = GetProfilePicture(friendId);
+                        ctrl.ImageUrl = profilePicture;
+
+                        ctrl.Description = friends[i].Bio.ToString();
+                        ctrl.UserId = int.Parse(friends[i].UserId.ToString());
+
+                        // bind data to ctrl
+                        ctrl.DataBind();
+
+                        ctrls.Add(ctrl);
+                        // add to panel
+                        panel.Controls.Add(ctrl);
+                    }
+                    else
+                    {
+                        FriendCard ctrl = (FriendCard)LoadControl("FriendCard.ascx");
+
+                        ctrl.FirstName = friends[i].FirstName.ToString();
+                        ctrl.LastName = friends[i].LastName.ToString();
+
+                        int friendId = int.Parse(friends[i].UserId.ToString());
+                        ctrl.UserId = friendId;
+
+                        // load default pic if there is no profile pic
+                        string profilePicture = GetProfilePicture(friendId);
+                        ctrl.ImageUrl = profilePicture;
+
+                        // bind data to ctrl
+                        ctrl.DataBind();
+
+                        ctrls.Add(ctrl);
+                        // add to panel
+                        panel.Controls.Add(ctrl);
+                    }
                 }
-
-
-                ctrl.Bio = friends[i].Bio.ToString();
-
-                // bind data to ctrl
-                ctrl.DataBind();
                 
-                // add ctrl to list of all ctrls
-                ctrls.Add(ctrl);
-
-                // add to panel
-                panel.Controls.Add(ctrl);
             }
             return ctrls;
         }
@@ -141,15 +204,10 @@ namespace DogeBook
                 ctrl.UserId = friendId;
 
                 // load default pic if there is no profile pic
-                if (util.ProfPicArrayToImage((int)Session["userId"]) != "")
-                {
-                    ctrl.ImageUrl = util.ProfPicArrayToImage(friendId);
-                }
-                else
-                {
-                    ctrl.ImageUrl = "https://news.bitcoin.com/wp-content/uploads/2021/01/cant-keep-a-good-dog-down-meme-token-dogecoin-spiked-over-500-this-year.jpg";
-                }
+                string profilePicture = GetProfilePicture(friendId);
+                ctrl.ImageUrl = profilePicture;
 
+                ctrl.Description = "Friend";
 
                 // bind data to ctrl
                 ctrl.DataBind();
@@ -197,15 +255,32 @@ namespace DogeBook
 
             for (int i = 0; i < friends.Length; i++)
             {
-                // exclude if self 
-
-                if (friends[i].UserId != userId)
+                // if self, load self card
+                if (friends[i].UserId == userId)
                 {
+                    SelfCard ctrl = (SelfCard)LoadControl("SelfCard.ascx");
 
+                    ctrl.FirstName = friends[i].FirstName.ToString();
+                    ctrl.LastName = friends[i].LastName.ToString();
 
+                    int friendId = int.Parse(friends[i].UserId.ToString());
+                    ctrl.UserId = friendId;
+
+                    string profilePicture = GetProfilePicture(friendId);
+                    ctrl.ImageUrl = profilePicture;
+
+                    // bind data to ctrl
+                    ctrl.DataBind();
+
+                    // add to panel
+                    SearchPanel.Controls.Add(ctrl);
+                }
+                else // not self
+                {
                     // check if friend and load friend card if theyre friends
                     bool areFriends = AreFriends(friends[i].UserId);
 
+                    // if not friends, load the not friends card
                     if (!areFriends)
                     {
                         NonFriendCard ctrl = (NonFriendCard)LoadControl("NonFriendCard.ascx");
@@ -213,16 +288,13 @@ namespace DogeBook
                         ctrl.FirstName = friends[i].FirstName.ToString();
                         ctrl.LastName = friends[i].LastName.ToString();
 
+                        int friendId = int.Parse(friends[i].UserId.ToString());
+                        ctrl.UserId = friendId;
                         // if no profile pic, load default
-                        if (util.ProfPicArrayToImage((int)Session["userId"]) == "")
-                        {
-                            ctrl.ImageUrl = "https://www.telegraph.co.uk/content/dam/technology/2021/01/28/Screenshot-2021-01-28-at-13-20-35_trans_NvBQzQNjv4BqEGKV9LrAqQtLUTT1Z0gJNRFI0o2dlzyIcL3Nvd0Rwgc.png";
-                        }
-                        else
-                        {
-                            ctrl.ImageUrl = util.ProfPicArrayToImage((int)Session["userId"]);
-                        }
-                        ctrl.Bio = friends[i].Bio.ToString();
+                        string profilePicture = GetProfilePicture(friendId);
+                        ctrl.ImageUrl = profilePicture;
+
+                        ctrl.Description = friends[i].Bio.ToString();
                         ctrl.UserId = int.Parse(friends[i].UserId.ToString());
 
                         // bind data to ctrl
@@ -241,34 +313,25 @@ namespace DogeBook
                         ctrl.UserId = friendId;
 
                         // load default pic if there is no profile pic
-                        if (util.ProfPicArrayToImage((int)Session["userId"]) != "")
-                        {
-                            ctrl.ImageUrl = util.ProfPicArrayToImage(friendId);
-                        }
-                        else
-                        {
-                            ctrl.ImageUrl = "https://www.telegraph.co.uk/content/dam/technology/2021/01/28/Screenshot-2021-01-28-at-13-20-35_trans_NvBQzQNjv4BqEGKV9LrAqQtLUTT1Z0gJNRFI0o2dlzyIcL3Nvd0Rwgc.png";
-                        }
+                        string profilePicture = GetProfilePicture(friendId);
+                        ctrl.ImageUrl = profilePicture;
 
                         // bind data to ctrl
                         ctrl.DataBind();
 
                         // add to panel
                         SearchPanel.Controls.Add(ctrl);
-
                     }
-
-
                 }
             }
             LSearchTitle.Text = "Search results for \"" + searchTerm + "\""; 
             LSearchEmpty.Text = friends.Length.ToString();
-
         }
 
 
         protected bool AreFriends(int otherPersonId)
         {
+            userId = int.Parse(Session["UserId"].ToString());
             WebRequest request = WebRequest.Create(path + "AreFriends/" + userId + "/" + otherPersonId);
 
             WebResponse response = request.GetResponse();
@@ -279,8 +342,6 @@ namespace DogeBook
 
             reader.Close();
             response.Close();
-
-
 
             JavaScriptSerializer js = new JavaScriptSerializer();
 
@@ -341,8 +402,6 @@ namespace DogeBook
 
             NonFriendPanel.Visible = false;
         }
-
-        
 
     }
 }

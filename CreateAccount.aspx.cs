@@ -13,12 +13,12 @@ namespace DogeBook
 {
     public partial class CreateAccount : System.Web.UI.Page
     {
-        public AccountManagementService.AccountManagement proxy;
         private Byte[] key = { 250, 101, 18, 76, 45, 135, 207, 118, 4, 171, 3, 168, 202, 241, 37, 199 };
         private Byte[] vector = { 146, 64, 191, 111, 23, 3, 113, 119, 231, 121, 252, 112, 79, 32, 114, 156 };
+        public AccountManagementService.AccountManagement proxy = new AccountManagementService.AccountManagement();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            proxy = new AccountManagementService.AccountManagement();
         }
         protected bool EmailUsed(string email)
         {
@@ -28,8 +28,8 @@ namespace DogeBook
         protected string InputValidation()
         {
             string warning = "";
-
-            if (TBEmail.Text == "")
+            
+            if (string.IsNullOrWhiteSpace(TBEmail.Text))
             {
                 warning += "Enter email. <br>";
             }
@@ -40,16 +40,17 @@ namespace DogeBook
                 {
                     warning += "Email is already used. <br>";
                 }
-            }
-            if (TBFirstName.Text == "")
+
+            } 
+            if (string.IsNullOrWhiteSpace(TBFirstName.Text))
             {
                 warning += "Enter a first name. <br> ";
             }
-            if (TBLastName.Text == "")
+            if (string.IsNullOrWhiteSpace(TBLastName.Text))
             {
                 warning += "Enter a last name. <br> ";
             }
-            if (TBPassword.Text == "")
+            if (string.IsNullOrWhiteSpace(TBPassword.Text))
             {
                 warning += "Enter a password. <br> ";
             }
@@ -57,15 +58,15 @@ namespace DogeBook
             {
                 warning += "Passwords do not match. <br> ";
             }
-            if (TBSecurityQuestion1.Text == "")
+            if (string.IsNullOrWhiteSpace(TBSecurityQuestion1.Text))
             {
                 warning += "Enter an answer for security question 1. <br> ";
             }
-            if (TBSecurityQuestion2.Text == "")
+            if (string.IsNullOrWhiteSpace(TBSecurityQuestion2.Text))
             {
                 warning += "Enter an answer for security question 2. <br> ";
             }
-            if (TBSecurityQuestion3.Text == "")
+            if (string.IsNullOrWhiteSpace(TBSecurityQuestion3.Text))
             {
                 warning += "Enter an answer for security question 3. <br> ";
             }
@@ -86,18 +87,18 @@ namespace DogeBook
         }
         protected bool SendVerificationEmail()
         {
-            //string toEmail = TBEmail.Text;
-            //string fromEmail = "chiuannica@gmail.com";
-            //string subject = "Verify your DogeBook Account";
-            //string body = "test go to https://google.com";
-            //string cc = "";
-            //string bcc = "";
+            string toEmail = TBEmail.Text;
+            string fromEmail = "tui30639@temple.edu";
+            string subject = "Verify your DogeBook Account";
+            string body = "Go to ____/VerifyAccount.aspx";
+            string cc = "";
+            string bcc = "";
 
-            //// create email object
-            //Email verificationEmail = new Email();
-            //// send the email
-            //bool sent = verificationEmail.SendMail(toEmail, fromEmail, subject, body, cc, bcc);
-            bool sent = true;
+            // create email object
+            Email verificationEmail = new Email();
+            // send the email
+            bool sent = verificationEmail.SendMail(toEmail, fromEmail, subject, body, cc, bcc);
+            //bool sent = true;
             return sent;
         }
         protected bool AddSecurityQuestions()
@@ -162,7 +163,8 @@ namespace DogeBook
             bool createdAccount = CreateAccountFromUserInput();
 
             // send an email to validate
-            bool sentVerification = SendVerificationEmail();
+            //bool sentVerification = SendVerificationEmail();
+            bool sentVerification = true;
 
             // add security questions
             bool addedSecurityQuestions = AddSecurityQuestions();
@@ -242,5 +244,9 @@ namespace DogeBook
             LblWarning.Text = "Failed to create account.";
         }
 
+        protected void BtnRedirectToLogin_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Login.aspx");
+        }
     }
 }

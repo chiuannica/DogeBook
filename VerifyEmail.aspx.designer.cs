@@ -11,17 +11,8 @@ namespace DogeBook
 {
 
 
-    public partial class FriendRequests
+    public partial class VerifyEmail
     {
-
-        /// <summary>
-        /// Navbar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DogeBook.Navbar Navbar;
 
         /// <summary>
         /// form1 control.
@@ -33,39 +24,48 @@ namespace DogeBook
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// LNumFriendRequests control.
+        /// TBEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LNumFriendRequests;
+        protected global::System.Web.UI.WebControls.TextBox TBEmail;
 
         /// <summary>
-        /// LFriendMessage control.
+        /// BtnSubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LFriendMessage;
+        protected global::System.Web.UI.WebControls.Button BtnSubmit;
 
         /// <summary>
-        /// LMessage control.
+        /// LblWarning control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LMessage;
+        protected global::System.Web.UI.WebControls.Label LblWarning;
 
         /// <summary>
-        /// RFriendRequests control.
+        /// LblSuccess control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater RFriendRequests;
+        protected global::System.Web.UI.WebControls.Label LblSuccess;
+
+        /// <summary>
+        /// BtnRedirectToLogin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnRedirectToLogin;
     }
 }

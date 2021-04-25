@@ -18,7 +18,7 @@ namespace DogeBook
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            if (!IsPostBack)
             {
                 // load the userId
                 userId = int.Parse(Session["UserId"].ToString());
@@ -26,17 +26,6 @@ namespace DogeBook
                 LoadFriendRequests();
                 LNumFriendRequests.Visible = true;
 
-                if (RFriendRequests.Items.Count == 0)
-                {
-                    LNumFriendRequests.Text = "You have no friend requests.";
-                } else if (RFriendRequests.Items.Count == 1)
-                {
-                    LNumFriendRequests.Text = "You have 1 friend request.";
-                }
-                else 
-                {
-                    LNumFriendRequests.Text = "You have "+ RFriendRequests.Items.Count.ToString() + "  friend requests.";
-                }
             
             }
 
@@ -44,6 +33,7 @@ namespace DogeBook
 
         protected void LoadFriendRequests()
         {
+            //RFriendRequests.Visible = true;
             string extension = "GetFriendRequests/";
             WebRequest request = WebRequest.Create(path + extension + userId);
             WebResponse response = request.GetResponse();
@@ -63,11 +53,24 @@ namespace DogeBook
             RFriendRequests.DataSource = friendRequests;
             RFriendRequests.DataBind();
 
+
+            if (RFriendRequests.Items.Count == 0)
+            {
+                LNumFriendRequests.Text = "You have no friend requests.";
+            }
+            else if (RFriendRequests.Items.Count == 1)
+            {
+                LNumFriendRequests.Text = "You have 1 friend request.";
+            }
+            else
+            {
+                LNumFriendRequests.Text = "You have " + RFriendRequests.Items.Count.ToString() + "  friend requests.";
+            }
         }
 
         protected void RFriendRequests_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-
+            userId = int.Parse(Session["UserId"].ToString());
             // get the person's id
             int rowIndex = e.Item.ItemIndex;
             Label LUserID = (Label)RFriendRequests.Items[rowIndex].FindControl("LUserId");
@@ -77,8 +80,6 @@ namespace DogeBook
             Label LLastName = (Label)RFriendRequests.Items[rowIndex].FindControl("LLastName");
 
             String otherPersonName = LFirstName.Text + " " + LLastName.Text;
-
-
             
             // if accept
             string extension = "";
@@ -110,16 +111,16 @@ namespace DogeBook
             }
             catch (Exception ex)
             {
-                LMessage.Text = "Error: " + ex.Message;
+                LFriendMessage.Text = "Error: " + ex.Message;
             }
 
 
             if (responseCode == "OK")
-                LMessage.Text = "The friend request from " + otherPersonName + " was " + userAction;
+                LFriendMessage.Text = "The friend request from " + otherPersonName + " was " + userAction + ".";
             else
-                LMessage.Text = "A problem occurred. The friend request was not " + userAction;
+                LFriendMessage.Text = "A problem occurred. The friend request was not " + userAction + ".";
 
-            LMessage.Visible = true;
+            LFriendMessage.Visible = true;
 
             LoadFriendRequests();
         }
