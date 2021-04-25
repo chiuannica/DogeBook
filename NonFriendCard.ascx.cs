@@ -24,10 +24,6 @@ namespace DogeBook
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            if (!IsPostBack)
-            {
-                ImgFriend.ImageUrl = "https://news.bitcoin.com/wp-content/uploads/2021/01/cant-keep-a-good-dog-down-meme-token-dogecoin-spiked-over-500-this-year.jpg";
-            }
         }
         public override void DataBind()
         {
@@ -45,21 +41,45 @@ namespace DogeBook
             // the userId of the friend card, which is the friend's user id
             int friendId = UserId;
 
+            // check if there has already been a friend request
+            
+
+            WebRequest request = WebRequest.Create(path + "GetFriendRequest/" + friendId + "/"+ userId);
+            WebResponse response = request.GetResponse();
+
+
+            Stream theDataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(theDataStream);
+            String data = reader.ReadToEnd();
+
+            reader.Close();
+            response.Close();
+
+            JavaScriptSerializer js = new JavaScriptSerializer();
+
+            bool alreadySentFriendRequest = js.Deserialize<bool>(data);
+
+            if (alreadySentFriendRequest)
+            {
+                LblDisplay.Text = "Already added";
+                LblDisplay.Visible = true;
+
+                return;
+            }
+
+
 
             FriendRequest friendRequest = new FriendRequest();
 
             friendRequest.SenderId = userId;
             friendRequest.ReceiverId = friendId;
-
-
-            JavaScriptSerializer js = new JavaScriptSerializer();
+            js = new JavaScriptSerializer();
 
             string jsonFriendRequest = js.Serialize(friendRequest);
 
             try
             {
-
-                WebRequest request = WebRequest.Create(path + "AddFriend/");
+                request = WebRequest.Create(path + "AddFriend/");
 
                 request.Method = "POST";
                 request.ContentLength = jsonFriendRequest.Length;
@@ -71,10 +91,10 @@ namespace DogeBook
                 writer.Flush();
                 writer.Close();
 
-                WebResponse response = request.GetResponse();
-                Stream theDataStream = response.GetResponseStream();
-                StreamReader reader = new StreamReader(theDataStream);
-                String data = reader.ReadToEnd();
+                response = request.GetResponse();
+                theDataStream = response.GetResponseStream();
+                reader = new StreamReader(theDataStream);
+                data = reader.ReadToEnd();
 
                 reader.Close();
                 response.Close();

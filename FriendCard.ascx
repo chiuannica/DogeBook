@@ -18,9 +18,11 @@
         </div>
         <div class="card-footer">
             <div class="card-text">
+                <asp:Label ID="LblDisplay" CssClass="badge badge-secondary" runat="server" Visible="false"></asp:Label>
+            </div>
+            <div class="card-text">
                 <asp:Label ID="LDescription" CssClass=""  runat="server"  Text=""></asp:Label>
             </div>
-            <asp:Label ID="LblDisplay" CssClass="alert alert-secondary" runat="server" Visible="false"></asp:Label>
         </div>
 
 

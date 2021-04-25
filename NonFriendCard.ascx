@@ -13,7 +13,7 @@
 
 
             <div class="btn-group-vertical my-2">
-                <%--<asp:Button ID="BtnGoToProfile" class="btn btn-primary" runat="server" Text="Go to profile" OnClick="BtnGoToProfile_Click"  />--%>
+                <asp:Button ID="BtnGoToProfile" class="btn btn-primary" runat="server" Text="Go to profile" OnClick="BtnGoToProfile_Click"  />
                 <asp:Button ID="BtnAddFriend" class="btn btn-success" runat="server" Text="Add Friend" OnClick="BtnAddFriend_Click" />
             </div>
 
