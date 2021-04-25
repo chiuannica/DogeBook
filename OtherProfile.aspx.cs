@@ -18,6 +18,8 @@ namespace DogeBook
         string path = "https://localhost:44386/api/User/";
         Utility util = new Utility();
         int otherPersonId;
+        string defaultImgUrl = "https://news.bitcoin.com/wp-content/uploads/2021/01/cant-keep-a-good-dog-down-meme-token-dogecoin-spiked-over-500-this-year.jpg";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             userId = int.Parse(Session["UserId"].ToString());
@@ -52,7 +54,7 @@ namespace DogeBook
 
                 if (imageUrl == null || imageUrl == "")
                 {
-                    ImgProfilePic.ImageUrl = "https://news.bitcoin.com/wp-content/uploads/2021/01/cant-keep-a-good-dog-down-meme-token-dogecoin-spiked-over-500-this-year.jpg";
+                    ImgProfilePic.ImageUrl = defaultImgUrl;
                 }
                 else
                 {
@@ -64,6 +66,19 @@ namespace DogeBook
                 LCity.Text = user.City + ", ";
                 LState.Text = user.State;
             }
+        }
+        protected string GetProfilePicture(int userId)
+        {
+            string profilePicture = util.ProfPicArrayToImage(userId);
+            if (profilePicture == "" || profilePicture == null)
+            {
+                profilePicture = defaultImgUrl;
+            }
+            else
+            {
+                profilePicture = util.ProfPicArrayToImage(userId);
+            }
+            return profilePicture;
         }
 
         protected void LoadFriends()
@@ -97,14 +112,8 @@ namespace DogeBook
                     ctrl.UserId = friendId;
 
                     // load default pic if there is no profile pic
-                    if (util.ProfPicArrayToImage(friendId) != "")
-                    {
-                        ctrl.ImageUrl = util.ProfPicArrayToImage(friendId);
-                    }
-                    else
-                    {
-                        ctrl.ImageUrl = "https://www.telegraph.co.uk/content/dam/technology/2021/01/28/Screenshot-2021-01-28-at-13-20-35_trans_NvBQzQNjv4BqEGKV9LrAqQtLUTT1Z0gJNRFI0o2dlzyIcL3Nvd0Rwgc.png";
-                    }
+                    string profilePicture = GetProfilePicture(friendId);
+                    ctrl.ImageUrl = profilePicture;
 
                     // bind data to ctrl
                     ctrl.DataBind();
@@ -128,14 +137,9 @@ namespace DogeBook
                         ctrl.UserId = friendId;
 
                         // if no profile pic, load default
-                        if (util.ProfPicArrayToImage(friendId) == "")
-                        {
-                            ctrl.ImageUrl = "https://www.telegraph.co.uk/content/dam/technology/2021/01/28/Screenshot-2021-01-28-at-13-20-35_trans_NvBQzQNjv4BqEGKV9LrAqQtLUTT1Z0gJNRFI0o2dlzyIcL3Nvd0Rwgc.png";
-                        }
-                        else
-                        {
-                            ctrl.ImageUrl = util.ProfPicArrayToImage(friendId);
-                        }
+                        string profilePicture = GetProfilePicture(friendId);
+                        ctrl.ImageUrl = profilePicture;
+
                         ctrl.Description = friends[i].Bio.ToString();
                         ctrl.UserId = int.Parse(friends[i].UserId.ToString());
 
@@ -156,21 +160,15 @@ namespace DogeBook
                         ctrl.UserId = friendId;
 
                         // load default pic if there is no profile pic
-                        if (util.ProfPicArrayToImage(friendId) != "")
-                        {
-                            ctrl.ImageUrl = util.ProfPicArrayToImage(friendId);
-                        }
-                        else
-                        {
-                            ctrl.ImageUrl = "https://www.telegraph.co.uk/content/dam/technology/2021/01/28/Screenshot-2021-01-28-at-13-20-35_trans_NvBQzQNjv4BqEGKV9LrAqQtLUTT1Z0gJNRFI0o2dlzyIcL3Nvd0Rwgc.png";
-                        }
+                        string profilePicture = GetProfilePicture(friendId);
+                        ctrl.ImageUrl = profilePicture;
+
 
                         // bind data to ctrl
                         ctrl.DataBind();
 
                         // add to panel
                         FriendPanel.Controls.Add(ctrl);
-
 
                     }
 
@@ -192,8 +190,6 @@ namespace DogeBook
 
             reader.Close();
             response.Close();
-
-
 
             JavaScriptSerializer js = new JavaScriptSerializer();
 
@@ -246,14 +242,9 @@ namespace DogeBook
                     int friendId = int.Parse(friends[i].UserId.ToString());
                     ctrl.UserId = friendId;
                     // if no profile pic, load default
-                    if (util.ProfPicArrayToImage(friendId) == "")
-                    {
-                        ctrl.ImageUrl = "https://www.telegraph.co.uk/content/dam/technology/2021/01/28/Screenshot-2021-01-28-at-13-20-35_trans_NvBQzQNjv4BqEGKV9LrAqQtLUTT1Z0gJNRFI0o2dlzyIcL3Nvd0Rwgc.png";
-                    }
-                    else
-                    {
-                        ctrl.ImageUrl = util.ProfPicArrayToImage(friendId);
-                    }
+                    string profilePicture = GetProfilePicture(friendId);
+                    ctrl.ImageUrl = profilePicture;
+
                     ctrl.UserId = int.Parse(friends[i].UserId.ToString());
 
                     // bind data to ctrl
@@ -279,14 +270,9 @@ namespace DogeBook
                         int friendId = int.Parse(friends[i].UserId.ToString());
                         ctrl.UserId = friendId;
                         // if no profile pic, load default
-                        if (util.ProfPicArrayToImage(friendId) == "")
-                        {
-                            ctrl.ImageUrl = "https://www.telegraph.co.uk/content/dam/technology/2021/01/28/Screenshot-2021-01-28-at-13-20-35_trans_NvBQzQNjv4BqEGKV9LrAqQtLUTT1Z0gJNRFI0o2dlzyIcL3Nvd0Rwgc.png";
-                        }
-                        else
-                        {
-                            ctrl.ImageUrl = util.ProfPicArrayToImage(friendId);
-                        }
+                        string profilePicture = GetProfilePicture(friendId);
+                        ctrl.ImageUrl = profilePicture;
+
                         ctrl.Description = friends[i].Bio.ToString();
                         ctrl.UserId = int.Parse(friends[i].UserId.ToString());
 
@@ -307,14 +293,9 @@ namespace DogeBook
                         ctrl.UserId = friendId;
 
                         // load default pic if there is no profile pic
-                        if (util.ProfPicArrayToImage(friendId) != "")
-                        {
-                            ctrl.ImageUrl = util.ProfPicArrayToImage(friendId);
-                        }
-                        else
-                        {
-                            ctrl.ImageUrl = "https://www.telegraph.co.uk/content/dam/technology/2021/01/28/Screenshot-2021-01-28-at-13-20-35_trans_NvBQzQNjv4BqEGKV9LrAqQtLUTT1Z0gJNRFI0o2dlzyIcL3Nvd0Rwgc.png";
-                        }
+                        string profilePicture = GetProfilePicture(friendId);
+                        ctrl.ImageUrl = profilePicture;
+
 
                         // bind data to ctrl
                         ctrl.DataBind();
