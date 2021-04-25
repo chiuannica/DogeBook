@@ -63,7 +63,8 @@ namespace DogeBook
 
                 LBio.Text = user.Bio;
                 LInterests.Text = user.Interests;
-                LCity.Text = user.City + ", ";
+                if (user.City != "" || user.City != null)
+                    LCity.Text = user.City + ", ";
                 LState.Text = user.State;
             }
         }

@@ -30,27 +30,37 @@ namespace DogeBook
             LFriendOfFriendsEmpty.Visible = true;
             LNonFriendsEmpty.Visible = true;
 
-            // if 0, hide buttons
             // show how many there are
-            LFriendsEmpty.Text = friends.Count.ToString();
+            LFriendsNumber.Text = friends.Count.ToString();
+            // if 0, hide buttons and show message
             if (friends.Count == 0)
             {
                 BtnFriends.Visible = false;
                 BtnFriendsHide.Visible = false;
-            } 
 
-            LFriendOfFriendsEmpty.Text = friendsOfFriends.Count.ToString();
+                LFriendsEmpty.Visible = true;
+                LFriendsEmpty.Text = "You have no friends. ";
+            }
+
+            LFriendOfFriendsNumber.Text = friendsOfFriends.Count.ToString();
             if (friendsOfFriends.Count == 0)
             {
                 BtnFriendOfFriends.Visible = false;
                 BtnFriendOfFriendsHide.Visible = false;
+
+
+                LFriendOfFriendsEmpty.Visible = true;
+                LFriendOfFriendsEmpty.Text = "You have no friend of friends. ";
             }
 
-            LNonFriendsEmpty.Text = nonFriends.Count.ToString();
+            LNonFriendsNumber.Text = nonFriends.Count.ToString();
             if (nonFriends.Count == 0)
             {
                 BtnAll.Visible = false;
                 BtnAllHide.Visible = false;
+
+                LNonFriendsEmpty.Visible = true;
+                LNonFriendsEmpty.Text = "There are no other users. ";
             }
         }
         protected string GetProfilePicture(int userId)
@@ -229,7 +239,7 @@ namespace DogeBook
             if (string.IsNullOrWhiteSpace(searchTerm))
             {
                 LSearchTitle.Text = "Search results for \"" + searchTerm + "\"";
-                LSearchEmpty.Text = "0";
+                LSearchNumber.Text = "0";
                 return;
             }
 
@@ -325,7 +335,7 @@ namespace DogeBook
                 }
             }
             LSearchTitle.Text = "Search results for \"" + searchTerm + "\""; 
-            LSearchEmpty.Text = friends.Length.ToString();
+            LSearchNumber.Text = friends.Length.ToString();
         }
 
 
