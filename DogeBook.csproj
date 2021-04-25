@@ -74,6 +74,8 @@
     <Content Include="ForgotPassword.aspx" />
     <Content Include="FriendCard.ascx" />
     <Content Include="FriendRequests.aspx" />
+    <Content Include="Images\dogeTimeline.jpg" />
+    <Content Include="Images\dogeWallpaper.jpg" />
     <Content Include="NavbarNotLoggedIn.ascx" />
     <Content Include="Navbar.ascx" />
     <Content Include="NonFriendCard.ascx" />

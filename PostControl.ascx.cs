@@ -15,12 +15,13 @@ namespace DogeBook
         private int postid;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Utility util = new Utility();
+            DataSet PostComments = util.GetCommentsForPost(postid);
         }
 
         protected void btnComment_Click(object sender, EventArgs e)
         {
-            lblPostText.Text = "Thanks for clicking comment";
+            txtPostText.Text = "Thanks for clicking comment";
         }
 
         [Category("Misc")]
@@ -34,11 +35,11 @@ namespace DogeBook
         {
             get
             {
-                return lblPostText.Text;
+                return txtPostText.Text;
             }
             set
             {
-                lblPostText.Text = value;
+                txtPostText.Text = value;
             }
         }
 
@@ -99,9 +100,34 @@ namespace DogeBook
             lblAuthor.Text = row["FirstName"].ToString() + " " + row["LastName"].ToString();
             imgAuthor.ImageUrl = util.ProfPicArrayToImage((int)row["UserId"]);
             imgPostImage.ImageUrl = util.ByteArrayToImageUrl((byte[])row["Image"]);
-            lblPostText.Text = row["Text"].ToString();
+            txtPostText.Text = row["Text"].ToString();
             lblTimestamp.Text = row["TimeStamp"].ToString();
+            postid = (int)row["PostId"];
+            hdnPostId.Value = postid.ToString();
+            DataSet PostComments = util.GetCommentsForPost(postid);
+            if (PostComments.Tables[0].Rows.Count > 0)
+            {
+                cmtAuthor.Text = util.GetNameByUserId((int)PostComments.Tables[0].Rows[0]["UserId"]);
+                comment.Text = PostComments.Tables[0].Rows[0]["Text"].ToString();
+            }
 
+        }
+
+        protected void btnLike_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnComment_Click1(object sender, EventArgs e)
+        {
+            if (commentTable.Visible)
+            {
+                commentTable.Visible = false;
+            }
+            else
+            {
+                commentTable.Visible = true;
+            }
         }
     }
 }
