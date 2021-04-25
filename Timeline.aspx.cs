@@ -17,7 +17,11 @@ namespace DogeBook
         //int userid = Int32.Parse(HttpContext.Current.Session["UserId"].ToString());
         protected void Page_Load(object sender, EventArgs e)
         {
-            LoadTimeline();
+            if (!IsPostBack)
+            {
+                LoadTimeline();
+            }
+            
             //Response.Write("<script>alert('" + Session["UserId"].ToString() + "');</script>");
             //Response.Write("<script>alert('" + userid + "');</script>"); 
             //Console.Write(Session["UserId"]);
@@ -92,7 +96,7 @@ namespace DogeBook
             JavaScriptSerializer js = new JavaScriptSerializer();
             int[] posts = js.Deserialize<int[]>(data);
 
-            for(int i = 0; i< posts.Length; i++)
+            for(int i = posts.Length-1; i >= 0; i--)
             {
                 PostControl pCtrl = (PostControl)LoadControl("PostControl.ascx");
 

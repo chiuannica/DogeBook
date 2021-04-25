@@ -15,6 +15,15 @@ namespace DogeBook
     {
 
         /// <summary>
+        /// cardDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cardDiv;
+
+        /// <summary>
         /// imgAuthor control.
         /// </summary>
         /// <remarks>
@@ -33,6 +42,15 @@ namespace DogeBook
         protected global::System.Web.UI.WebControls.Label lblAuthor;
 
         /// <summary>
+        /// hdnPostId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnPostId;
+
+        /// <summary>
         /// cardBody control.
         /// </summary>
         /// <remarks>
@@ -40,6 +58,15 @@ namespace DogeBook
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl cardBody;
+
+        /// <summary>
+        /// txtPostText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPostText;
 
         /// <summary>
         /// imgPostImage control.
@@ -51,15 +78,6 @@ namespace DogeBook
         protected global::System.Web.UI.WebControls.Image imgPostImage;
 
         /// <summary>
-        /// lblPostText control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPostText;
-
-        /// <summary>
         /// btnLike control.
         /// </summary>
         /// <remarks>
@@ -67,15 +85,6 @@ namespace DogeBook
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlButton btnLike;
-
-        /// <summary>
-        /// likeIcon control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl likeIcon;
 
         /// <summary>
         /// btnComment control.
@@ -87,13 +96,31 @@ namespace DogeBook
         protected global::System.Web.UI.WebControls.Button btnComment;
 
         /// <summary>
-        /// TextBox1 control.
+        /// commentTable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.Table commentTable;
+
+        /// <summary>
+        /// cmtAuthor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell cmtAuthor;
+
+        /// <summary>
+        /// comment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell comment;
 
         /// <summary>
         /// cardFooter control.

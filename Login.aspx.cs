@@ -55,40 +55,30 @@ namespace DogeBook
 
                 plainTextEmail = encoder.GetString(emailBytes);
                 TxtEmail_SignIn.Text = plainTextEmail;
-
                 //Password
-                if (encryptedPassword != null)
-                {
-                    Byte[] encryptedPasswordBytes = Convert.FromBase64String(encryptedPassword);
-                    Byte[] passwordBytes;
-                    String plainTextPassword;
+                Byte[] encryptedPasswordBytes = Convert.FromBase64String(encryptedPassword);
+                Byte[] passwordBytes;
+                String plainTextPassword;
 
-                    ms = new MemoryStream();
-                    decryptStream = new CryptoStream(ms, rEncrypt.CreateDecryptor(key, vector), CryptoStreamMode.Write);
+                ms = new MemoryStream();
+                decryptStream = new CryptoStream(ms, rEncrypt.CreateDecryptor(key, vector), CryptoStreamMode.Write);
 
-                    decryptStream.Write(encryptedPasswordBytes, 0, encryptedPasswordBytes.Length);
-                    decryptStream.FlushFinalBlock();
+                decryptStream.Write(encryptedPasswordBytes, 0, encryptedPasswordBytes.Length);
+                decryptStream.FlushFinalBlock();
 
-                    ms.Position = 0;
-                    passwordBytes = new Byte[ms.Length];
-                    ms.Read(passwordBytes, 0, passwordBytes.Length);
+                ms.Position = 0;
+                passwordBytes = new Byte[ms.Length];
+                ms.Read(passwordBytes, 0, passwordBytes.Length);
 
-                    decryptStream.Close();
-                    ms.Close();
+                decryptStream.Close();
+                ms.Close();
 
-                    plainTextPassword = encoder.GetString(passwordBytes);
-                    TxtPassword_SignIn.Text = plainTextPassword;
-                    //lblMessage.Text = "Password: " + plainTextPassword;
-                }
+                plainTextPassword = encoder.GetString(passwordBytes);
+                TxtPassword_SignIn.Attributes.Add("value", plainTextPassword);
+                //TxtPassword_SignIn.Text = plainTextPassword;
+                RemeberChkBox.Checked = true;
 
-                //if (txtPass.Text != "")
-                //{
-                //    RemeberChkBox.Checked = true;
-                //}
-                //else
-                //{
-                //    RemeberChkBox.Checked = true;
-                //}
+
             }
         }
 
@@ -132,7 +122,7 @@ namespace DogeBook
                         RijndaelManaged rmEncryption = new RijndaelManaged();
                         MemoryStream memStream = new MemoryStream();
                         CryptoStream encryptionStream = new CryptoStream(memStream, rmEncryption.CreateEncryptor(key, vector), CryptoStreamMode.Write);
-                        
+
                         //Store Cookie
                         //Email
                         encryptionStream.Write(emailBytes, 0, emailBytes.Length);
@@ -168,7 +158,12 @@ namespace DogeBook
                     else
                     {
                         //Delete Cookie
-                        Response.Cookies.Remove("LoginCookie");
+                        //Response.Cookies.Remove("LoginCookie");
+                        HttpCookie currentUserCookie = HttpContext.Current.Request.Cookies["LoginCookie"];
+                        HttpContext.Current.Response.Cookies.Remove("LoginCookie");
+                        currentUserCookie.Expires = DateTime.Now.AddDays(-10);
+                        currentUserCookie.Value = null;
+                        HttpContext.Current.Response.SetCookie(currentUserCookie);
                     }
 
                     Session["UserId"] = util.GetUserIdByEmail(TxtEmail_SignIn.Text);
