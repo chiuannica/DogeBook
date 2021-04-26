@@ -15,6 +15,15 @@ namespace DogeBook
     {
 
         /// <summary>
+        /// cardDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cardDiv;
+
+        /// <summary>
         /// imgAuthor control.
         /// </summary>
         /// <remarks>
@@ -42,6 +51,15 @@ namespace DogeBook
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl cardBody;
 
         /// <summary>
+        /// txtPostText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPostText;
+
+        /// <summary>
         /// imgPostImage control.
         /// </summary>
         /// <remarks>
@@ -51,13 +69,13 @@ namespace DogeBook
         protected global::System.Web.UI.WebControls.Image imgPostImage;
 
         /// <summary>
-        /// lblPostText control.
+        /// lblLikes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPostText;
+        protected global::System.Web.UI.WebControls.Label lblLikes;
 
         /// <summary>
         /// btnLike control.
@@ -69,31 +87,67 @@ namespace DogeBook
         protected global::System.Web.UI.HtmlControls.HtmlButton btnLike;
 
         /// <summary>
-        /// likeIcon control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl likeIcon;
-
-        /// <summary>
         /// btnComment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnComment;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnComment;
 
         /// <summary>
-        /// TextBox1 control.
+        /// hdnPostId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.HiddenField hdnPostId;
+
+        /// <summary>
+        /// pnlCommentToggle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlCommentToggle;
+
+        /// <summary>
+        /// commentTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl commentTextBox;
+
+        /// <summary>
+        /// txtComment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtComment;
+
+        /// <summary>
+        /// btnPostComment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnPostComment;
+
+        /// <summary>
+        /// commentSection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel commentSection;
 
         /// <summary>
         /// cardFooter control.
