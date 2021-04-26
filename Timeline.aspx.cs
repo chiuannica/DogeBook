@@ -14,7 +14,6 @@ namespace DogeBook
     public partial class Timeline : System.Web.UI.Page
     {
         Utility util = new Utility();
-        //int userid = Int32.Parse(HttpContext.Current.Session["UserId"].ToString());
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -25,12 +24,7 @@ namespace DogeBook
                     Response.Redirect("Login.aspx");
                 }
             }
-
             LoadTimeline();
-            //make comments always visible... 
-            //Response.Write("<script>alert('" + Session["UserId"].ToString() + "');</script>");
-            //Response.Write("<script>alert('" + userid + "');</script>"); 
-            //Console.Write(Session["UserId"]);
 
         }
 
@@ -61,7 +55,6 @@ namespace DogeBook
                         //use ajax or storeprocedure to put image data into TP_Users -> ProfilePicture
                         //Insert ImageURL for POST
                         //result = util.InsertProfilePicture(1, imageData);
-                        
                         int postId = util.InsertPost((int)Session["UserId"], post.Text, imageData, DateTime.Now);
                         Response.Write("<script>alert('" + postId + "');</script>");
                     }
@@ -73,7 +66,8 @@ namespace DogeBook
                 }
                 else
                 {
-                    lblUploadStatus.Text = "Plz upload the image!!!!";
+                    //lblUploadStatus.Text = "Plz upload the image!!!!";
+                    int postId = util.InsertPost((int)Session["UserId"], post.Text, DateTime.Now);
                 }
 
             }
