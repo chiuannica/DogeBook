@@ -14,7 +14,6 @@ namespace DogeBook
     public partial class Timeline : System.Web.UI.Page
     {
         Utility util = new Utility();
-        //int userid = Int32.Parse(HttpContext.Current.Session["UserId"].ToString());
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -25,10 +24,7 @@ namespace DogeBook
                     Response.Redirect("Login.aspx");
                 }
             }
-
             LoadTimeline();
-            //scriptManager.RegisterPostBackControl();
-
         }
 
         protected void btnPost_Click(object sender, EventArgs e)
@@ -36,7 +32,6 @@ namespace DogeBook
             Post post = new Post();
             post.Timestamp = DateTime.Now;
             post.Text = txtPostText.Text;
-            //Util.FileUpload? maybe something else
             int imageSize = 0, result = 0;
             byte[] bytes = new byte[]{byte.MinValue};
             String fileExtension, imageName;
