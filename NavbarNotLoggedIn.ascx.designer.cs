@@ -10,7 +10,7 @@
 
 namespace DogeBook
 {
-    public partial class Navbar
+    public partial class NavbarNotLoggedIn
     {
     }
 }

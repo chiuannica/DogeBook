@@ -26,6 +26,12 @@ namespace DogeBook
         {
             if (!IsPostBack)
             {
+                // redirect to login if the user if is null 
+                if (Session["UserId"] == null)
+                {
+                    Response.Redirect("Login.aspx");
+                }
+
                 userId = int.Parse(Session["UserId"].ToString());
                 proxy = new AccountManagementService.AccountManagement();
                 LoadUserInformation();

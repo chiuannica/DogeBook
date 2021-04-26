@@ -76,7 +76,7 @@ namespace DogeBook
                 LblDisplay.Text = "Error: " + ex.Message;
             }
             LblDisplay.Visible = true;
-
+            DataBind();
         }
     }
 }

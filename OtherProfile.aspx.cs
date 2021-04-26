@@ -22,6 +22,15 @@ namespace DogeBook
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                // redirect to login if the user if is null 
+                if (Session["UserId"] == null)
+                {
+                    Response.Redirect("Login.aspx");
+                }
+            }
+
             userId = int.Parse(Session["UserId"].ToString());
             otherPersonId = int.Parse(Session["OtherPersonId"].ToString());
             LoadUserInformation();

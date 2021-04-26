@@ -17,13 +17,21 @@ namespace DogeBook
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                // redirect to login if the user if is null 
+                if (Session["UserId"] == null)
+                {
+                    Response.Redirect("Login.aspx");
+                }
+            } 
             // load the userId
             userId = int.Parse(Session["UserId"].ToString());
 
             // load the cards for each section
-            List<FriendCard> friends = LoadFriends();
-            List<object> nonFriends = LoadUsers("GetUnrelatedUsers/", NonFriendPanel);
-            List<object> friendsOfFriends = LoadUsers("GetFriendsOfFriends/", FriendsOfFriendsPanel);
+            List<int> friends = LoadFriends();
+            List<int> nonFriends = LoadUsers("GetUnrelatedUsers/", NonFriendPanel);
+            List<int> friendsOfFriends = LoadUsers("GetFriendsOfFriends/", FriendsOfFriendsPanel);
 
             // show labels
             LFriendsEmpty.Visible = true;
@@ -77,7 +85,7 @@ namespace DogeBook
             return profilePicture;
         }
 
-        protected List<object> LoadUsers(string extension, Panel panel)
+        protected List<int> LoadUsers(string extension, Panel panel)
         {
             WebRequest request = WebRequest.Create(path + extension  + userId);
             WebResponse response = request.GetResponse();
@@ -94,96 +102,76 @@ namespace DogeBook
 
             User[] friends = js.Deserialize<User[]>(data);
 
-            List<object> ctrls = new List<object>();
+            List<int> UserIds = new List<int>();
 
             for (int i = 0; i < friends.Length; i++)
             {
-                // if self, load self card
-                if (friends[i].UserId == userId)
+                // skip loading the currently logged in user
+                if (friends[i].UserId != userId)
                 {
-                    SelfCard ctrl = (SelfCard)LoadControl("SelfCard.ascx");
-
-                    ctrl.FirstName = friends[i].FirstName.ToString();
-                    ctrl.LastName = friends[i].LastName.ToString();
-
-                    int friendId = int.Parse(friends[i].UserId.ToString());
-                    ctrl.UserId = friendId;
-
-                    // load default pic if there is no profile pic
-                    if (util.ProfPicArrayToImage(friendId) != "")
+                    // skip if this user is already loaded
+                    if (!UserIds.Contains(friends[i].UserId))
                     {
-                        ctrl.ImageUrl = util.ProfPicArrayToImage(friendId);
-                    }
-                    else
-                    {
-                        ctrl.ImageUrl = defaultImgUrl;
-                    }
+                        // check if friend and load friend card if theyre friends
+                        bool areFriends = AreFriends(friends[i].UserId);
 
-                    // bind data to ctrl
-                    ctrl.DataBind();
+                        // if not friends, load the not friends card
+                        if (!areFriends)
+                        {
+                            NonFriendCard ctrl = (NonFriendCard)LoadControl("NonFriendCard.ascx");
 
-                    ctrls.Add(ctrl);
-                    // add to panel
-                    panel.Controls.Add(ctrl);
-                }
-                else // not self
-                {
-                    // check if friend and load friend card if theyre friends
-                    bool areFriends = AreFriends(friends[i].UserId);
+                            ctrl.FirstName = friends[i].FirstName.ToString();
+                            ctrl.LastName = friends[i].LastName.ToString();
 
-                    // if not friends, load the not friends card
-                    if (!areFriends)
-                    {
-                        NonFriendCard ctrl = (NonFriendCard)LoadControl("NonFriendCard.ascx");
+                            int friendId = int.Parse(friends[i].UserId.ToString());
+                            ctrl.UserId = friendId;
+                            // if no profile pic, load default
 
-                        ctrl.FirstName = friends[i].FirstName.ToString();
-                        ctrl.LastName = friends[i].LastName.ToString();
+                            string profilePicture = GetProfilePicture(friendId);
+                            ctrl.ImageUrl = profilePicture;
 
-                        int friendId = int.Parse(friends[i].UserId.ToString());
-                        ctrl.UserId = friendId;
-                        // if no profile pic, load default
+                            ctrl.Description = friends[i].Bio.ToString();
+                            ctrl.UserId = int.Parse(friends[i].UserId.ToString());
 
-                        string profilePicture = GetProfilePicture(friendId);
-                        ctrl.ImageUrl = profilePicture;
+                            // bind data to ctrl
+                            ctrl.DataBind();
 
-                        ctrl.Description = friends[i].Bio.ToString();
-                        ctrl.UserId = int.Parse(friends[i].UserId.ToString());
+                            UserIds.Add(friends[i].UserId);
+                            // add to panel
+                            panel.Controls.Add(ctrl);
+                        }
+                        else
+                        {
+                            FriendCard ctrl = (FriendCard)LoadControl("FriendCard.ascx");
 
-                        // bind data to ctrl
-                        ctrl.DataBind();
+                            ctrl.FirstName = friends[i].FirstName.ToString();
+                            ctrl.LastName = friends[i].LastName.ToString();
 
-                        ctrls.Add(ctrl);
-                        // add to panel
-                        panel.Controls.Add(ctrl);
-                    }
-                    else
-                    {
-                        FriendCard ctrl = (FriendCard)LoadControl("FriendCard.ascx");
+                            int friendId = int.Parse(friends[i].UserId.ToString());
+                            ctrl.UserId = friendId;
 
-                        ctrl.FirstName = friends[i].FirstName.ToString();
-                        ctrl.LastName = friends[i].LastName.ToString();
+                            // load default pic if there is no profile pic
+                            string profilePicture = GetProfilePicture(friendId);
+                            ctrl.ImageUrl = profilePicture;
+                            ctrl.Description = friends[i].Bio.ToString() + " and you";
 
-                        int friendId = int.Parse(friends[i].UserId.ToString());
-                        ctrl.UserId = friendId;
 
-                        // load default pic if there is no profile pic
-                        string profilePicture = GetProfilePicture(friendId);
-                        ctrl.ImageUrl = profilePicture;
+                            // bind data to ctrl
+                            ctrl.DataBind();
 
-                        // bind data to ctrl
-                        ctrl.DataBind();
+                            UserIds.Add(friends[i].UserId);
 
-                        ctrls.Add(ctrl);
-                        // add to panel
-                        panel.Controls.Add(ctrl);
+                            // add to panel
+                            panel.Controls.Add(ctrl);
+                        }
                     }
                 }
                 
             }
-            return ctrls;
+            return UserIds;
         }
 
-        protected List<FriendCard> LoadFriends()
+        protected List<int> LoadFriends()
         {
             string extension = "GetFriends/";
             WebRequest request = WebRequest.Create(path + extension + userId);
@@ -201,7 +189,7 @@ namespace DogeBook
 
             User[] friends = js.Deserialize<User[]>(data);
 
-            List<FriendCard> ctrls = new List<FriendCard>();
+            List<int> UserIds  = new List<int>();
             for (int i = 0; i < friends.Length; i++)
             {
                 // create card and add data
@@ -223,12 +211,13 @@ namespace DogeBook
                 ctrl.DataBind();
 
                 // add ctrl to list of all ctrls
-                ctrls.Add(ctrl);
+                UserIds.Add(friends[i].UserId);
+
 
                 // add to panel
                 FriendsPanel.Controls.Add(ctrl);
             }
-            return ctrls;
+            return UserIds;
         }
 
 
@@ -363,55 +352,65 @@ namespace DogeBook
 
         protected void BtnFriends_Click(object sender, EventArgs e)
         {
-
+            // show the panel, show the hide button, hide the show button, hide empty msg
             BtnFriends.Visible = false;
             BtnFriendsHide.Visible = true;
 
             FriendsPanel.Visible = true;
+            LFriendsEmpty.Visible = false;
         }
 
         protected void BtnFriendOfFriends_Click(object sender, EventArgs e)
         {
+            // show the panel, show the hide button, hide the show button, hide empty msg
             BtnFriendOfFriends.Visible = false;
             BtnFriendOfFriendsHide.Visible = true;
 
             FriendsOfFriendsPanel.Visible = true;
+            LFriendOfFriendsEmpty.Visible = false;
         }
 
         protected void BtnAll_Click(object sender, EventArgs e)
         {
+            // show the panel, show the hide button, hide the show button, hide empty msg
             BtnAll.Visible = false;
             BtnAllHide.Visible = true;
 
             NonFriendPanel.Visible = true;
-
+            LNonFriendsEmpty.Visible = false;
         }
 
         protected void BtnFriendsHide_Click(object sender, EventArgs e)
         {
-
+            // hide the friends, hide the hide button, show the show button
             BtnFriends.Visible = true;
             BtnFriendsHide.Visible = false;
-
             FriendsPanel.Visible = false;
+            // show a message saying this is hidden
+            LFriendsEmpty.Visible = true;
+            LFriendsEmpty.Text = "Friends are hidden. ";
         }
 
         protected void BtnFriendOfFriendsHide_Click(object sender, EventArgs e)
         {
+            // hide the friends, hide the hide button, show the show button
             BtnFriendOfFriends.Visible = true;
             BtnFriendOfFriendsHide.Visible = false;
-
             FriendsOfFriendsPanel.Visible = false;
+            // show a message saying this is hidden
+            LFriendOfFriendsEmpty.Visible = true;
+            LFriendOfFriendsEmpty.Text = "Friends of friends are hidden. ";
         }
 
         protected void BtnAllHide_Click(object sender, EventArgs e)
         {
-
+            // hide the friends, hide the hide button, show the show button
             BtnAll.Visible = true;
             BtnAllHide.Visible = false;
-
             NonFriendPanel.Visible = false;
+            // show a message saying this is hidden
+            LNonFriendsEmpty.Visible = true;
+            LNonFriendsEmpty.Text = "Friends of friends are hidden. ";
         }
-
     }
 }

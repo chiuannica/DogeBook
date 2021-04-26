@@ -17,6 +17,15 @@ namespace DogeBook
         //int userid = Int32.Parse(HttpContext.Current.Session["UserId"].ToString());
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                // redirect to login if the user if is null 
+                if (Session["UserId"] == null)
+                {
+                    Response.Redirect("Login.aspx");
+                }
+            }
+
             LoadTimeline();
             //Response.Write("<script>alert('" + Session["UserId"].ToString() + "');</script>");
             //Response.Write("<script>alert('" + userid + "');</script>"); 

@@ -28,6 +28,10 @@ namespace DogeBook
             // Read encrypted password from cookie
             if (!IsPostBack && Request.Cookies["LoginCookie"] != null)
             {
+                // clear the session userid
+                // redirect to login if the user if is null 
+                Session["UserId"] = null;
+
                 HttpCookie myCookie = Request.Cookies["LoginCookie"];
                 String encryptedEmail = myCookie.Values["Email"];
                 String encryptedPassword = myCookie.Values["Password"];
