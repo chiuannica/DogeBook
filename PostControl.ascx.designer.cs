@@ -105,13 +105,13 @@ namespace DogeBook
         protected global::System.Web.UI.WebControls.HiddenField hdnPostId;
 
         /// <summary>
-        /// commentSection control.
+        /// pnlCommentToggle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel commentSection;
+        protected global::System.Web.UI.WebControls.Panel pnlCommentToggle;
 
         /// <summary>
         /// commentTextBox control.
@@ -123,6 +123,15 @@ namespace DogeBook
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl commentTextBox;
 
         /// <summary>
+        /// txtComment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtComment;
+
+        /// <summary>
         /// btnPostComment control.
         /// </summary>
         /// <remarks>
@@ -130,6 +139,15 @@ namespace DogeBook
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlButton btnPostComment;
+
+        /// <summary>
+        /// commentSection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel commentSection;
 
         /// <summary>
         /// cardFooter control.

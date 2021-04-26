@@ -39,31 +39,29 @@ namespace DogeBook
             JavaScriptSerializer js = new JavaScriptSerializer();
 
             List<String> postComments = js.Deserialize<List<String>>(data);
-
+            commentSection.Controls.Clear();
             if (postComments != null && postComments.Count > 0)
             {
                 for (int i = 0; i < postComments.Count; i++)
                 {
-
                     //panel or placeholder(server side container - server side code)
                     Label comment = new Label();
                     //(int)postComments.Tables[0].Rows[i]["UserId"]
                     comment.Text = postComments[i].ToString();
                     commentSection.Controls.Add(comment);
                 }
-
-            }
+            } 
         }
 
         protected void btnComment_Click(object sender, EventArgs e)
         {
-            if (commentTextBox.Visible)
+            if (pnlCommentToggle.Visible)
             {
-                commentTextBox.Visible = false;
+                pnlCommentToggle.Visible = false;
             }
             else
             {
-                commentTextBox.Visible = true;
+                pnlCommentToggle.Visible = true;
             }
         }
 
@@ -150,10 +148,10 @@ namespace DogeBook
             Boolean liked = util.CheckLike((int)Session["UserId"], postid);
             if (liked)
             {
-                btnLike.InnerText = "Unlike";
+                btnLike.InnerHtml = "<i class=\"fas fa-thumbs-down\"></i>&nbsp Unlike";
             }
 
-            lblLikes.Text += util.CountLikesOnPost(postid);
+            lblLikes.Text = "<i class=\"fas fa-paw\"></i>" + util.CountLikesOnPost(postid);
             //DataSet PostComments = util.GetCommentsForPost(postid);
             //if (PostComments.Tables[0].Rows.Count > 0)
             //{
@@ -182,12 +180,14 @@ namespace DogeBook
                 util.LikePost((int)Session["UserId"], postid);
                 btnLike.InnerHtml = "<i class=\"fas fa-thumbs-down\"></i>&nbsp Unlike";
             }
-
+            DataBind();
         }
 
         protected void btnPostComment_ServerClick(object sender, EventArgs e)
         {
-
+            util.MakeComment(postid, (int)Session["UserId"], txtComment.Text);
+            DataBind();
+            txtComment.Text = "";
         }
     }
 }

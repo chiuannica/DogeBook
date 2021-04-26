@@ -26,15 +26,16 @@
         <br />
 
         <asp:HiddenField runat="server" ID="hdnPostId" />
-        <asp:Panel ID="commentSection" class="card card-body" runat="server">
+        <asp:Panel ID="pnlCommentToggle" runat="server" Visible="false">
             <div class="input-group mb-3" id="commentTextBox" runat="server">
-                <input type="text" class="form-control" placeholder="Wow, very comment">
+                <asp:TextBox runat="server" ID="txtComment" type="text" class="form-control" placeholder="Wow, very comment"></asp:TextBox>
                 <div class="input-group-append">
-                    <button class="btn btn-outline-primary" id="btnPostComment" runat="server"  onserverclick="btnPostComment_ServerClick" type="button"><i class="fas fa-comment-alt"></i></button>
+                    <button class="btn btn-outline-primary" id="btnPostComment" runat="server" onserverclick="btnPostComment_ServerClick" type="button"><i class="fas fa-comment-alt"></i></button>
                 </div>
             </div>
+            <asp:Panel ID="commentSection" class="card card-body" runat="server">
+            </asp:Panel>
         </asp:Panel>
-
         <div runat="server" class="card-footer bg-white text-center" id="cardFooter">
             <asp:Label runat="server" ID="lblTimestamp">Timestamp</asp:Label>
         </div>

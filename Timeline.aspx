@@ -56,11 +56,10 @@
                 <asp:Button runat="server" class="btn btn-outline-primary col-8" Text="Post" ID="btnPost" OnClick="btnPost_Click"></asp:Button>
             </div>
         </div>
-
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
                 <div class="row justify-content-center" >
-                    <div class="col-5 ml-5 mt-5" runat="server" id="timeline"></div>
+                    <asp:Panel ID="timeline" class="col-5 ml-5 mt-5" runat="server"></asp:Panel>
                 </div>
             </ContentTemplate>
         </asp:UpdatePanel>
