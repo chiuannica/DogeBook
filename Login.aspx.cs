@@ -165,9 +165,12 @@ namespace DogeBook
                         //Response.Cookies.Remove("LoginCookie");
                         HttpCookie currentUserCookie = HttpContext.Current.Request.Cookies["LoginCookie"];
                         HttpContext.Current.Response.Cookies.Remove("LoginCookie");
-                        currentUserCookie.Expires = DateTime.Now.AddDays(-10);
-                        currentUserCookie.Value = null;
-                        HttpContext.Current.Response.SetCookie(currentUserCookie);
+                        if (currentUserCookie != null)
+                        {
+                            currentUserCookie.Expires = DateTime.Now.AddDays(-10);
+                            currentUserCookie.Value = null;
+                            HttpContext.Current.Response.SetCookie(currentUserCookie);
+                        }
                     }
 
                     Session["UserId"] = util.GetUserIdByEmail(TxtEmail_SignIn.Text);
