@@ -28,6 +28,10 @@ namespace DogeBook
             // Read encrypted password from cookie
             if (!IsPostBack && Request.Cookies["LoginCookie"] != null)
             {
+                // clear the session userid
+                // redirect to login if the user if is null 
+                Session["UserId"] = null;
+
                 HttpCookie myCookie = Request.Cookies["LoginCookie"];
                 String encryptedEmail = myCookie.Values["Email"];
                 String encryptedPassword = myCookie.Values["Password"];
@@ -161,9 +165,12 @@ namespace DogeBook
                         //Response.Cookies.Remove("LoginCookie");
                         HttpCookie currentUserCookie = HttpContext.Current.Request.Cookies["LoginCookie"];
                         HttpContext.Current.Response.Cookies.Remove("LoginCookie");
-                        currentUserCookie.Expires = DateTime.Now.AddDays(-10);
-                        currentUserCookie.Value = null;
-                        HttpContext.Current.Response.SetCookie(currentUserCookie);
+                        if (currentUserCookie != null)
+                        {
+                            currentUserCookie.Expires = DateTime.Now.AddDays(-10);
+                            currentUserCookie.Value = null;
+                            HttpContext.Current.Response.SetCookie(currentUserCookie);
+                        }
                     }
 
                     Session["UserId"] = util.GetUserIdByEmail(TxtEmail_SignIn.Text);

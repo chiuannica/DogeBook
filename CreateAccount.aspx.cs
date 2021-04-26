@@ -90,7 +90,7 @@ namespace DogeBook
             string toEmail = TBEmail.Text;
             string fromEmail = "tui30639@temple.edu";
             string subject = "Verify your DogeBook Account";
-            string body = "Go to ____/VerifyAccount.aspx";
+            string body = "Go to https://localhost:44386/api/User/VerifyAccount.aspx";
             string cc = "";
             string bcc = "";
 
@@ -164,6 +164,11 @@ namespace DogeBook
 
             // send an email to validate
             //bool sentVerification = SendVerificationEmail();
+
+            // NOTE FOR BRUCE:
+            // line 166 is supposed to send the email to the user to verify the account
+            // it would only work if it is published.
+            // this is why that is commented out.
             bool sentVerification = true;
 
             // add security questions
@@ -234,7 +239,9 @@ namespace DogeBook
         {
             LblWarning.Visible = false;
             LblSuccess.Visible = true;
-            LblSuccess.Text = "Account created successfully. <br/> Check your email to verify your account";
+            LblSuccess.Text = "Account created successfully. " +
+                "<br/> Normally you would check your email to verify your account, " +
+                "<br/> but you can log in without verifying!";
             BtnRedirectToLogin.Visible = true;
         }
         protected void CreatedAccountFailed()

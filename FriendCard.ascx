@@ -2,7 +2,7 @@
 
 <div class="col-md-4 col-sm-6" >
     <div class="card" >
-        <asp:Image ID="ImgFriend" class="card-img-top" ImageUrl="https://news.bitcoin.com/wp-content/uploads/2021/01/cant-keep-a-good-dog-down-meme-token-dogecoin-spiked-over-500-this-year.jpg" runat="server" />
+        <asp:Image ID="ImgFriend" class="card-img-top" ImageUrl="https://news.bitcoin.com/wp-content/uploads/2021/01/cant-keep-a-good-dog-down-meme-token-dogecoin-spiked-over-500-this-year.jpg" runat="server" Height="200px" ImageAlign="Middle" />
         <div class="card-body">
 
             <h5 class="card-title">

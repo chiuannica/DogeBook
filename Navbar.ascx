@@ -20,8 +20,8 @@
       <li class="nav-item">
         <a class="nav-link" href="BrowseFriends.aspx">Browse Friends</a>
       </li>
-       <li class="nav-item" >
-        <a class="nav-link text-danger" href ="Login.aspx">Log Out</a>
+      <li class="nav-item" >
+        <a id="BtnLogOut" class="nav-link text-danger" href="Login.aspx">Log Out</a>
       </li>
     </ul>
   </div>

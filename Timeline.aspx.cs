@@ -14,12 +14,17 @@ namespace DogeBook
     public partial class Timeline : System.Web.UI.Page
     {
         Utility util = new Utility();
-        //int userid = Int32.Parse(HttpContext.Current.Session["UserId"].ToString());
         protected void Page_Load(object sender, EventArgs e)
         {
-            ScriptManager scriptManager = ScriptManager.GetCurrent(this.Page);
+            if (!IsPostBack)
+            {
+                // redirect to login if the user if is null 
+                if (Session["UserId"] == null)
+                {
+                    Response.Redirect("Login.aspx");
+                }
+            }
             LoadTimeline();
-            //scriptManager.RegisterPostBackControl();
 
         }
 

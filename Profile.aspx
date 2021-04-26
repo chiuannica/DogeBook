@@ -37,7 +37,7 @@
 
 
             <div class="col-md-8 col-sm-12 my-3">
-                <h4>Biography</h4>
+                <h4>Biography  <i class="fas fa-dog"></i></h4>
                 <p>
                     <asp:Label ID="LBio" runat="server" Text="Biography">
                     </asp:Label>
@@ -45,7 +45,7 @@
             </div>
 
             <div class="col-md-8 col-sm-12 my-3">
-                <h4>Interests</h4>
+                <h4>Interests <i class="fas fa-baseball-ball"></i></h4>
                 <p>
                     <asp:Label ID="LInterests" runat="server" Text="Interests">
                     </asp:Label>
@@ -53,20 +53,24 @@
             </div>
             
             <div class="col-md-8 col-sm-12 my-3">
-                <asp:Label ID="LCity" runat="server" Text="DogeVile"></asp:Label>
-                <span class="mr-1"></span>
-                <asp:Label ID="LState" runat="server" Text="Pennsylvania"></asp:Label>
+                <h4>Location <i class="fas fa-search-location"></i></h4>
+                <p>
+                    <asp:Label ID="LCity" runat="server" Text="DogeVile"></asp:Label>
+                    <span class="mr-1"></span>
+                    <asp:Label ID="LState" runat="server" Text="Pennsylvania"></asp:Label>
+                </p>
             </div>
 
             <div>
-                <asp:Button ID="BtnEditProfile" runat="server"  CssClass="btn btn-primary" Text="Edit Profile" OnClick="BtnEditProfile_Click" />
+                <asp:Button ID="BtnEditProfile" runat="server"  CssClass="btn btn-primary" Text="Edit Profile " OnClick="BtnEditProfile_Click" />
+
             </div>
         </div>
 
 
 
         <div class="container">
-            <h2 class="mb-4 mb-3 font-weight-normal  text-center">Friends
+            <h2 class="mb-4 mb-3 font-weight-normal  text-center">Friends 
                 <asp:Label ID="LFriendsNumber" runat="server"  class="badge badge-primary" Text=""></asp:Label>
             </h2>
                 <asp:Panel ID="FriendPanel" CssClass="row " runat="server"></asp:Panel>

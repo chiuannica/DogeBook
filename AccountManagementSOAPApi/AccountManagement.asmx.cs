@@ -108,10 +108,17 @@ namespace AccountManagementSOAPApi
             SqlParameter inputEmail = new SqlParameter("@email", email);
             SqlParameter inputPassword = new SqlParameter("@password", hashedPassword);
 
+            // NOTE FOR BRUCE:
+            // usually verified is set to 0 and changed later,
+            // but locally the email sending the link for verification doesn't work
+            // for this reason the user is automatically verified. 
+            SqlParameter inputVerified = new SqlParameter("@verified", 1);
+
             myCommandObj.Parameters.Add(inputFirstName);
             myCommandObj.Parameters.Add(inputLastName);
             myCommandObj.Parameters.Add(inputEmail);
             myCommandObj.Parameters.Add(inputPassword);
+            myCommandObj.Parameters.Add(inputVerified);
 
             int result = dBConnect.DoUpdateUsingCmdObj(myCommandObj);
 

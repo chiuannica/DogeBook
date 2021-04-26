@@ -11,15 +11,7 @@ namespace DogeBook
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                // load the userId
-                if (Session["UserId"] == null)
-                {
-                    Session["UserId"] = -1;
-                    Response.Redirect("Login.aspx");
-                }
-            }
         }
+
     }
 }

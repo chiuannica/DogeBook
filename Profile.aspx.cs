@@ -22,6 +22,14 @@ namespace DogeBook
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                // redirect to login if the user if is null 
+                if (Session["UserId"] == null)
+                {
+                    Response.Redirect("Login.aspx");
+                }
+            }
             // load the userId
             userId = int.Parse(Session["UserId"].ToString());
             // load user information
@@ -63,7 +71,8 @@ namespace DogeBook
 
                 LBio.Text = user.Bio;
                 LInterests.Text = user.Interests;
-                LCity.Text = user.City + ", " ;
+                if (user.City != "" || user.City != null)
+                    LCity.Text = user.City + ", " ;
                 LState.Text = user.State;
             }
         }
