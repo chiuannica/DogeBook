@@ -19,44 +19,44 @@ namespace DogeBook
         Utility util = new Utility();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //LoadComments();
 
 
         }
 
-        //protected void LoadComments()
-        //{
-        //    WebRequest request = WebRequest.Create("https://localhost:44305/api/Timeline/GetComments/" + postid);
-        //    WebResponse response = request.GetResponse();
+        protected void LoadComments()
+        {
+            WebRequest request = WebRequest.Create("https://localhost:44305/api/Timeline/GetComments/" + postid);
+            WebResponse response = request.GetResponse();
 
-        //    Stream theDataStream = response.GetResponseStream();
-        //    StreamReader reader = new StreamReader(theDataStream);
+            Stream theDataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(theDataStream);
 
-        //    String data = reader.ReadToEnd();
-        //    reader.Close();
-        //    response.Close();
+            String data = reader.ReadToEnd();
+            reader.Close();
+            response.Close();
 
-        //    JavaScriptSerializer js = new JavaScriptSerializer();
+            JavaScriptSerializer js = new JavaScriptSerializer();
 
-        //    DataSet postComments = js.Deserialize<DataSet>(data);
+            List<String> postComments = js.Deserialize<List<String>>(data);
 
-        //    if(postComments != null && postComments.Tables.Count > 0 && postComments.Tables[0].Rows.Count > 0)
-        //    {
-        //        for(int i = 0; i < postComments.Tables[0].Rows.Count; i++)
-        //        {
-        //            LiteralControl comment = new LiteralControl("<div class=\"col\">" + util.GetNameByUserId((int)postComments.Tables[0].Rows[i]["UserId"]) + "  </div>");
-        //            commentSection.Controls.Add(comment);
-        //        }
+            if (postComments != null && postComments.Count > 0)
+            {
+                for (int i = 0; i < postComments.Count; i++)
+                {
 
+                    //panel or placeholder(server side container - server side code)
+                    Label comment = new Label();
+                    //(int)postComments.Tables[0].Rows[i]["UserId"]
+                    comment.Text = postComments[i].ToString();
+                    commentSection.Controls.Add(comment);
+                }
 
-        //    }
-
-
-        //}
+            }
+        }
 
         protected void btnComment_Click(object sender, EventArgs e)
         {
-            txtPostText.Text = "Thanks for clicking comment";
             if (commentTextBox.Visible)
             {
                 commentTextBox.Visible = false;
@@ -160,7 +160,7 @@ namespace DogeBook
             //    cmtAuthor.Text = util.GetNameByUserId((int)PostComments.Tables[0].Rows[0]["UserId"]);
             //    comment.Text = PostComments.Tables[0].Rows[0]["Text"].ToString();
             //}
-            //LoadComments();
+            LoadComments();
 
         }
 
@@ -174,13 +174,19 @@ namespace DogeBook
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 if(response.StatusCode == HttpStatusCode.OK)
                 {
-                     
+                    btnLike.InnerHtml = "<i class=\"fas fa-paw\"></i>&nbsp Like";
                 }
             }
             else
             {
                 util.LikePost((int)Session["UserId"], postid);
+                btnLike.InnerHtml = "<i class=\"fas fa-thumbs-down\"></i>&nbsp Unlike";
             }
+
+        }
+
+        protected void btnPostComment_ServerClick(object sender, EventArgs e)
+        {
 
         }
     }
