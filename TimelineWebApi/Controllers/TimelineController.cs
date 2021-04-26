@@ -13,7 +13,7 @@ namespace TimelineWebApi.Controllers
     public class TimelineController : Controller
     {
         // GET: api/Timeline
-        [HttpGet ("GetTimeline/{userId}")]
+        [HttpGet("GetTimeline/{userId}")]
         public int[] GetTimeline(int userId)
         {
             //string path = "https://localhost:44386/api/User/";
@@ -102,7 +102,7 @@ namespace TimelineWebApi.Controllers
             //bada bing bada boom
             //
             List<Post> tempTimeline = new List<Post>();
-            
+
             foreach (int user in timelineUsers)
             {
                 sqlString = "SELECT * FROM TP_Posts WHERE UserId=" + user;
@@ -119,7 +119,7 @@ namespace TimelineWebApi.Controllers
                         //              "PostId: " + record["PostId"].ToString() + Environment.NewLine;
                         post.Timestamp = (DateTime)record["Timestamp"];
                         // ...
-                        
+
                         tempTimeline.Add(post);
                     }
                     //tempTimeline.Add(tempString);
@@ -139,10 +139,19 @@ namespace TimelineWebApi.Controllers
 
         // GET: api/Timeline/5
         [HttpGet("GetComments/{postid}")]
-        public DataSet GetComments(int postId)
+        public List<String> GetComments(int postId)
         {
             Utility util = new Utility();
-            return util.GetCommentsForPost(postId);
+            DataSet ds = util.GetCommentsForPost(postId);
+            List<String> comments = new List<String>();
+            if (ds != null && ds.Tables.Count > 0)
+            {
+                foreach (DataRow row in ds.Tables[0].Rows)
+                {
+                    comments.Add(util.GetNameByUserId((int)row["UserId"]) + ": " + row["Text"].ToString());
+                }
+            }
+            return comments;
         }
 
         // POST: api/Timeline
