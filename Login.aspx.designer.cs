@@ -30,7 +30,7 @@ namespace DogeBook
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DogeBook.Navbar NavbarNotLoggedIn;
+        protected global::DogeBook.NavbarNotLoggedIn NavbarNotLoggedIn;
 
         /// <summary>
         /// ErrorDiv control.

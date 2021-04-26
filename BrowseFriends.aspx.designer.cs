@@ -60,13 +60,13 @@ namespace DogeBook
         protected global::System.Web.UI.WebControls.Label LSearchTitle;
 
         /// <summary>
-        /// LSearchEmpty control.
+        /// LSearchNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LSearchEmpty;
+        protected global::System.Web.UI.WebControls.Label LSearchNumber;
 
         /// <summary>
         /// SearchPanel control.
@@ -76,15 +76,6 @@ namespace DogeBook
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel SearchPanel;
-
-        /// <summary>
-        /// LFriendsEmpty control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LFriendsEmpty;
 
         /// <summary>
         /// BtnFriendsHide control.
@@ -105,24 +96,6 @@ namespace DogeBook
         protected global::System.Web.UI.WebControls.Button BtnFriends;
 
         /// <summary>
-        /// FriendsPanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel FriendsPanel;
-
-        /// <summary>
-        /// LFriendOfFriendsEmpty control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LFriendOfFriendsEmpty;
-
-        /// <summary>
         /// BtnFriendOfFriendsHide control.
         /// </summary>
         /// <remarks>
@@ -141,24 +114,6 @@ namespace DogeBook
         protected global::System.Web.UI.WebControls.Button BtnFriendOfFriends;
 
         /// <summary>
-        /// FriendsOfFriendsPanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel FriendsOfFriendsPanel;
-
-        /// <summary>
-        /// LNonFriendsEmpty control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LNonFriendsEmpty;
-
-        /// <summary>
         /// BtnAllHide control.
         /// </summary>
         /// <remarks>
@@ -175,6 +130,78 @@ namespace DogeBook
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BtnAll;
+
+        /// <summary>
+        /// LFriendsNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LFriendsNumber;
+
+        /// <summary>
+        /// LFriendsEmpty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LFriendsEmpty;
+
+        /// <summary>
+        /// FriendsPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel FriendsPanel;
+
+        /// <summary>
+        /// LFriendOfFriendsNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LFriendOfFriendsNumber;
+
+        /// <summary>
+        /// LFriendOfFriendsEmpty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LFriendOfFriendsEmpty;
+
+        /// <summary>
+        /// FriendsOfFriendsPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel FriendsOfFriendsPanel;
+
+        /// <summary>
+        /// LNonFriendsNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LNonFriendsNumber;
+
+        /// <summary>
+        /// LNonFriendsEmpty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LNonFriendsEmpty;
 
         /// <summary>
         /// NonFriendPanel control.

@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ForgotPassword.aspx.cs" Inherits="DogeBook.ForgotPassword" %>
 
-<%@ Register Src="~/Navbar.ascx" TagPrefix="uc1" TagName="Navbar" %>
 <%@ Register Src="~/NavbarNotLoggedIn.ascx" TagPrefix="uc1" TagName="NavbarNotLoggedIn" %>
+
 
 
 
