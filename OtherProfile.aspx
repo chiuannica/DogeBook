@@ -35,7 +35,7 @@
 
 
                 <div class="col-md-8 col-sm-12 my-3">
-                    <h4>Biography</h4>
+                    <h4>Biography <i class="fas fa-dog"></i></h4>
                     <p>
 
                         <asp:Label ID="LBio" runat="server" Text="Biography Biography Biography Biography Biography 
@@ -47,7 +47,7 @@
 
                 </div>
                 <div class="col-md-8 col-sm-12 my-3">
-                    <h4>Interests</h4>
+                    <h4>Interests <i class="fas fa-baseball-ball"></i></h4>
                     <p>
                         <asp:Label ID="LInterests" runat="server" Text="Interests Interests Interests Interests Interests 
                             Interests Interests Interests Interests Interests Interests ">
@@ -56,9 +56,12 @@
                 
                 </div>
                 <div class="col-md-8 col-sm-12 my-3">
-                    <asp:Label ID="LCity" runat="server" Text="DogeVile"></asp:Label>
-                    <span class="mr-1"></span>
-                    <asp:Label ID="LState" runat="server" Text="Pennsylvania"></asp:Label>
+                    <h4>Location <i class="fas fa-search-location"></i></h4>
+                    <p>
+                        <asp:Label ID="LCity" runat="server" Text="DogeVile"></asp:Label>
+                        <span class="mr-1"></span>
+                        <asp:Label ID="LState" runat="server" Text="Pennsylvania"></asp:Label>
+                    </p>
                 </div>
             </div>
             
