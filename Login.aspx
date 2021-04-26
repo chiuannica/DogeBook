@@ -13,6 +13,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <title>Login</title>
+    <style>
+        body {
+            background: url("Images/dogeWallpaper.jpg") no-repeat center center fixed;
+            background-size: cover;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -27,10 +33,10 @@
                             <asp:Label runat="server" ID="Errors"></asp:Label>
                         </div>
                         <label for="Email">Email</label>
-                        <asp:TextBox ID="TxtEmail_SignIn" runat="server" class="form-control" placeholder="You@example.com" autofocus=""></asp:TextBox>
+                        <asp:TextBox ID="TxtEmail_SignIn" runat="server" CssClass="form-control" placeholder="You@example.com" autofocus=""></asp:TextBox>
                         <div class="invalid-feedback">Who are you?</div>
                         <label for="Password">Password</label>
-                        <asp:TextBox ID="TxtPassword_SignIn" runat="server" class="form-control" TextMode="Password" placeholder="xxxxxxxxxxx"></asp:TextBox>
+                        <asp:TextBox ID="TxtPassword_SignIn" runat="server" CssClass="form-control" TextMode="Password" Placeholder="xxx"></asp:TextBox>
                         <div class="checkbox mb-3">
                             <label>
                                 <asp:CheckBox ID="RemeberChkBox" runat="server" type="checkbox" value="remember_me" />
