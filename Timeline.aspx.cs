@@ -25,7 +25,6 @@ namespace DogeBook
                 }
             }
             LoadTimeline();
-
         }
 
         protected void btnPost_Click(object sender, EventArgs e)
@@ -33,7 +32,6 @@ namespace DogeBook
             Post post = new Post();
             post.Timestamp = DateTime.Now;
             post.Text = txtPostText.Text;
-            //Util.FileUpload? maybe something else
             int imageSize = 0, result = 0;
             byte[] bytes = new byte[]{byte.MinValue};
             String fileExtension, imageName;
