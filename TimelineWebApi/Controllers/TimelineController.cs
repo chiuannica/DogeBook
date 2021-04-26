@@ -173,9 +173,11 @@ namespace TimelineWebApi.Controllers
         }
 
         // PUT: api/Timeline/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("UpdatePostText/{PostId}/{Text}")]
+        public void UpdatePostText(int PostId, string Text)
         {
+            Utility util = new Utility();
+            util.UpdatePostText(PostId, Text);
         }
 
         // DELETE: api/ApiWithActions/5
