@@ -42,15 +42,6 @@ namespace DogeBook
         protected global::System.Web.UI.WebControls.Label lblAuthor;
 
         /// <summary>
-        /// hdnPostId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnPostId;
-
-        /// <summary>
         /// cardBody control.
         /// </summary>
         /// <remarks>
@@ -78,6 +69,15 @@ namespace DogeBook
         protected global::System.Web.UI.WebControls.Image imgPostImage;
 
         /// <summary>
+        /// lblLikes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLikes;
+
+        /// <summary>
         /// btnLike control.
         /// </summary>
         /// <remarks>
@@ -93,34 +93,25 @@ namespace DogeBook
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnComment;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnComment;
 
         /// <summary>
-        /// commentTable control.
+        /// commentTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table commentTable;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl commentTextBox;
 
         /// <summary>
-        /// cmtAuthor control.
+        /// hdnPostId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableCell cmtAuthor;
-
-        /// <summary>
-        /// comment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TableCell comment;
+        protected global::System.Web.UI.WebControls.HiddenField hdnPostId;
 
         /// <summary>
         /// cardFooter control.

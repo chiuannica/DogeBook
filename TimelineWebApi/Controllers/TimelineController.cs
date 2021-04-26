@@ -138,10 +138,11 @@ namespace TimelineWebApi.Controllers
         }
 
         // GET: api/Timeline/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("GetComments/{postid}")]
+        public DataSet GetComments(int postId)
         {
-            return "" + id;
+            Utility util = new Utility();
+            return util.GetCommentsForPost(postId);
         }
 
         // POST: api/Timeline
@@ -169,9 +170,12 @@ namespace TimelineWebApi.Controllers
         }
 
         // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("Unlike/{UserId}/{PostId}")]
+        public void Unlike(int userid, int postid)
         {
+            Utility util = new Utility();
+            util.Unlike(userid, postid);
+
         }
     }
 }
