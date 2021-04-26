@@ -62,7 +62,7 @@ namespace DogeBookLibrary
             }
 
         }
-       
+
 
         public DataSet PostControlDatabind(int postId)
         {
@@ -118,7 +118,7 @@ namespace DogeBookLibrary
 
             myCommandObj.Parameters.AddWithValue("@UserId", userId);
             DataSet ds = dBConnect.GetDataSetUsingCmdObj(myCommandObj);
-            if(ds != null && ds.Tables[0].Rows.Count > 0)
+            if (ds != null && ds.Tables[0].Rows.Count > 0)
             {
                 if (ds.Tables[0].Rows[0]["ProfilePicture"] != DBNull.Value)
                 {
@@ -206,8 +206,50 @@ namespace DogeBookLibrary
             return ds.Tables[0].Rows[0]["FirstName"].ToString() + " " + ds.Tables[0].Rows[0]["LastName"];
         }
 
+
+        public int CountLikesOnPost(int postId)
+        {
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_CountLikesOnPost";
+            myCommandObj.Parameters.Clear();
+            myCommandObj.Parameters.AddWithValue("@PostId", postId);
+
+            DataSet ds = dBConnect.GetDataSetUsingCmdObj(myCommandObj);
+
+            return (int)ds.Tables[0].Rows[0]["count_likes"];
+        }
+
+        public Boolean CheckLike(int userId, int postId)
+        {
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_CheckLike";
+            myCommandObj.Parameters.Clear();
+            myCommandObj.Parameters.AddWithValue("@PostId", postId);
+            myCommandObj.Parameters.AddWithValue("@UserId", userId);
+
+            DataSet ds = dBConnect.GetDataSetUsingCmdObj(myCommandObj);
+
+            if(ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void Unlike(int userId, int postId)
+        {
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_Unlike";
+            myCommandObj.Parameters.Clear();
+            myCommandObj.Parameters.AddWithValue("@PostId", postId);
+            myCommandObj.Parameters.AddWithValue("@UserId", userId);
+
+            dBConnect.DoUpdateUsingCmdObj(myCommandObj);
+        }
+
     }
-
-
 }
 

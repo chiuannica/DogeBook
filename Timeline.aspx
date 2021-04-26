@@ -31,6 +31,8 @@
         }
     </style>
 
+
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -54,14 +56,55 @@
                 <asp:Button runat="server" class="btn btn-outline-primary col-8" Text="Post" ID="btnPost" OnClick="btnPost_Click"></asp:Button>
             </div>
         </div>
-        <asp:UpdatePanel ID="UpdatePanel1"
-            runat="server">
+
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
                 <div class="row justify-content-center">
-                    <div class="col-5 ml-5 mt-5" runat="server" id="timeline">
-                    </div>
+                    <div class="col-5 ml-5 mt-5" runat="server" id="timeline"></div>
+                </div>
             </ContentTemplate>
+
         </asp:UpdatePanel>
+
+
+
     </form>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var i;
+            for (i = 0; i < ($('input:hidden').length); i++) {
+                if ($('input:hidden').eq(i).attr('id').includes("hdnPostId")) {
+                    //console.log($('input:hidden').eq(i).parent().next().children().attr('id'));
+                    //console.log($('input:hidden').eq(i).next().attr('id'));
+                    const userAction = async () => {
+                        const response = await fetch('https://localhost:44305/api/Timeline/GetComments/' + $('input:hidden').eq(i).val());
+                        const myJson = await response.json(); //extract JSON from the http response
+                        //const obj = JSON.parse(myJson);
+                        console.log(JSON.stringify(myJson, null, 4));
+                        //$('input:hidden').eq(i).next().append(obj.Text);
+
+                    }
+                    userAction();
+                }
+            }
+
+            //var x;
+            //for (x = 0; x < postIds.length; x++) {
+            //    var xhttp = new XMLHttpRequest();
+            //    xhttp.onreadystatechange = function () {
+            //        if (this.readyState == 4 && this.status == 200) {
+            //            alert(this.responseText);
+            //        }
+            //    };
+            //    xhttp.open("GET", "https://localhost:44305/api/Timeline/GetComments/" + postIds[x], true);
+            //    xhttp.setRequestHeader("Content-type", "application/json");
+            //}
+
+
+        });
+
+
+    </script>
 </body>
 </html>

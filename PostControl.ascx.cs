@@ -3,8 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
+using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -13,15 +16,55 @@ namespace DogeBook
     public partial class PostControl : System.Web.UI.UserControl
     {
         private int postid;
+        Utility util = new Utility();
         protected void Page_Load(object sender, EventArgs e)
         {
-            Utility util = new Utility();
-            DataSet PostComments = util.GetCommentsForPost(postid);
+
+
+
         }
+
+        //protected void LoadComments()
+        //{
+        //    WebRequest request = WebRequest.Create("https://localhost:44305/api/Timeline/GetComments/" + postid);
+        //    WebResponse response = request.GetResponse();
+
+        //    Stream theDataStream = response.GetResponseStream();
+        //    StreamReader reader = new StreamReader(theDataStream);
+
+        //    String data = reader.ReadToEnd();
+        //    reader.Close();
+        //    response.Close();
+
+        //    JavaScriptSerializer js = new JavaScriptSerializer();
+
+        //    DataSet postComments = js.Deserialize<DataSet>(data);
+
+        //    if(postComments != null && postComments.Tables.Count > 0 && postComments.Tables[0].Rows.Count > 0)
+        //    {
+        //        for(int i = 0; i < postComments.Tables[0].Rows.Count; i++)
+        //        {
+        //            LiteralControl comment = new LiteralControl("<div class=\"col\">" + util.GetNameByUserId((int)postComments.Tables[0].Rows[i]["UserId"]) + "  </div>");
+        //            commentSection.Controls.Add(comment);
+        //        }
+
+
+        //    }
+
+
+        //}
 
         protected void btnComment_Click(object sender, EventArgs e)
         {
             txtPostText.Text = "Thanks for clicking comment";
+            if (commentTextBox.Visible)
+            {
+                commentTextBox.Visible = false;
+            }
+            else
+            {
+                commentTextBox.Visible = true;
+            }
         }
 
         [Category("Misc")]
@@ -104,30 +147,41 @@ namespace DogeBook
             lblTimestamp.Text = row["TimeStamp"].ToString();
             postid = (int)row["PostId"];
             hdnPostId.Value = postid.ToString();
-            DataSet PostComments = util.GetCommentsForPost(postid);
-            if (PostComments.Tables[0].Rows.Count > 0)
+            Boolean liked = util.CheckLike((int)Session["UserId"], postid);
+            if (liked)
             {
-                cmtAuthor.Text = util.GetNameByUserId((int)PostComments.Tables[0].Rows[0]["UserId"]);
-                comment.Text = PostComments.Tables[0].Rows[0]["Text"].ToString();
+                btnLike.InnerText = "Unlike";
             }
 
+            lblLikes.Text += util.CountLikesOnPost(postid);
+            //DataSet PostComments = util.GetCommentsForPost(postid);
+            //if (PostComments.Tables[0].Rows.Count > 0)
+            //{
+            //    cmtAuthor.Text = util.GetNameByUserId((int)PostComments.Tables[0].Rows[0]["UserId"]);
+            //    comment.Text = PostComments.Tables[0].Rows[0]["Text"].ToString();
+            //}
+            //LoadComments();
+
         }
 
-        protected void btnLike_Click(object sender, EventArgs e)
+        protected void btnLike_ServerClick(object sender, EventArgs e)
         {
-
-        }
-
-        protected void btnComment_Click1(object sender, EventArgs e)
-        {
-            if (commentTable.Visible)
+            Boolean liked = util.CheckLike((int)Session["UserId"], postid);
+            if (liked)
             {
-                commentTable.Visible = false;
+                WebRequest request = WebRequest.Create("https://localhost:44305/api/Timeline/Unlike/" + Session["UserId"] +"/"+ postid);
+                request.Method = "DELETE";
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                if(response.StatusCode == HttpStatusCode.OK)
+                {
+                     
+                }
             }
             else
             {
-                commentTable.Visible = true;
+                util.LikePost((int)Session["UserId"], postid);
             }
+
         }
     }
 }

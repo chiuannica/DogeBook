@@ -17,11 +17,9 @@ namespace DogeBook
         //int userid = Int32.Parse(HttpContext.Current.Session["UserId"].ToString());
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                LoadTimeline();
-            }
-            
+
+            LoadTimeline();
+            //make comments always visible... 
             //Response.Write("<script>alert('" + Session["UserId"].ToString() + "');</script>");
             //Response.Write("<script>alert('" + userid + "');</script>"); 
             //Console.Write(Session["UserId"]);
@@ -106,6 +104,36 @@ namespace DogeBook
             }
 
         }
-        
+
+        protected void LoadComments()
+        {
+            //WebRequest request = WebRequest.Create("https://localhost:44305/api/Timeline/GetComments/" + postid);
+            //WebResponse response = request.GetResponse();
+
+            //Stream theDataStream = response.GetResponseStream();
+            //StreamReader reader = new StreamReader(theDataStream);
+
+            //String data = reader.ReadToEnd();
+            //reader.Close();
+            //response.Close();
+
+            //JavaScriptSerializer js = new JavaScriptSerializer();
+
+            //DataSet postComments = js.Deserialize<DataSet>(data);
+
+            //if (postComments != null && postComments.Tables.Count > 0 && postComments.Tables[0].Rows.Count > 0)
+            //{
+            //    for (int i = 0; i < postComments.Tables[0].Rows.Count; i++)
+            //    {
+            //        LiteralControl comment = new LiteralControl("<div class=\"col\">" + util.GetNameByUserId((int)postComments.Tables[0].Rows[i]["UserId"]) + "  </div>");
+            //        commentSection.Controls.Add(comment);
+            //    }
+
+
+            //}
+                
+
+            }
+
     }
 }
