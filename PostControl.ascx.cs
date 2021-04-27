@@ -19,7 +19,6 @@ namespace DogeBook
         Utility util = new Utility();
         protected void Page_Load(object sender, EventArgs e)
         {
-            //LoadComments();
 
 
         }
@@ -46,11 +45,10 @@ namespace DogeBook
                 {
                     //panel or placeholder(server side container - server side code)
                     Label comment = new Label();
-                    //(int)postComments.Tables[0].Rows[i]["UserId"]
                     comment.Text = postComments[i].ToString();
                     commentSection.Controls.Add(comment);
                 }
-            } 
+            }
         }
 
         protected void btnComment_Click(object sender, EventArgs e)
@@ -140,7 +138,15 @@ namespace DogeBook
             DataRow row = postData.Tables[0].Rows[0];
             lblAuthor.Text = row["FirstName"].ToString() + " " + row["LastName"].ToString();
             imgAuthor.ImageUrl = util.ProfPicArrayToImage((int)row["UserId"]);
-            imgPostImage.ImageUrl = util.ByteArrayToImageUrl((byte[])row["Image"]);
+            if(!DBNull.Value.Equals(row["Image"]))
+            {
+                imgPostImage.ImageUrl = util.ByteArrayToImageUrl((byte[])row["Image"]);
+            }
+            else
+            {
+                imgPostImage.Visible = false;
+            }
+            
             txtPostText.Text = row["Text"].ToString();
             lblTimestamp.Text = row["TimeStamp"].ToString();
             postid = (int)row["PostId"];
@@ -150,14 +156,11 @@ namespace DogeBook
             {
                 btnLike.InnerHtml = "<i class=\"fas fa-thumbs-down\"></i>&nbsp Unlike";
             }
-
+            if ((int)Session["UserId"] == (int)row["UserId"])
+            {
+                btnEdit.Visible = true;
+            }
             lblLikes.Text = "<i class=\"fas fa-paw\"></i>" + util.CountLikesOnPost(postid);
-            //DataSet PostComments = util.GetCommentsForPost(postid);
-            //if (PostComments.Tables[0].Rows.Count > 0)
-            //{
-            //    cmtAuthor.Text = util.GetNameByUserId((int)PostComments.Tables[0].Rows[0]["UserId"]);
-            //    comment.Text = PostComments.Tables[0].Rows[0]["Text"].ToString();
-            //}
             LoadComments();
 
         }
@@ -167,10 +170,10 @@ namespace DogeBook
             Boolean liked = util.CheckLike((int)Session["UserId"], postid);
             if (liked)
             {
-                WebRequest request = WebRequest.Create("https://localhost:44305/api/Timeline/Unlike/" + Session["UserId"] +"/"+ postid);
+                WebRequest request = WebRequest.Create("https://localhost:44305/api/Timeline/Unlike/" + Session["UserId"] + "/" + postid);
                 request.Method = "DELETE";
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                if(response.StatusCode == HttpStatusCode.OK)
+                if (response.StatusCode == HttpStatusCode.OK)
                 {
                     btnLike.InnerHtml = "<i class=\"fas fa-paw\"></i>&nbsp Like";
                 }
@@ -188,6 +191,28 @@ namespace DogeBook
             util.MakeComment(postid, (int)Session["UserId"], txtComment.Text);
             DataBind();
             txtComment.Text = "";
+        }
+
+        protected void btnUpdatePostText_ServerClick(object sender, EventArgs e)
+        {
+            WebRequest request = WebRequest.Create("https://localhost:44305/api/Timeline/UpdatePostText/" + postid + "/" + txtPostText.Text);
+            request.Method = "PUT";
+            request.ContentLength = 0;
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                DataBind();
+                btnUpdatePostText.Visible = false;
+                txtPostText.ReadOnly = true;
+            }
+
+        }
+
+        protected void btnEdit_ServerClick(object sender, EventArgs e)
+        {
+            btnUpdatePostText.Visible = true;
+            txtPostText.ReadOnly = false;
+            txtPostText.Focus();
         }
     }
 }

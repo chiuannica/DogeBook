@@ -4,9 +4,20 @@
     <div class="card-header text-left" id="cardHeader">
         <asp:Image ID="imgAuthor" Height="50px" Width="50px" ImageUrl="Images/DogeBook-Logo.png" runat="server" class="img-thumbnail" />
         <asp:Label ID="lblAuthor" runat="server">Author</asp:Label>
+            <button id="btnEdit" class="btn btn-sm btn-secondary text-right" runat="server" onserverclick="btnEdit_ServerClick" visible="false">
+                <i class="fas fa-wrench"></i>
+            </button>
     </div>
     <div class="card-body" runat="server" id="cardBody">
-        <asp:TextBox ID="txtPostText" runat="server" class="card-text form-control border-0 disabled bg-white" ReadOnly="True">Here lies the dogebook post text</asp:TextBox>
+        <div class="input-group mb-3">
+            <asp:TextBox ID="txtPostText" runat="server" class="card-text form-control border-0 bg-white" ReadOnly="True" AutoPostBack="true">Here lies the dogebook post text</asp:TextBox>
+            <div class="input-group-append">
+                <button id="btnUpdatePostText" class="btn btn-sm btn-secondary" runat="server" onserverclick="btnUpdatePostText_ServerClick" visible="false">
+                    <i class="fas fa-edit"></i>
+                </button>
+            </div>
+        </div>
+
         <br />
         <br />
         <asp:Image ImageUrl="Images/DogeBook-Logo.png" ID="imgPostImage" class="img-fluid d-block mx-auto border-5" Style="max-height: 750px;" runat="server" />
@@ -16,8 +27,7 @@
         </div>
         <div class="row pl-3 pr-3">
             <button id="btnLike" class="btn btn-success col mr-1" runat="server" onserverclick="btnLike_ServerClick">
-                <i class="fas fa-paw"></i>&nbsp Like
-            </button>
+                <i class="fas fa-paw"></i>&nbsp Like</button>
             <button class="btn btn-primary col" runat="server" id="btnComment" onserverclick="btnComment_Click">
                 <i class="fas fa-comment-alt"></i>&nbsp Comment
             </button>

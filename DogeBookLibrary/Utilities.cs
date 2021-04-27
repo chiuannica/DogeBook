@@ -110,6 +110,25 @@ namespace DogeBookLibrary
             return int.Parse(myCommandObj.Parameters["@PostId"].Value.ToString());
         }
 
+        public int InsertPost(int userId, string text, DateTime timestamp)
+        {
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_InsertPost";
+            myCommandObj.Parameters.Clear();
+
+            myCommandObj.Parameters.AddWithValue("@UserId", userId);
+            myCommandObj.Parameters.AddWithValue("@Text", text);
+            myCommandObj.Parameters.AddWithValue("@Timestamp", timestamp);
+            //Get Output, return postid
+            SqlParameter postId = new SqlParameter("@PostId", DbType.Int32);
+            postId.Direction = ParameterDirection.Output;
+            myCommandObj.Parameters.Add(postId);
+
+            dBConnect.DoUpdateUsingCmdObj(myCommandObj);
+
+            return int.Parse(myCommandObj.Parameters["@PostId"].Value.ToString());
+        }
+
         public Byte[] GetProfilePicture(int userId)
         {
             myCommandObj.CommandType = CommandType.StoredProcedure;
@@ -246,6 +265,17 @@ namespace DogeBookLibrary
             myCommandObj.Parameters.Clear();
             myCommandObj.Parameters.AddWithValue("@PostId", postId);
             myCommandObj.Parameters.AddWithValue("@UserId", userId);
+
+            dBConnect.DoUpdateUsingCmdObj(myCommandObj);
+        }
+
+        public void UpdatePostText(int postId, string text)
+        {
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_UpdatePostText";
+            myCommandObj.Parameters.Clear();
+            myCommandObj.Parameters.AddWithValue("@PostId", postId);
+            myCommandObj.Parameters.AddWithValue("@Text", text);
 
             dBConnect.DoUpdateUsingCmdObj(myCommandObj);
         }
