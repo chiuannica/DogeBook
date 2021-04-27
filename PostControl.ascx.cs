@@ -138,7 +138,7 @@ namespace DogeBook
             DataRow row = postData.Tables[0].Rows[0];
             lblAuthor.Text = row["FirstName"].ToString() + " " + row["LastName"].ToString();
             imgAuthor.ImageUrl = util.ProfPicArrayToImage((int)row["UserId"]);
-            if(!DBNull.Value.Equals(row["Image"]))
+            if (!DBNull.Value.Equals(row["Image"]))
             {
                 imgPostImage.ImageUrl = util.ByteArrayToImageUrl((byte[])row["Image"]);
             }
@@ -146,7 +146,7 @@ namespace DogeBook
             {
                 imgPostImage.Visible = false;
             }
-            
+
             txtPostText.Text = row["Text"].ToString();
             lblTimestamp.Text = row["TimeStamp"].ToString();
             postid = (int)row["PostId"];
@@ -159,6 +159,7 @@ namespace DogeBook
             if ((int)Session["UserId"] == (int)row["UserId"])
             {
                 btnEdit.Visible = true;
+                btnDeletePost.Visible = true;
             }
             lblLikes.Text = "<i class=\"fas fa-paw\"></i>" + util.CountLikesOnPost(postid);
             LoadComments();
@@ -180,8 +181,15 @@ namespace DogeBook
             }
             else
             {
-                util.LikePost((int)Session["UserId"], postid);
-                btnLike.InnerHtml = "<i class=\"fas fa-thumbs-down\"></i>&nbsp Unlike";
+                WebRequest request = WebRequest.Create("https://localhost:44305/api/Timeline/LikePost/" + Session["UserId"] + "/" + postid);
+                request.Method = "POST";
+                request.ContentLength = 0;
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    btnLike.InnerHtml = "<i class=\"fas fa-thumbs-down\"></i>&nbsp Unlike";
+                }
+
             }
             DataBind();
         }
@@ -213,6 +221,18 @@ namespace DogeBook
             btnUpdatePostText.Visible = true;
             txtPostText.ReadOnly = false;
             txtPostText.Focus();
+        }
+
+        protected void btnDeletePost_ServerClick(object sender, EventArgs e)
+        {
+            WebRequest request = WebRequest.Create("https://localhost:44305/api/Timeline/DeletePost/" + postid);
+            request.Method = "DELETE";
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                Page.Response.Redirect(Page.Request.Url.ToString(), true);
+            }
+
         }
     }
 }

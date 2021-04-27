@@ -248,7 +248,7 @@ namespace DogeBookLibrary
 
             DataSet ds = dBConnect.GetDataSetUsingCmdObj(myCommandObj);
 
-            if(ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
             {
                 return true;
             }
@@ -279,6 +279,39 @@ namespace DogeBookLibrary
 
             dBConnect.DoUpdateUsingCmdObj(myCommandObj);
         }
+        public DataSet GetFriendsFromUserId(int userId)
+        {
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_GetFriendsFromUserId";
+            myCommandObj.Parameters.Clear();
+
+            SqlParameter inputUserId = new SqlParameter("@userId", userId);
+            myCommandObj.Parameters.Add(inputUserId);
+
+            return dBConnect.GetDataSetUsingCmdObj(myCommandObj);
+        }
+
+        public DataSet GetPostsFromUserId(int userId)
+        {
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_GetPostsFromUserId";
+            myCommandObj.Parameters.Clear();
+
+            SqlParameter inputUserId = new SqlParameter("@userId", userId);
+            myCommandObj.Parameters.Add(inputUserId);
+
+            return dBConnect.GetDataSetUsingCmdObj(myCommandObj);
+        }
+        public void DeletePost(int postId)
+        {
+            myCommandObj.CommandType = CommandType.StoredProcedure;
+            myCommandObj.CommandText = "TP_DeletePost";
+            myCommandObj.Parameters.Clear();
+            myCommandObj.Parameters.AddWithValue("@PostId", postId);
+
+            dBConnect.DoUpdateUsingCmdObj(myCommandObj);
+        }
+
 
     }
 }

@@ -7,6 +7,9 @@
             <button id="btnEdit" class="btn btn-sm btn-secondary text-right" runat="server" onserverclick="btnEdit_ServerClick" visible="false">
                 <i class="fas fa-wrench"></i>
             </button>
+        <button id="btnDeletePost" class="btn btn-sm btn-danger text-right" runat="server" onserverclick="btnDeletePost_ServerClick" visible="false">
+                <i class="fas fa-poop"></i></i>
+            </button>
     </div>
     <div class="card-body" runat="server" id="cardBody">
         <div class="input-group mb-3">

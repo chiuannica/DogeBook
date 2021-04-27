@@ -53,8 +53,8 @@ namespace DogeBook
                         //use ajax or storeprocedure to put image data into TP_Users -> ProfilePicture
                         //Insert ImageURL for POST
                         //result = util.InsertProfilePicture(1, imageData);
+
                         int postId = util.InsertPost((int)Session["UserId"], post.Text, imageData, DateTime.Now);
-                        Response.Write("<script>alert('" + postId + "');</script>");
                     }
                     else
                     {

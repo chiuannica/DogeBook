@@ -16,67 +16,13 @@ namespace TimelineWebApi.Controllers
         [HttpGet("GetTimeline/{userId}")]
         public int[] GetTimeline(int userId)
         {
-            //string path = "https://localhost:44386/api/User/";
-            //WebRequest request = WebRequest.Create(path + "GetFriends/" + userId);
-            //WebResponse response = request.GetResponse();
 
-            //Stream theDataStream = response.GetResponseStream();
-            //StreamReader reader = new StreamReader(theDataStream);
-
-            //String data = reader.ReadToEnd();
-            //reader.Close();
-            //response.Close();
-            //JavaScriptSerializer js = new JavaScriptSerializer();
-            //User[] friends = js.Deserialize<User[]>(data);
-
-            DBConnect objDB = new DBConnect();
+            Utility util = new Utility();
             // get the friend 2 if the FriendReq has them as friend 1
 
-            string sqlString = "" +
-                "SELECT f2.UserId, f2.FirstName, f2.LastName, f2.Email, " +
-                    "f2.ProfilePicture, f2.Bio, f2.City, " +
-                    "f2.State, f2.Interests, f2.Verified " +
-                "FROM TP_Users f1 INNER JOIN TP_FriendRequests rec " +
-                    "ON f1.UserId=rec.Friend1Id " +
-                    "INNER JOIN TP_Users f2 " +
-                    "ON rec.Friend2Id=f2.UserId " +
-                "WHERE f1.UserId=" + userId + " " +
-                "AND Accept=1";
-            DataSet ds = objDB.GetDataSet(sqlString);
             List<int> timelineUsers = new List<int>();
             timelineUsers.Add(userId);
-
-            if (ds.Tables[0].Rows.Count != 0)
-            {
-                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                {
-                    User user = new User();
-                    DataRow record = ds.Tables[0].Rows[i];
-                    user.UserId = int.Parse(record["UserId"].ToString());
-                    user.FirstName = record["FirstName"].ToString();
-                    user.LastName = record["LastName"].ToString();
-                    user.Email = record["Email"].ToString();
-                    user.Bio = record["Bio"].ToString();
-                    user.City = record["City"].ToString();
-                    user.State = record["State"].ToString();
-                    user.Interests = record["Interests"].ToString();
-                    user.Verified = record["Verified"].ToString();
-                    timelineUsers.Add(user.UserId);
-                }
-            }
-
-            // get the friend 1 if the FriendReq has them as friend 2
-            sqlString = "SELECT f1.UserId, f1.FirstName, f1.LastName, f1.Email, " +
-                    "f1.ProfilePicture, f1.Bio, f1.City, " +
-                    "f1.State, f1.Interests, f1.Verified " +
-                "FROM TP_Users f1 INNER JOIN TP_FriendRequests rec " +
-                    "ON f1.UserId=rec.Friend1Id " +
-                    "INNER JOIN TP_Users f2 " +
-                    "ON rec.Friend2Id=f2.UserId " +
-                "WHERE f2.UserId=" + userId + " " +
-                "AND Accept=1";
-
-            ds = objDB.GetDataSet(sqlString);
+            DataSet ds =  util.GetFriendsFromUserId(userId);
             if (ds.Tables[0].Rows.Count != 0)
             {
                 for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
@@ -105,9 +51,7 @@ namespace TimelineWebApi.Controllers
 
             foreach (int user in timelineUsers)
             {
-                sqlString = "SELECT * FROM TP_Posts WHERE UserId=" + user;
-                ds = objDB.GetDataSet(sqlString);
-                //String tempString = "User: " + userId;
+                ds = util.GetPostsFromUserId(user);
                 if (ds.Tables[0].Rows.Count != 0)
                 {
                     for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
@@ -115,14 +59,9 @@ namespace TimelineWebApi.Controllers
                         Post post = new Post();
                         DataRow record = ds.Tables[0].Rows[i];
                         post.PostId = (int)record["PostId"];
-                        //tempString += "Post text:  " + record["Text"].ToString() + Environment.NewLine +
-                        //              "PostId: " + record["PostId"].ToString() + Environment.NewLine;
                         post.Timestamp = (DateTime)record["Timestamp"];
-                        // ...
-
                         tempTimeline.Add(post);
                     }
-                    //tempTimeline.Add(tempString);
                 }
             }
             tempTimeline.Sort((x, y) => DateTime.Compare(x.Timestamp, y.Timestamp));
@@ -133,7 +72,6 @@ namespace TimelineWebApi.Controllers
                 timeline[r] = post.PostId;
                 r++;
             }
-
             return timeline;
         }
 
@@ -187,6 +125,12 @@ namespace TimelineWebApi.Controllers
             Utility util = new Utility();
             util.Unlike(userid, postid);
 
+        }
+        [HttpDelete("DeletePost/{PostId}")]
+        public void DeletePost(int postid)
+        {
+            Utility util = new Utility();
+            util.DeletePost(postid);
         }
     }
 }
